@@ -23,7 +23,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let block2 = SKSpriteNode(imageNamed:"block2")
     let scoreText = SKLabelNode(fontNamed: "Chalkduster")
     let bounceCountText = SKLabelNode(fontNamed: "Chalkduster")
-
+    
+    var nextPlatformCreated = false
     var onGround = true
 
     
@@ -194,15 +195,18 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         cameraNode.position = CGPoint(x: hero.position.x, y: cameraNode.position.y)
         
-        if Swift.abs(self.hero.position.x - (self.currentRunningBar.position.x + currentRunningBar.size.width / 2)) < EPS {
+        if self.hero.position.x > (self.currentRunningBar.position.x + currentRunningBar.size.width / 2) && !nextPlatformCreated{
             
             createGroundBlock(position: CGPoint(x: self.currentRunningBar.position.x + self.currentRunningBar.size.width,
                                                    y: self.currentRunningBar.position.y))
+            nextPlatformCreated = true
         }
         
         if self.currentRunningBar.position.x + self.currentRunningBar.size.width <= self.frame.minX {
             self.currentRunningBar.removeFromParent()
-            currentRunningBar = self.nextRunningBar
+            currentRunningBar = self.nextRunningBar.copy() as! SKSpriteNode
+            self.nextRunningBar.removeFromParent()
+            nextPlatformCreated = false
         }
         
         //self.position = CGPoint(x: cameraNode.position.x + 1, y: cameraNode.position.y)
