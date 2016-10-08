@@ -14,7 +14,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let EPS = CGFloat(5.0)
     
     var currentRunningBar = SKSpriteNode(imageNamed:"bar")
-    var nextRunningBar = SKSpriteNode(imageNamed: "bar")
+    var nextRunningBar: SKSpriteNode! = SKSpriteNode(imageNamed: "bar")
     let hero = SKSpriteNode(imageNamed:"hero")
     
     let cameraNode = SKCameraNode()
@@ -24,7 +24,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let scoreText = SKLabelNode(fontNamed: "Chalkduster")
     let bounceCountText = SKLabelNode(fontNamed: "Chalkduster")
     
-    var nextPlatformCreated = false
+    //var nextPlatformCreated = false
     var onGround = true
 
     
@@ -54,10 +54,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(cameraNode)
         self.camera = cameraNode
         
-        
-        self.currentRunningBar.anchorPoint = CGPoint(x: 0, y: 0.5)
+        self.hero.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.currentRunningBar.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.currentRunningBar.position = CGPoint(
-            x: self.frame.minX,
+            x: self.frame.minX + self.currentRunningBar.size.width/4,
             y: self.frame.minY + (self.currentRunningBar.size.height / 2))
         
 //        self.nextRunningBar.anchorPoint = CGPoint(x: 0, y: 0.5)
@@ -70,13 +70,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.hero.physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(self.hero.size.width / 2))
         self.hero.physicsBody?.affectedByGravity = false
         self.hero.physicsBody?.categoryBitMask = ColliderType.Hero.rawValue
-        //self.hero.physicsBody?.contactTestBitMask = ColliderType.Block.rawValue | ColliderType.Ground.rawValue
-        //self.hero.physicsBody?.collisionBitMask = ColliderType.Block.rawValue | ColliderType.Ground.rawValue
         self.hero.physicsBody?.contactTestBitMask = ColliderType.Ground.rawValue
         self.hero.physicsBody?.collisionBitMask = ColliderType.Ground.rawValue
         self.hero.physicsBody?.affectedByGravity = true
         self.hero.physicsBody?.restitution = 0.0
-        self.hero.physicsBody?.velocity = CGVector(dx: 200.0, dy: 0.0)
+        self.hero.physicsBody?.velocity = CGVector(dx: 300.0, dy: 0.0)
         self.hero.physicsBody?.linearDamping = 0
         
         
@@ -100,7 +98,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.currentRunningBar.physicsBody?.contactTestBitMask = ColliderType.Hero.rawValue
         self.currentRunningBar.physicsBody?.collisionBitMask = ColliderType.Hero.rawValue
         self.currentRunningBar.physicsBody?.restitution = 0.0
-        
+        createGroundBlock(position: CGPoint(x: self.currentRunningBar.position.x + self.currentRunningBar.size.width,
+                                            y: self.currentRunningBar.position.y + currentRunningBar.size.height/2))
         
         
 
@@ -179,13 +178,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     func createGroundBlock(position : CGPoint) {
         nextRunningBar = SKSpriteNode(imageNamed: "bar")
-        self.nextRunningBar.anchorPoint = CGPoint(x: 0.0, y: 0.5)
+        self.nextRunningBar.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.nextRunningBar.physicsBody = SKPhysicsBody(rectangleOf: self.nextRunningBar.size)
-        self.nextRunningBar.physicsBody?.isDynamic = false
         self.nextRunningBar.physicsBody?.categoryBitMask = ColliderType.Ground.rawValue
         self.nextRunningBar.physicsBody?.contactTestBitMask = ColliderType.Hero.rawValue
         self.nextRunningBar.physicsBody?.collisionBitMask = ColliderType.Hero.rawValue
         self.nextRunningBar.physicsBody?.restitution = 0.0
+        self.nextRunningBar.physicsBody?.isDynamic = false
         self.nextRunningBar.position = position
         self.addChild(nextRunningBar)
     }
@@ -194,19 +193,27 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         
         cameraNode.position = CGPoint(x: hero.position.x, y: cameraNode.position.y)
-        
-        if self.hero.position.x > (self.currentRunningBar.position.x + currentRunningBar.size.width / 2) && !nextPlatformCreated{
-            
+        print("hero position", self.hero.position.x)
+//        print("running bar pos :", currentRunningBar.position.x)
+//        
+//        print("condition: ", currentRunningBar.position.x + currentRunningBar.size.width / 2)
+        //print("running bar width: ", currentRunningBar.size.width)
+        if self.hero.position.x > (self.currentRunningBar.position.x) && (nextRunningBar == nil) {//!nextPlatformCreated {
+            //print(nextPlatformCreated)
             createGroundBlock(position: CGPoint(x: self.currentRunningBar.position.x + self.currentRunningBar.size.width,
-                                                   y: self.currentRunningBar.position.y))
-            nextPlatformCreated = true
+                                                y: self.currentRunningBar.position.y + currentRunningBar.size.height/2))
+            //nextPlatformCreated = true
         }
         
-        if self.currentRunningBar.position.x + self.currentRunningBar.size.width <= self.frame.minX {
+        //print(self.frame.width)
+        //print(self.currentRunningBar.size.width)
+        print("camera position: ", self.scene?.camera?.position.x)
+        
+        print("Camera \(scene?.camera?.position)")
+        if self.currentRunningBar.position.x + self.currentRunningBar.size.width / 2 <= self.scene!.camera!.position.x - self.frame.width / 2 {
             self.currentRunningBar.removeFromParent()
-            currentRunningBar = self.nextRunningBar.copy() as! SKSpriteNode
-            self.nextRunningBar.removeFromParent()
-            nextPlatformCreated = false
+            self.currentRunningBar = self.nextRunningBar!
+            self.nextRunningBar = nil
         }
         
         //self.position = CGPoint(x: cameraNode.position.x + 1, y: cameraNode.position.y)
