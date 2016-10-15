@@ -16,12 +16,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var currGroundBar: GroundBar!
     var nextGroundBar: GroundBar!
     
+    var barsPool = [GroundBar]()
+    
+    
     var hero: Hero!
     
     let cameraNode = SKCameraNode()
-    
-    let groundBarExample = SKTexture(imageNamed: "bar")
-    //let x_spacing = groundBarExample.width
     
     override func didMove(to view: SKView) {
         
@@ -29,13 +29,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         hero = Hero(image: "hero", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY / 4), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground, collisionBitMask: ColliderType.Ground)
         
         // don't hardcode "200" below
-        currGroundBar = GroundBar(image: "bar", pos: CGPoint(
+        currGroundBar = GroundBar(image: "ice", pos: CGPoint(
                         x: self.frame.minX,
                         y: self.frame.minY))
-        
+
         // Create next running bar
-        createNextGroundBlock(position: CGPoint(x: self.currGroundBar.position.x + self.currGroundBar.size.width,
-                                            y: self.currGroundBar.position.y + currGroundBar.size.height / 2))
+        barsPool.append(GroundBar(image: "desert", pos: CGPoint.zero))
         
         // World initialization
         self.backgroundColor = UIColor.blue
@@ -92,27 +91,37 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createNextGroundBlock(position : CGPoint) {
-        nextGroundBar = GroundBar(image: "bar", pos: position)
+        if barsPool.count > 0 {
+            nextGroundBar = barsPool[0]
+            nextGroundBar.position = position
+            barsPool.remove(at: 0)
+        } else {
+            nextGroundBar = GroundBar(image: "ice", pos: position)
+        }
         self.addChild(nextGroundBar)
+        print(barsPool.count)
     }
     
     
     override func update(_ currentTime: TimeInterval) {
-
+        
         // Create new ground block
         if self.hero.position.x > (self.currGroundBar.position.x) && (nextGroundBar == nil) {
+            
             createNextGroundBlock(position: CGPoint(x: self.currGroundBar.position.x + self.currGroundBar.size.width,
                                                 y: self.currGroundBar.position.y + currGroundBar.size.height / 2))
         }
+        
         // Delete old ground and switch next and current blocks
         if self.currGroundBar.position.x + self.currGroundBar.size.width / 2 <= self.scene!.camera!.position.x - self.frame.width / 2 {
             self.currGroundBar.removeFromParent()
+            barsPool.append(currGroundBar)
             self.currGroundBar = self.nextGroundBar!
             self.nextGroundBar = nil
         }
         
-        print("Hero pos: " + String(describing: hero.position.x))
-        print("Camera pos: " + String(describing: camera!.position.x))
+        hero.physicsBody?.velocity = CGVector(dx: 300, dy: (hero.physicsBody?.velocity.dy)!)
+        hero.Fall()
     }
     
     override func didSimulatePhysics() {
