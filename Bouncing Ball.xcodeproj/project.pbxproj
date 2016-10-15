@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		AE1B41A91D9FDDA300D27A14 /* GameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B41A81D9FDDA300D27A14 /* GameNode.swift */; };
+		AE9549781DB22B1D0003B6B2 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9549771DB22B1D0003B6B2 /* Hero.swift */; };
+		AE95497B1DB236E40003B6B2 /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE95497A1DB236E40003B6B2 /* ColliderType.swift */; };
+		AE95497D1DB23F260003B6B2 /* GroundBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE95497C1DB23F250003B6B2 /* GroundBar.swift */; };
 		AECFADE11D967D36007ADC7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECFADE01D967D36007ADC7B /* AppDelegate.swift */; };
 		AECFADE31D967D36007ADC7B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AECFADE21D967D36007ADC7B /* GameScene.sks */; };
 		AECFADE51D967D36007ADC7B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = AECFADE41D967D36007ADC7B /* Actions.sks */; };
@@ -22,6 +25,9 @@
 
 /* Begin PBXFileReference section */
 		AE1B41A81D9FDDA300D27A14 /* GameNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameNode.swift; sourceTree = "<group>"; };
+		AE9549771DB22B1D0003B6B2 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		AE95497A1DB236E40003B6B2 /* ColliderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColliderType.swift; sourceTree = "<group>"; };
+		AE95497C1DB23F250003B6B2 /* GroundBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroundBar.swift; sourceTree = "<group>"; };
 		AECFADDD1D967D36007ADC7B /* Bouncing Ball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bouncing Ball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AECFADE01D967D36007ADC7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AECFADE21D967D36007ADC7B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -78,6 +84,9 @@
 				AECFADF81D9682FF007ADC7B /* PlayScene.swift */,
 				AECFADFA1D968743007ADC7B /* BlockStatus.swift */,
 				AE1B41A81D9FDDA300D27A14 /* GameNode.swift */,
+				AE9549771DB22B1D0003B6B2 /* Hero.swift */,
+				AE95497A1DB236E40003B6B2 /* ColliderType.swift */,
+				AE95497C1DB23F250003B6B2 /* GroundBar.swift */,
 			);
 			path = "Bouncing Ball";
 			sourceTree = "<group>";
@@ -160,6 +169,9 @@
 				AE1B41A91D9FDDA300D27A14 /* GameNode.swift in Sources */,
 				AECFADFB1D968743007ADC7B /* BlockStatus.swift in Sources */,
 				AECFADE91D967D36007ADC7B /* GameViewController.swift in Sources */,
+				AE9549781DB22B1D0003B6B2 /* Hero.swift in Sources */,
+				AE95497D1DB23F260003B6B2 /* GroundBar.swift in Sources */,
+				AE95497B1DB236E40003B6B2 /* ColliderType.swift in Sources */,
 				AECFADF91D9682FF007ADC7B /* PlayScene.swift in Sources */,
 				AECFADE11D967D36007ADC7B /* AppDelegate.swift in Sources */,
 			);
