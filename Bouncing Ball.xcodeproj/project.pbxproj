@@ -24,6 +24,8 @@
 		AEF052A71DBB5BA7000F8F0B /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052A61DBB5BA7000F8F0B /* Enemy.swift */; };
 		AEF052A91DBB5E6F000F8F0B /* Bonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052A81DBB5E6F000F8F0B /* Bonus.swift */; };
 		AEF052AB1DBB78AE000F8F0B /* GarbageCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052AA1DBB78AE000F8F0B /* GarbageCollector.swift */; };
+		AEF052AD1DBB8C23000F8F0B /* EnemyJumping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052AC1DBB8C23000F8F0B /* EnemyJumping.swift */; };
+		AEF052AF1DBB8C3D000F8F0B /* EnemyDashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052AE1DBB8C3D000F8F0B /* EnemyDashing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		AEF052A61DBB5BA7000F8F0B /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		AEF052A81DBB5E6F000F8F0B /* Bonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bonus.swift; sourceTree = "<group>"; };
 		AEF052AA1DBB78AE000F8F0B /* GarbageCollector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarbageCollector.swift; sourceTree = "<group>"; };
+		AEF052AC1DBB8C23000F8F0B /* EnemyJumping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyJumping.swift; sourceTree = "<group>"; };
+		AEF052AE1DBB8C3D000F8F0B /* EnemyDashing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyDashing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,9 +97,11 @@
 				AE9549771DB22B1D0003B6B2 /* Hero.swift */,
 				AE95497A1DB236E40003B6B2 /* ColliderType.swift */,
 				AE95497C1DB23F250003B6B2 /* GroundBar.swift */,
-				AEF052A61DBB5BA7000F8F0B /* Enemy.swift */,
 				AEF052A81DBB5E6F000F8F0B /* Bonus.swift */,
 				AEF052AA1DBB78AE000F8F0B /* GarbageCollector.swift */,
+				AEF052A61DBB5BA7000F8F0B /* Enemy.swift */,
+				AEF052AC1DBB8C23000F8F0B /* EnemyJumping.swift */,
+				AEF052AE1DBB8C3D000F8F0B /* EnemyDashing.swift */,
 			);
 			path = "Bouncing Ball";
 			sourceTree = "<group>";
@@ -180,10 +186,12 @@
 				AE1B41A91D9FDDA300D27A14 /* GameNode.swift in Sources */,
 				AECFADFB1D968743007ADC7B /* BlockStatus.swift in Sources */,
 				AECFADE91D967D36007ADC7B /* GameViewController.swift in Sources */,
+				AEF052AD1DBB8C23000F8F0B /* EnemyJumping.swift in Sources */,
 				AE9549781DB22B1D0003B6B2 /* Hero.swift in Sources */,
 				AE95497D1DB23F260003B6B2 /* GroundBar.swift in Sources */,
 				AEF052A71DBB5BA7000F8F0B /* Enemy.swift in Sources */,
 				AE95497B1DB236E40003B6B2 /* ColliderType.swift in Sources */,
+				AEF052AF1DBB8C3D000F8F0B /* EnemyDashing.swift in Sources */,
 				AECFADF91D9682FF007ADC7B /* PlayScene.swift in Sources */,
 				AECFADE11D967D36007ADC7B /* AppDelegate.swift in Sources */,
 			);

@@ -17,7 +17,7 @@ class Enemy: SKSpriteNode {
     var standingFrames = [SKTexture]()
     
     convenience init(image: String, pos: CGPoint) {
-        self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero, collisionBitMask: ColliderType.Ground)
+        self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
     }
     
     init(image: String, pos: CGPoint, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32) {
@@ -31,11 +31,11 @@ class Enemy: SKSpriteNode {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         position = pos
         physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(self.size.width / 2))
-        physicsBody?.affectedByGravity = false
         physicsBody?.categoryBitMask = categoryBitMask
         physicsBody?.contactTestBitMask = contactTestBitMask
         physicsBody?.collisionBitMask = collisionBitMask
         physicsBody?.affectedByGravity = true
+        physicsBody?.isDynamic = true
         physicsBody?.restitution = 0.0
         physicsBody?.linearDamping = 0
         physicsBody?.friction = 0

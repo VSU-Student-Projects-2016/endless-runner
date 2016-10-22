@@ -11,19 +11,15 @@ import SpriteKit
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
-    //var currentRunningBar = SKSpriteNode(imageNamed: "bar")
-    //var nextRunningBar: SKSpriteNode! = SKSpriteNode(imageNamed: "bar")
     var currGroundBar: GroundBar!
     var nextGroundBar: GroundBar!
     
     var barsPool = [GroundBar]()
     var bonusPool = [Bonus]()
+    var enemyPool = [Enemy]()
     var score = 0;
     let scoreText = SKLabelNode(fontNamed: "Chalkduster")
     var hero: Hero!
-    
-    
-    var enemy: Enemy!
     
     let cameraNode = SKCameraNode()
     
@@ -34,12 +30,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         // don't hardcode "200" below
         hero = Hero(image: "hero", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY / 4), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground, collisionBitMask: ColliderType.Ground)
         
-        enemy = Enemy(image: "block1", pos: position)
         
         garbageCollector = GarbageCollector(pos: CGPoint(x: frame.minX-100, y: frame.midY),
                                             size: CGSize(width: 50, height: frame.size.height*2))
         addChild(garbageCollector)
         
+        enemyPool.append(DashingEnemy(image: "block1", pos: CGPoint(x: 0, y : 0)))
+        enemyPool.append(JumpingEnemy(image: "block1", pos: CGPoint(x: 0, y : 0)))
+        enemyPool.append(Enemy(image: "block1", pos: CGPoint(x: 0, y : 0)))
         
         for _ in (0..<10) {
             bonusPool.append(Bonus(image: "fish", pos: CGPoint(x: self.frame.maxX, y: self.frame.midY)))
@@ -74,8 +72,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addEnemy(position: CGPoint) {
-        enemy.position = position
-        addChild(enemy)
+        if (enemyPool.count != 0) {
+            let enemy = enemyPool[0]
+            enemy.position = position
+            enemyPool.remove(at: 0)
+            addChild(enemy)
+        }
     }
     
     func addBonus(position: CGPoint) {
@@ -86,9 +88,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 bonusPool.remove(at: 0)
                 self.addChild(bonus)
             }
-        
         }
-        print("Bonus created")
     }
 
     
@@ -100,15 +100,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
 
         //died()
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Bonus){
-            //bonus.removeFromParent()
             if contact.bodyA.categoryBitMask == ColliderType.Bonus {
                 bonusPool.append(contact.bodyA.node as! Bonus)
-                contact.bodyA.node?.removeFromParent()
-                //bonusPool.append(Bonus(image: "fish", pos: CGPoint(x: 0, y: 0)))
+                contact.bodyA.node!.removeFromParent()
             } else {
                 bonusPool.append(contact.bodyB.node as! Bonus)
-                contact.bodyB.node?.removeFromParent()
-                //bonusPool.append(Bonus(image: "fish", pos: CGPoint(x: 0, y: 0)))
+                contact.bodyB.node!.removeFromParent()
             }
             score += 1
             scoreText.text = String(score)
@@ -121,22 +118,36 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Bonus | ColliderType.GarbageCollector){
             if contact.bodyA.categoryBitMask == ColliderType.Bonus {
                 bonusPool.append(contact.bodyA.node as! Bonus)
-                contact.bodyA.node?.removeFromParent()
-                //bonusPool.append(Bonus(image: "fish", pos: CGPoint(x: 0, y: 0)))
+                contact.bodyA.node!.removeFromParent()
             } else {
                 bonusPool.append(contact.bodyB.node as! Bonus)
-                contact.bodyB.node?.removeFromParent()
-                //bonusPool.append(Bonus(image: "fish", pos: CGPoint(x: 0, y: 0)))
+                contact.bodyB.node!.removeFromParent()
             }
         }
         
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Enemy | ColliderType.GarbageCollector){
             if contact.bodyA.categoryBitMask == ColliderType.Enemy {
-                contact.bodyA.node?.removeFromParent()
+                enemyPool.append(contact.bodyA.node as! Enemy)
+                contact.bodyA.node!.removeFromParent()
             } else {
-                contact.bodyB.node?.removeFromParent()
+                enemyPool.append(contact.bodyB.node as! Enemy)
+                contact.bodyB.node!.removeFromParent()
             }
         }
+        
+        if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Enemy | ColliderType.Ground){
+            if contact.bodyA.categoryBitMask == ColliderType.Enemy {
+                if contact.bodyA.node is JumpingEnemy {
+                    (contact.bodyA.node as! JumpingEnemy).Jump()
+                }
+            } else {
+                if contact.bodyB.node is JumpingEnemy {
+                    (contact.bodyB.node as! JumpingEnemy).Jump()
+                }
+            }
+        }
+        
+        
     }
     
     func didEnd(_ contact:SKPhysicsContact) {
@@ -187,7 +198,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                                                 y: self.currGroundBar.position.y + currGroundBar.size.height / 2))
             
             let randNum = random(left: 0, right: 10)
-            print(randNum)
+            
             if (randNum % 2 == 0) {
                 addBonus(position: CGPoint(x: nextGroundBar.position.x,
                                            y: nextGroundBar.position.y + 4*hero.size.height))
@@ -195,7 +206,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             
             if (randNum % 3 == 0) {
                 addEnemy(position: CGPoint(x: nextGroundBar.position.x,
-                                           y: nextGroundBar.position.y + 4*hero.size.height))
+                                           y: nextGroundBar.position.y + hero.size.height))
             }
         }
         

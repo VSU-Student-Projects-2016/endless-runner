@@ -31,7 +31,6 @@ class Hero: SKSpriteNode {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         position = pos
         physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(self.size.width / 2))
-        physicsBody?.affectedByGravity = false
         physicsBody?.categoryBitMask = categoryBitMask
         physicsBody?.contactTestBitMask = contactTestBitMask
         physicsBody?.collisionBitMask = collisionBitMask
