@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import UIKit
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
@@ -24,8 +25,22 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let cameraNode = SKCameraNode()
     
     var garbageCollector : GarbageCollector!
+    
+    var pauseButton : UIButton!
+    var exitButton : UIButton!
      
     override func didMove(to view: SKView) {
+        
+        pauseButton = UIButton(frame: CGRect(x: self.frame.midX, y: self.frame.minY, width: 100.0, height: 100.0))
+        pauseButton.setTitle("Pause Menu", for: .normal)
+        pauseButton.setTitleColor(.red, for: .normal)
+        pauseButton.addTarget(self, action: #selector(self.pauseButtonPressed(_:)), for: .touchUpInside)
+        self.view?.addSubview(pauseButton)
+        
+        exitButton = UIButton(frame: CGRect(x: self.frame.midX, y: self.frame.midY, width: 100.0, height: 100.0))
+        exitButton.setTitle("Exit", for: .normal)
+        exitButton.setTitleColor(.red, for: .normal)
+        exitButton.addTarget(self, action: #selector(self.exitButtonPressed(_:)), for: .touchUpInside)
         
         // don't hardcode "200" below
         hero = Hero(image: "hero", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY / 4), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground, collisionBitMask: ColliderType.Ground)
@@ -69,6 +84,30 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
 
         self.addChild(self.currGroundBar)
         self.addChild(self.hero)
+    }
+    
+    func pauseButtonPressed(_ sender: UIButton!){
+        self.isPaused = !self.isPaused
+        if self.isPaused{
+            self.view?.addSubview(exitButton)
+        }
+        else {
+            exitButton.removeFromSuperview()
+        }
+    }
+    
+    func exitButtonPressed(_ sender: UIButton!) {
+        if let scene = GameScene.unarchiveFromFile(file: "GameScene") as? GameScene {
+
+            let skView = self.view as SKView!
+            skView?.ignoresSiblingOrder = true
+            scene.size = (skView?.bounds.size)!
+            scene.scaleMode = .aspectFill
+            skView?.presentScene(scene)
+            pauseButton.removeFromSuperview()
+            exitButton.removeFromSuperview()
+        }
+        
     }
     
     func addEnemy(position: CGPoint) {
