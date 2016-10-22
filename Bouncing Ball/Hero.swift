@@ -47,7 +47,7 @@ class Hero: SKSpriteNode {
     }
     
     func Jump() {
-        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 100.0)) // don't hardcode the force
+        self.physicsBody?.applyImpulse(CGVector(dx: 20.0, dy: 100.0)) // don't hardcode the force
         onGround = false
         StopRunning()
         ChangeImage(image: "hero_jump")

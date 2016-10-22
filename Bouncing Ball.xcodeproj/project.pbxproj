@@ -23,6 +23,7 @@
 		AECFADFB1D968743007ADC7B /* BlockStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECFADFA1D968743007ADC7B /* BlockStatus.swift */; };
 		AEF052A71DBB5BA7000F8F0B /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052A61DBB5BA7000F8F0B /* Enemy.swift */; };
 		AEF052A91DBB5E6F000F8F0B /* Bonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052A81DBB5E6F000F8F0B /* Bonus.swift */; };
+		AEF052AB1DBB78AE000F8F0B /* GarbageCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052AA1DBB78AE000F8F0B /* GarbageCollector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		AECFADFA1D968743007ADC7B /* BlockStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockStatus.swift; sourceTree = "<group>"; };
 		AEF052A61DBB5BA7000F8F0B /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		AEF052A81DBB5E6F000F8F0B /* Bonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bonus.swift; sourceTree = "<group>"; };
+		AEF052AA1DBB78AE000F8F0B /* GarbageCollector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarbageCollector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				AE95497C1DB23F250003B6B2 /* GroundBar.swift */,
 				AEF052A61DBB5BA7000F8F0B /* Enemy.swift */,
 				AEF052A81DBB5E6F000F8F0B /* Bonus.swift */,
+				AEF052AA1DBB78AE000F8F0B /* GarbageCollector.swift */,
 			);
 			path = "Bouncing Ball";
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AECFADE71D967D36007ADC7B /* GameScene.swift in Sources */,
+				AEF052AB1DBB78AE000F8F0B /* GarbageCollector.swift in Sources */,
 				AEF052A91DBB5E6F000F8F0B /* Bonus.swift in Sources */,
 				AE1B41A91D9FDDA300D27A14 /* GameNode.swift in Sources */,
 				AECFADFB1D968743007ADC7B /* BlockStatus.swift in Sources */,

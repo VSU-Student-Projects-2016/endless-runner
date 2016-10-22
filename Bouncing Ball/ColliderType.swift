@@ -14,4 +14,5 @@ public struct ColliderType {
     public static let Ground: UInt32 = 0b10
     public static let Enemy: UInt32 = 0b100
     public static let Bonus: UInt32 = 0b1000
+    public static let GarbageCollector: UInt32 = 0b10000
 }
