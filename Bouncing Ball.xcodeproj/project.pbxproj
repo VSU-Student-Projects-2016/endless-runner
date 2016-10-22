@@ -21,6 +21,8 @@
 		AECFADF11D967D36007ADC7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AECFADEF1D967D36007ADC7B /* LaunchScreen.storyboard */; };
 		AECFADF91D9682FF007ADC7B /* PlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECFADF81D9682FF007ADC7B /* PlayScene.swift */; };
 		AECFADFB1D968743007ADC7B /* BlockStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECFADFA1D968743007ADC7B /* BlockStatus.swift */; };
+		AEF052A71DBB5BA7000F8F0B /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052A61DBB5BA7000F8F0B /* Enemy.swift */; };
+		AEF052A91DBB5E6F000F8F0B /* Bonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052A81DBB5E6F000F8F0B /* Bonus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		AECFADF21D967D36007ADC7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AECFADF81D9682FF007ADC7B /* PlayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayScene.swift; sourceTree = "<group>"; };
 		AECFADFA1D968743007ADC7B /* BlockStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockStatus.swift; sourceTree = "<group>"; };
+		AEF052A61DBB5BA7000F8F0B /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		AEF052A81DBB5E6F000F8F0B /* Bonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bonus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,8 @@
 				AE9549771DB22B1D0003B6B2 /* Hero.swift */,
 				AE95497A1DB236E40003B6B2 /* ColliderType.swift */,
 				AE95497C1DB23F250003B6B2 /* GroundBar.swift */,
+				AEF052A61DBB5BA7000F8F0B /* Enemy.swift */,
+				AEF052A81DBB5E6F000F8F0B /* Bonus.swift */,
 			);
 			path = "Bouncing Ball";
 			sourceTree = "<group>";
@@ -166,11 +172,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AECFADE71D967D36007ADC7B /* GameScene.swift in Sources */,
+				AEF052A91DBB5E6F000F8F0B /* Bonus.swift in Sources */,
 				AE1B41A91D9FDDA300D27A14 /* GameNode.swift in Sources */,
 				AECFADFB1D968743007ADC7B /* BlockStatus.swift in Sources */,
 				AECFADE91D967D36007ADC7B /* GameViewController.swift in Sources */,
 				AE9549781DB22B1D0003B6B2 /* Hero.swift in Sources */,
 				AE95497D1DB23F260003B6B2 /* GroundBar.swift in Sources */,
+				AEF052A71DBB5BA7000F8F0B /* Enemy.swift in Sources */,
 				AE95497B1DB236E40003B6B2 /* ColliderType.swift in Sources */,
 				AECFADF91D9682FF007ADC7B /* PlayScene.swift in Sources */,
 				AECFADE11D967D36007ADC7B /* AppDelegate.swift in Sources */,
