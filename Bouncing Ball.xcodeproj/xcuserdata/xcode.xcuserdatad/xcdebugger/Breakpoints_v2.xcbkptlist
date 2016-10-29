@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bouncing Ball/PlayScene.swift"
-            timestampString = "498836174.702073"
+            timestampString = "499426620.54854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "PlayScene"
             landmarkType = "3">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bouncing Ball/PlayScene.swift"
-            timestampString = "498836174.702073"
+            timestampString = "499426620.54854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "touchesBegan(_:with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bouncing Ball/PlayScene.swift"
-            timestampString = "498836174.702073"
+            timestampString = "499426620.54854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "died()"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bouncing Ball/PlayScene.swift"
-            timestampString = "498836174.702073"
+            timestampString = "499426662.194831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283">
+            startingLineNumber = "293"
+            endingLineNumber = "293">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bouncing Ball/PlayScene.swift"
-            timestampString = "498836174.702073"
+            timestampString = "499426662.194831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281">
+            startingLineNumber = "291"
+            endingLineNumber = "291">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bouncing Ball/PlayScene.swift"
-            timestampString = "498836174.702073"
+            timestampString = "499426662.194831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282">
+            startingLineNumber = "292"
+            endingLineNumber = "292">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -260,27 +260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bouncing Ball/PlayScene.swift"
-            timestampString = "498836174.702073"
+            timestampString = "499426662.194831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
-            landmarkName = "createNextGroundBlock(position:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bouncing Ball/PlayScene.swift"
-            timestampString = "498836174.702073"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "update(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -308,11 +292,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bouncing Ball/PlayScene.swift"
-            timestampString = "498835707.980074"
+            timestampString = "499426620.54854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "didMove(to:)"
             landmarkType = "7">
          </BreakpointContent>

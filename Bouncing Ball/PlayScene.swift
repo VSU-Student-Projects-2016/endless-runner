@@ -14,10 +14,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var currGroundBar: GroundBar!
     var nextGroundBar: GroundBar!
-    
-    var barsPool = [GroundBar]()
-    var bonusPool = [Bonus]()
-    var enemyPool = [Enemy]()
+    var platformGenerator = PlatformGenerator()
     var score = 0;
     let scoreText = SKLabelNode(fontNamed: "Chalkduster")
     var hero: Hero!
@@ -43,20 +40,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         exitButton.addTarget(self, action: #selector(self.exitButtonPressed(_:)), for: .touchUpInside)
         
         // don't hardcode "200" below
-        hero = Hero(image: "hero", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY / 4), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground, collisionBitMask: ColliderType.Ground)
+        hero = Hero(image: "hero", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground, collisionBitMask: ColliderType.Ground)
         
         
         garbageCollector = GarbageCollector(pos: CGPoint(x: frame.minX-100, y: frame.midY),
                                             size: CGSize(width: 50, height: frame.size.height*2))
         addChild(garbageCollector)
-        
-        enemyPool.append(DashingEnemy(image: "block1", pos: CGPoint(x: 0, y : 0)))
-        enemyPool.append(JumpingEnemy(image: "block1", pos: CGPoint(x: 0, y : 0)))
-        enemyPool.append(Enemy(image: "block1", pos: CGPoint(x: 0, y : 0)))
-        
-        for _ in (0..<10) {
-            bonusPool.append(Bonus(image: "fish", pos: CGPoint(x: self.frame.maxX, y: self.frame.midY)))
-        }
         
         self.scoreText.text = "0"
         self.scoreText.fontSize = 42
@@ -66,10 +55,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         // don't hardcode "200" below
         currGroundBar = GroundBar(image: "ice", pos: CGPoint(
                         x: self.frame.minX,
-                        y: self.frame.minY))
-
-        // Create next running bar
-        barsPool.append(GroundBar(image: "desert", pos: CGPoint.zero))
+                        y: self.frame.midY * 0.35)) // put multiplier in variable
         
         // World initialization
         self.backgroundColor = UIColor.blue
@@ -110,27 +96,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    func addEnemy(position: CGPoint) {
-        if (enemyPool.count != 0) {
-            let enemy = enemyPool[0]
-            enemy.position = position
-            enemyPool.remove(at: 0)
-            addChild(enemy)
-        }
-    }
-    
-    func addBonus(position: CGPoint) {
-        if bonusPool.count >= 5 {
-            for i in 0..<5 {
-                let bonus = bonusPool[0]
-                bonus.position = CGPoint(x: position.x + CGFloat(i*50), y: position.y)
-                bonusPool.remove(at: 0)
-                self.addChild(bonus)
-            }
-        }
-    }
-
-    
     func didBegin(_ contact:SKPhysicsContact) {
         // Checking and changing onGround variable
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Ground){
@@ -140,10 +105,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         //died()
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Bonus){
             if contact.bodyA.categoryBitMask == ColliderType.Bonus {
-                bonusPool.append(contact.bodyA.node as! Bonus)
+                platformGenerator.addBonusToPool(bonus: contact.bodyA.node as! Bonus)
                 contact.bodyA.node!.removeFromParent()
             } else {
-                bonusPool.append(contact.bodyB.node as! Bonus)
+                platformGenerator.addBonusToPool(bonus: contact.bodyB.node as! Bonus)
                 contact.bodyB.node!.removeFromParent()
             }
             score += 1
@@ -155,21 +120,20 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Bonus | ColliderType.GarbageCollector){
-            if contact.bodyA.categoryBitMask == ColliderType.Bonus {
-                bonusPool.append(contact.bodyA.node as! Bonus)
+            if contact.bodyA.categoryBitMask == ColliderType.Bonus {                platformGenerator.addBonusToPool(bonus: contact.bodyA.node as! Bonus)
                 contact.bodyA.node!.removeFromParent()
             } else {
-                bonusPool.append(contact.bodyB.node as! Bonus)
+                platformGenerator.addBonusToPool(bonus: contact.bodyB.node as! Bonus)
                 contact.bodyB.node!.removeFromParent()
             }
         }
         
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Enemy | ColliderType.GarbageCollector){
             if contact.bodyA.categoryBitMask == ColliderType.Enemy {
-                enemyPool.append(contact.bodyA.node as! Enemy)
+                platformGenerator.addEnemyToPool(enemy: contact.bodyA.node as! Enemy)
                 contact.bodyA.node!.removeFromParent()
             } else {
-                enemyPool.append(contact.bodyB.node as! Enemy)
+                platformGenerator.addEnemyToPool(enemy: contact.bodyB.node as! Enemy)
                 contact.bodyB.node!.removeFromParent()
             }
         }
@@ -216,43 +180,18 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func createNextGroundBlock(position : CGPoint) {
-        if barsPool.count > 0 {
-            nextGroundBar = barsPool[0]
-            nextGroundBar.position = position
-            barsPool.remove(at: 0)
-        } else {
-            nextGroundBar = GroundBar(image: "ice", pos: position)
-        }
-        self.addChild(nextGroundBar)
-    }
-    
-    
     override func update(_ currentTime: TimeInterval) {
         
         // Create new ground block
         if self.hero.position.x > (self.currGroundBar.position.x) && (nextGroundBar == nil) {
-            
-            createNextGroundBlock(position: CGPoint(x: self.currGroundBar.position.x + self.currGroundBar.size.width,
-                                                y: self.currGroundBar.position.y + currGroundBar.size.height / 2))
-            
-            let randNum = random(left: 0, right: 10)
-            
-            if (randNum % 2 == 0) {
-                addBonus(position: CGPoint(x: nextGroundBar.position.x,
-                                           y: nextGroundBar.position.y + 4*hero.size.height))
-            }
-            
-            if (randNum % 3 == 0) {
-                addEnemy(position: CGPoint(x: nextGroundBar.position.x,
-                                           y: nextGroundBar.position.y + hero.size.height))
-            }
+            nextGroundBar = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: self.currGroundBar.position.x + self.currGroundBar.size.width,
+                                                           y: self.currGroundBar.position.y))
         }
         
         // Delete old ground and switch next and current blocks
         if self.currGroundBar.position.x + self.currGroundBar.size.width / 2 <= self.scene!.camera!.position.x - self.frame.width / 2 {
             self.currGroundBar.removeFromParent()
-            barsPool.append(currGroundBar)
+            platformGenerator.addPlatformToPool(platform: currGroundBar)
             self.currGroundBar = self.nextGroundBar!
             self.nextGroundBar = nil
         }
