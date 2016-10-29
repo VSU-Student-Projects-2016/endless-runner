@@ -30,30 +30,29 @@ class PlatformGenerator {
         platformPool.append(GroundBar(image: "ponyland", pos: CGPoint.zero))
     }
     
-    func getPlatform(scene: PlayScene, pos: CGPoint) -> GroundBar {
-        var platform: GroundBar!
-        
-        if platformPool.count > 0 {
-            platform = platformPool[0]
-            platform.position = pos
-            platformPool.remove(at: 0)
-        }
-        
-        let randNum = random(left: 0, right: 10)
-        
-        if (randNum % 2 == 0) {
-            addBonus(scene: scene, position: CGPoint(x: platform.position.x,
-                                       y: platform.position.y + 100)) // make it variable
-        }
-        
-        if (randNum % 3 == 0) {
-            addEnemy(scene: scene, position: CGPoint(x: platform.position.x,
-                                       y: platform.position.y + 50)) // make it variable
-        }
-        
-        scene.addChild(platform)
-
-        return platform
+    func getPlatform(scene: PlayScene, pos: CGPoint) -> PlatformTemplate {
+//        var platform: GroundBar!
+//        
+//        if platformPool.count > 0 {
+//            platform = platformPool[0]
+//            platform.position = pos
+//            platformPool.remove(at: 0)
+//        }
+//        
+//        let randNum = random(left: 0, right: 10)
+//        
+//        if (randNum % 2 == 0) {
+//            addBonus(scene: scene, position: CGPoint(x: platform.position.x,
+//                                       y: platform.position.y + 100)) // make it variable
+//        }
+//        
+//        if (randNum % 3 == 0) {
+//            addEnemy(scene: scene, position: CGPoint(x: platform.position.x,
+//                                       y: platform.position.y + 50)) // make it variable
+//        }
+//        
+//        scene.addChild(platform)
+        return PlatformTemplate(scene: scene, pos: pos)
     }
     
     func addEnemyToPool(enemy: Enemy){

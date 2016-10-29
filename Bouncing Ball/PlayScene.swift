@@ -12,8 +12,11 @@ import UIKit
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
-    var currGroundBar: GroundBar!
-    var nextGroundBar: GroundBar!
+//    var currGroundBar: GroundBar!
+//    var nextGroundBar: GroundBar!
+    var currPlatform: PlatformTemplate!
+    var nextPlatform: PlatformTemplate!
+    
     var platformGenerator = PlatformGenerator()
     var score = 0;
     let scoreText = SKLabelNode(fontNamed: "Chalkduster")
@@ -27,7 +30,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var exitButton : UIButton!
      
     override func didMove(to view: SKView) {
-        
+        view.showsPhysics = true
         pauseButton = UIButton(frame: CGRect(x: self.frame.midX, y: self.frame.minY, width: 100.0, height: 100.0))
         pauseButton.setTitle("Pause Menu", for: .normal)
         pauseButton.setTitleColor(.red, for: .normal)
@@ -53,9 +56,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(scoreText)
         
         // don't hardcode "200" below
-        currGroundBar = GroundBar(image: "ice", pos: CGPoint(
-                        x: self.frame.minX,
-                        y: self.frame.midY * 0.35)) // put multiplier in variable
+//        currGroundBar = GroundBar(image: "ice", pos: CGPoint(
+//                        x: self.frame.minX,
+//                        y: self.frame.midY * 0.35)) // put multiplier in variable
+//        
         
         // World initialization
         self.backgroundColor = UIColor.blue
@@ -68,7 +72,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.camera = cameraNode
         
 
-        self.addChild(self.currGroundBar)
+        //self.addChild(self.currGroundBar)
+        currPlatform = PlatformTemplate(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY * 0.35))
+        //currPlatform.position = CGPoint(x: frame.minX, y: frame.midY * 0.35)
+        self.addChild(currPlatform)
         self.addChild(self.hero)
     }
     
@@ -183,17 +190,26 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         
         // Create new ground block
-        if self.hero.position.x > (self.currGroundBar.position.x) && (nextGroundBar == nil) {
-            nextGroundBar = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: self.currGroundBar.position.x + self.currGroundBar.size.width,
-                                                           y: self.currGroundBar.position.y))
+        if self.hero.position.x > self.currPlatform.position.x + self.currPlatform.width / 2 && (nextPlatform == nil) {
+            
+            nextPlatform = PlatformTemplate(scene: self, pos: CGPoint(x: self.currPlatform.position.x + self.currPlatform.width, y: self.frame.minY * 0.35))//y: self.currPlatform.position.y))
+            addChild(nextPlatform)
+            print("Next platform created")
+            print("next platform pos: ")
+            print(self.currPlatform.position.x + self.currPlatform.width)
         }
         
         // Delete old ground and switch next and current blocks
-        if self.currGroundBar.position.x + self.currGroundBar.size.width / 2 <= self.scene!.camera!.position.x - self.frame.width / 2 {
-            self.currGroundBar.removeFromParent()
-            platformGenerator.addPlatformToPool(platform: currGroundBar)
-            self.currGroundBar = self.nextGroundBar!
-            self.nextGroundBar = nil
+        if self.currPlatform.position.x + self.currPlatform.width <= self.scene!.camera!.position.x - self.frame.width / 2 {
+            self.currPlatform.removeFromParent()
+            print("Left camera border: ")
+            print(self.scene!.camera!.position.x - self.frame.width / 2)
+            print("Template pos + half template width: ")
+            print(self.currPlatform.position.x + self.currPlatform.width / 2)
+            
+            //platformGenerator.addPlatformToPool(platform: currPlatform)
+            self.currPlatform = self.nextPlatform!
+            self.nextPlatform = nil
         }
         
         if hero.onGround {
