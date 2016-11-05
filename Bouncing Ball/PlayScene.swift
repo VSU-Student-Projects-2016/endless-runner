@@ -73,7 +73,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
 
         //self.addChild(self.currGroundBar)
-        currPlatform = PlatformTemplate(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY * 0.35))
+        currPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY * 0.35))
         //currPlatform.position = CGPoint(x: frame.minX, y: frame.midY * 0.35)
         self.addChild(currPlatform)
         self.addChild(self.hero)
@@ -192,7 +192,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         // Create new ground block
         if self.hero.position.x > self.currPlatform.position.x + self.currPlatform.width / 2 && (nextPlatform == nil) {
             
-            nextPlatform = PlatformTemplate(scene: self, pos: CGPoint(x: self.currPlatform.position.x + self.currPlatform.width, y: self.frame.minY * 0.35))//y: self.currPlatform.position.y))
+            nextPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: self.currPlatform.position.x + self.currPlatform.width, y: self.frame.minY * 0.35))//y: self.currPlatform.position.y))
             addChild(nextPlatform)
             print("Next platform created")
             print("next platform pos: ")

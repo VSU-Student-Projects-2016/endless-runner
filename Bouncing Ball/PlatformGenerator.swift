@@ -10,7 +10,6 @@ import Foundation
 import SpriteKit
 
 class PlatformGenerator {
-    //var platform: GroundBar!
     var platformPool = [GroundBar]()
     var bonusPool = [Bonus]()
     var enemyPool = [Enemy]()
@@ -31,28 +30,18 @@ class PlatformGenerator {
     }
     
     func getPlatform(scene: PlayScene, pos: CGPoint) -> PlatformTemplate {
-//        var platform: GroundBar!
-//        
-//        if platformPool.count > 0 {
-//            platform = platformPool[0]
-//            platform.position = pos
-//            platformPool.remove(at: 0)
-//        }
-//        
-//        let randNum = random(left: 0, right: 10)
-//        
-//        if (randNum % 2 == 0) {
-//            addBonus(scene: scene, position: CGPoint(x: platform.position.x,
-//                                       y: platform.position.y + 100)) // make it variable
-//        }
-//        
-//        if (randNum % 3 == 0) {
-//            addEnemy(scene: scene, position: CGPoint(x: platform.position.x,
-//                                       y: platform.position.y + 50)) // make it variable
-//        }
-//        
-//        scene.addChild(platform)
-        return PlatformTemplate(scene: scene, pos: pos)
+
+        let randNum = random(left: 0, right: 4)
+        switch randNum {
+        case 0:
+            return (GapPlatformCreator()).createPlatform(scene: scene, pos: pos)
+        case 1:
+            return (BonusPlatformCreator()).createPlatform(scene: scene, pos: pos)
+        case 2:
+            return (TripleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos)
+        default:
+            return (SingleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos)
+        }
     }
     
     func addEnemyToPool(enemy: Enemy){
