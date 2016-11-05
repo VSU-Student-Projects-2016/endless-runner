@@ -15,6 +15,7 @@ class Hero: SKSpriteNode {
     var energy = Float(1.0)
     let energyDelta = Float(0.05)
     let dashCost = Float(0.1)
+    let doubleJumpCost = Float(0.05)
     var speedMult = Float(1.0)
     let maxJumpsAllowed = 2
     var jumpsAllowed = 2
@@ -55,13 +56,19 @@ class Hero: SKSpriteNode {
     }
     
     func Jump() {
-        if jumpsAllowed > 0 {
+        if jumpsAllowed > 0 && energy >= doubleJumpCost || jumpsAllowed == maxJumpsAllowed {
+            if jumpsAllowed < maxJumpsAllowed {
+                energy -= doubleJumpCost
+            }
             self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 100.0)) // don't hardcode the force
             onGround = false
             StopRunning()
             ChangeImage(image: "hero_jump")
+            
             jumpsAllowed -= 1
             jumped = true
+            
+            
         }
     }
     
