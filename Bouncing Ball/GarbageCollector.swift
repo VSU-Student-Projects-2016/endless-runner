@@ -12,7 +12,7 @@ import SpriteKit
 class GarbageCollector: SKSpriteNode {
     
     convenience init(pos: CGPoint, size: CGSize) {
-        self.init(pos: pos, size: size, categoryBitMask: ColliderType.GarbageCollector, contactTestBitMask: ColliderType.Bonus | ColliderType.Enemy, collisionBitMask: ColliderType.None)
+        self.init(pos: pos, size: size, categoryBitMask: ColliderType.GarbageCollector, contactTestBitMask: ColliderType.Bonus | ColliderType.Enemy | ColliderType.Hero, collisionBitMask: ColliderType.None)
     }
     
     init(pos: CGPoint, size: CGSize, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32) {

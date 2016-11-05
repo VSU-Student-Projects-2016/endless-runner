@@ -12,6 +12,13 @@ import SpriteKit
 class Hero: SKSpriteNode {
     
     private(set) public var onGround = true
+    var energy = Float(1.0)
+    let energyDelta = Float(0.05)
+    let dashCost = Float(0.1)
+    var speedMult = Float(1.0)
+    let maxJumpsAllowed = 2
+    var jumpsAllowed = 2
+    var jumped = false
     
     private let heroAnimatedAtlas = SKTextureAtlas(named: "Hero Images")
     var walkFrames = [SKTexture]()
@@ -27,6 +34,8 @@ class Hero: SKSpriteNode {
         
         walkFrames.append(SKTexture(imageNamed: "hero"))
         walkFrames.append(SKTexture(imageNamed: "hero_move1"))
+        
+        jumpsAllowed = maxJumpsAllowed
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         position = pos
@@ -46,10 +55,21 @@ class Hero: SKSpriteNode {
     }
     
     func Jump() {
-        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 100.0)) // don't hardcode the force
-        onGround = false
-        StopRunning()
-        ChangeImage(image: "hero_jump")
+        if jumpsAllowed > 0 {
+            self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 100.0)) // don't hardcode the force
+            onGround = false
+            StopRunning()
+            ChangeImage(image: "hero_jump")
+            jumpsAllowed -= 1
+            jumped = true
+        }
+    }
+    
+    func Dash() {
+        if (energy >= dashCost && speedMult == 1.0) {
+            energy -= dashCost
+            speedMult *= 4
+        }
     }
     
     func Land() {
@@ -57,6 +77,8 @@ class Hero: SKSpriteNode {
         onGround = true
         ChangeImage(image: "hero")
         Run()
+        jumpsAllowed = maxJumpsAllowed
+        jumped = false
     }
     
     func Run() {
