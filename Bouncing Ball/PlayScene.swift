@@ -28,6 +28,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var pauseButton : UIButton!
     var exitButton : UIButton!
+    
+    var progressView : UIProgressView!
      
     override func didMove(to view: SKView) {
         view.showsPhysics = true
@@ -56,10 +58,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(scoreText)
         
         // don't hardcode "200" below
-//        currGroundBar = GroundBar(image: "ice", pos: CGPoint(
-//                        x: self.frame.minX,
-//                        y: self.frame.midY * 0.35)) // put multiplier in variable
-//        
         
         // World initialization
         self.backgroundColor = UIColor.blue
@@ -71,12 +69,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(cameraNode)
         self.camera = cameraNode
         
-
-        //self.addChild(self.currGroundBar)
         currPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY * 0.35))
-        //currPlatform.position = CGPoint(x: frame.minX, y: frame.midY * 0.35)
         self.addChild(currPlatform)
         self.addChild(self.hero)
+        
+        progressView = UIProgressView(progressViewStyle: UIProgressViewStyle.default)
+        progressView.center = CGPoint(x: frame.maxX - 150, y: frame.minY + 20)
+        progressView.progressTintColor = UIColor.init(red: 26/255, green: 148/255, blue: 49/255, alpha: 1.0)
+        progressView.transform = progressView.transform.scaledBy(x: 1.5, y: 10)
+        view.addSubview(progressView)
+        progressView.progress = 0.5
     }
     
     func pauseButtonPressed(_ sender: UIButton!){
