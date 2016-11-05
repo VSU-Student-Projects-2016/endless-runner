@@ -21,6 +21,8 @@ class Hero: SKSpriteNode {
     var jumpsAllowed = 2
     var jumped = false
     
+    let jumpPower = 80.0
+    
     private let heroAnimatedAtlas = SKTextureAtlas(named: "Hero Images")
     var walkFrames = [SKTexture]()
     
@@ -56,19 +58,22 @@ class Hero: SKSpriteNode {
     }
     
     func Jump() {
-        if jumpsAllowed > 0 && energy >= doubleJumpCost || jumpsAllowed == maxJumpsAllowed {
-            if jumpsAllowed < maxJumpsAllowed {
-                energy -= doubleJumpCost
-            }
-            self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 100.0)) // don't hardcode the force
+//        if jumpsAllowed > 0 && energy >= doubleJumpCost || jumpsAllowed == maxJumpsAllowed {
+//            if jumpsAllowed < maxJumpsAllowed {
+//                energy -= doubleJumpCost
+//            }
+//            self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 100.0)) // don't hardcode the force
+        
+        if jumpsAllowed > 0 {
+            self.physicsBody?.velocity = CGVector(dx: (self.physicsBody?.velocity.dx)!, dy: 0)
+            self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpPower)) // don't hardcode the force
+            
             onGround = false
             StopRunning()
             ChangeImage(image: "hero_jump")
             
             jumpsAllowed -= 1
             jumped = true
-            
-            
         }
     }
     

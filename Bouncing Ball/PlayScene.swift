@@ -150,7 +150,20 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Enemy){
-            print("Hit by enemy")
+            var enemy: Enemy
+            if contact.bodyA.categoryBitMask == ColliderType.Enemy {
+                enemy = contact.bodyA.node as! Enemy
+            }
+            else {
+                enemy = contact.bodyB.node as! Enemy
+            }
+            
+            if enemy is JumpingEnemy {
+                hero.energy -= 0.5
+                if hero.energy < 0 {
+                    hero.energy = 0
+                }
+            }
         }
         
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Bonus | ColliderType.GarbageCollector){
