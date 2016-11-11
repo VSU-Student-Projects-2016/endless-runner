@@ -64,15 +64,24 @@ class Hero: SKSpriteNode {
 //            }
 //            self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 100.0)) // don't hardcode the force
         
-        if jumpsAllowed > 0 {
+//        if jumpsAllowed > 0 {
+//            self.physicsBody?.velocity = CGVector(dx: (self.physicsBody?.velocity.dx)!, dy: 0)
+//            self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpPower)) // don't hardcode the force
+//            
+//            onGround = false
+//            StopRunning()
+//            ChangeImage(image: "hero_jump")
+//            
+//            jumpsAllowed -= 1
+//            jumped = true
+//        }
+        
+        if onGround {
+            onGround = false
             self.physicsBody?.velocity = CGVector(dx: (self.physicsBody?.velocity.dx)!, dy: 0)
             self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpPower)) // don't hardcode the force
-            
-            onGround = false
             StopRunning()
             ChangeImage(image: "hero_jump")
-            
-            jumpsAllowed -= 1
             jumped = true
         }
     }
