@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		844D7CA51DD5EAE20000318D /* MultipleMiniPlatformsCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D7CA41DD5EAE10000318D /* MultipleMiniPlatformsCreator.swift */; };
 		AE1B41A91D9FDDA300D27A14 /* GameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B41A81D9FDDA300D27A14 /* GameNode.swift */; };
 		AE9549781DB22B1D0003B6B2 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9549771DB22B1D0003B6B2 /* Hero.swift */; };
 		AE95497B1DB236E40003B6B2 /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE95497A1DB236E40003B6B2 /* ColliderType.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		844D7CA41DD5EAE10000318D /* MultipleMiniPlatformsCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleMiniPlatformsCreator.swift; sourceTree = "<group>"; };
 		AE1B41A81D9FDDA300D27A14 /* GameNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameNode.swift; sourceTree = "<group>"; };
 		AE9549771DB22B1D0003B6B2 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		AE95497A1DB236E40003B6B2 /* ColliderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColliderType.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */,
 				AEE835061DCDE5F700F3B79A /* TripleMiniPlatformCreator.swift */,
 				AEE835081DCDEC0F00F3B79A /* SingleMiniPlatformCreator.swift */,
+				844D7CA41DD5EAE10000318D /* MultipleMiniPlatformsCreator.swift */,
 			);
 			path = "Bouncing Ball";
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844D7CA51DD5EAE20000318D /* MultipleMiniPlatformsCreator.swift in Sources */,
 				AEE835071DCDE5F700F3B79A /* TripleMiniPlatformCreator.swift in Sources */,
 				AECFADE71D967D36007ADC7B /* GameScene.swift in Sources */,
 				AEF052AB1DBB78AE000F8F0B /* GarbageCollector.swift in Sources */,

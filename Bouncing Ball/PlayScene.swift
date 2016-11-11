@@ -36,7 +36,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var progressView : UIProgressView!
      
     override func didMove(to view: SKView) {
-        view.showsPhysics = true
+        //view.showsPhysics = true
         pauseButton = UIButton(frame: CGRect(x: self.frame.midX, y: self.frame.minY, width: 100.0, height: 100.0))
         pauseButton.setTitle("Pause Menu", for: .normal)
         pauseButton.setTitleColor(.red, for: .normal)

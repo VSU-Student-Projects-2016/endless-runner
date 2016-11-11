@@ -31,7 +31,7 @@ class PlatformGenerator {
     
     func getPlatform(scene: PlayScene, pos: CGPoint) -> PlatformTemplate {
 
-        let randNum = random(left: 0, right: 4)
+        let randNum = random(left: 0, right: 5)
         switch randNum {
         case 0:
             return (GapPlatformCreator()).createPlatform(scene: scene, pos: pos)
@@ -39,6 +39,8 @@ class PlatformGenerator {
             return (BonusPlatformCreator()).createPlatform(scene: scene, pos: pos)
         case 2:
             return (TripleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos)
+        case 3:
+            return (MultipleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos)
         default:
             return (SingleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos)
         }
