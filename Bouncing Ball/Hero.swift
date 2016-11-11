@@ -35,15 +35,21 @@ class Hero: SKSpriteNode {
         let texture = SKTexture(imageNamed: image)
         super.init(texture: texture, color: .clear, size: texture.size())
         
-        walkFrames.append(SKTexture(imageNamed: "hero"))
-        walkFrames.append(SKTexture(imageNamed: "hero_move1"))
+//        walkFrames.append(SKTexture(imageNamed: "hero"))
+//        walkFrames.append(SKTexture(imageNamed: "hero_move1"))
+        
+        for i in 1..<9 {
+            walkFrames.append(SKTexture(imageNamed: String(i) + "Cat"))
+        }
         
         jumpsAllowed = maxJumpsAllowed
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         position = pos
-        physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(self.size.width / 2))
+        //physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(self.size.width / 2))
+        physicsBody = SKPhysicsBody(rectangleOf: texture.size())
         physicsBody?.categoryBitMask = categoryBitMask
+        physicsBody?.mass = (physicsBody?.mass)! * 1.7
         physicsBody?.contactTestBitMask = contactTestBitMask
         physicsBody?.collisionBitMask = collisionBitMask
         physicsBody?.affectedByGravity = true
@@ -81,7 +87,7 @@ class Hero: SKSpriteNode {
             self.physicsBody?.velocity = CGVector(dx: (self.physicsBody?.velocity.dx)!, dy: 0)
             self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpPower)) // don't hardcode the force
             StopRunning()
-            ChangeImage(image: "hero_jump")
+            ChangeImage(image: "3_Jump")
             jumped = true
         }
     }
@@ -96,7 +102,7 @@ class Hero: SKSpriteNode {
     func Land() {
         self.physicsBody?.velocity.dy = CGFloat(0)
         onGround = true
-        ChangeImage(image: "hero")
+        ChangeImage(image: "2_Fall")
         Run()
         jumpsAllowed = maxJumpsAllowed
         jumped = false
@@ -104,7 +110,7 @@ class Hero: SKSpriteNode {
     
     func Run() {
         self.run(SKAction.repeatForever(SKAction.animate(with: walkFrames,
-                                                         timePerFrame: 0.5,
+                                                         timePerFrame: 0.1,
                                                          resize: false,
                                                          restore: true)), withKey: "run")
     }
@@ -115,7 +121,7 @@ class Hero: SKSpriteNode {
     
     func Fall() {
         if !onGround && physicsBody!.velocity.dy < CGFloat(0) {
-            ChangeImage(image: "hero_fall")
+            ChangeImage(image: "1_Fall")
         }
     }
     

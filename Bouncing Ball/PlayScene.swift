@@ -55,7 +55,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         exitButton.addTarget(self, action: #selector(self.exitButtonPressed(_:)), for: .touchUpInside)
         
         // don't hardcode "200" below
-        hero = Hero(image: "hero", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground, collisionBitMask: ColliderType.Ground)
+        hero = Hero(image: "1Cat", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground, collisionBitMask: ColliderType.Ground)
         
         
         garbageCollector = GarbageCollector(pos: CGPoint(x: frame.minX-200, y: frame.midY),
