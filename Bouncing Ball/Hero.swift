@@ -55,7 +55,7 @@ class Hero: SKSpriteNode {
         physicsBody?.collisionBitMask = collisionBitMask
         physicsBody?.affectedByGravity = true
         physicsBody?.restitution = 0.0
-        physicsBody?.velocity = CGVector(dx: 300.0, dy: 0.0)
+        //physicsBody?.velocity = CGVector(dx: 300.0, dy: 0.0)
         physicsBody?.linearDamping = 0
         physicsBody?.friction = 0
     }

@@ -15,6 +15,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var currPlatform: PlatformTemplate!
     var nextPlatform: PlatformTemplate!
     
+    var heroVelocity: Float!
+    
     var platformGenerator = PlatformGenerator()
     var score = 0;
     let scoreText = SKLabelNode(fontNamed: "Chalkduster")
@@ -30,9 +32,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var pauseButton : UIButton!
     var exitButton : UIButton!
     
-    var DashButton : UIButton!
+    var dashButton : UIButton!
     
-    var progressView : UIProgressView!
+    var energyBar : UIProgressView!
      
     override func didMove(to view: SKView) {
         //view.showsPhysics = true
@@ -42,11 +44,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         pauseButton.addTarget(self, action: #selector(self.pauseButtonPressed(_:)), for: .touchUpInside)
         self.view?.addSubview(pauseButton)
         
-        DashButton = UIButton(frame: CGRect(x: self.frame.minX, y: self.frame.maxY - 100, width: 100.0, height: 100.0))
-        DashButton.setTitle("Dash", for: .normal)
-        DashButton.setTitleColor(.red, for: .normal)
-        DashButton.addTarget(self, action: #selector(self.dashButtonPressed(_:)), for: .touchUpInside)
-        self.view?.addSubview(DashButton)
+        dashButton = UIButton(frame: CGRect(x: self.frame.minX, y: self.frame.maxY - 100, width: 100.0, height: 100.0))
+        dashButton.setTitle("Dash", for: .normal)
+        dashButton.setTitleColor(.red, for: .normal)
+        dashButton.addTarget(self, action: #selector(self.dashButtonPressed(_:)), for: .touchUpInside)
+        self.view?.addSubview(dashButton)
         
         exitButton = UIButton(frame: CGRect(x: self.frame.midX, y: self.frame.midY, width: 100.0, height: 100.0))
         exitButton.setTitle("Exit", for: .normal)
@@ -56,6 +58,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         // don't hardcode "200" below
         hero = Hero(image: "1Cat", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground, collisionBitMask: ColliderType.Ground)
         
+        heroVelocity = 300
         
         garbageCollector = GarbageCollector(pos: CGPoint(x: frame.minX-200, y: frame.midY),
                                             size: CGSize(width: 50, height: frame.size.height*2))
@@ -68,8 +71,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.scoreText.fontSize = 42
         self.scoreText.position = CGPoint(x: self.frame.maxX - 10, y: self.frame.maxY - 40)
         self.addChild(scoreText)
-        
-        // don't hardcode "200" below
         
         // World initialization
         self.backgroundColor = UIColor.blue
@@ -85,12 +86,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(currPlatform)
         self.addChild(self.hero)
         
-        progressView = UIProgressView(progressViewStyle: UIProgressViewStyle.default)
-        progressView.center = CGPoint(x: frame.maxX - 150, y: frame.minY + 20)
-        progressView.progressTintColor = UIColor.init(red: 26/255, green: 148/255, blue: 49/255, alpha: 1.0)
-        progressView.transform = progressView.transform.scaledBy(x: 1.5, y: 10)
-        view.addSubview(progressView)
-        progressView.progress = hero.energy
+        energyBar = UIProgressView(progressViewStyle: UIProgressViewStyle.default)
+        energyBar.center = CGPoint(x: frame.maxX - 150, y: frame.minY + 20)
+        energyBar.progressTintColor = UIColor.init(red: 26/255, green: 148/255, blue: 49/255, alpha: 1.0)
+        energyBar.transform = energyBar.transform.scaledBy(x: 1.5, y: 10)
+        view.addSubview(energyBar)
+        energyBar.progress = hero.energy
     }
     
     func pauseButtonPressed(_ sender: UIButton!){
@@ -115,8 +116,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             scene.size = (skView?.bounds.size)!
             scene.scaleMode = .aspectFill
             skView?.presentScene(scene)
-            pauseButton.removeFromSuperview()
-            exitButton.removeFromSuperview()
+            removeViews()
         }
         
     }
@@ -231,8 +231,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             scene.size = (skView?.bounds.size)!
             scene.scaleMode = .aspectFill
             skView?.presentScene(scene)
+            removeViews()
         }
         
+    }
+    
+    func removeViews() {
+        exitButton.removeFromSuperview()
+        pauseButton.removeFromSuperview()
+        dashButton.removeFromSuperview()
+        energyBar.removeFromSuperview()
     }
     
     func random(left: Int, right: Int) -> Int {
@@ -248,7 +256,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         
-        progressView.progress = hero.energy
+        energyBar.progress = hero.energy
         // Create new ground block
         if self.hero.position.x > self.currPlatform.position.x + self.currPlatform.width / 2 && (nextPlatform == nil) {
             
@@ -282,7 +290,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         hero.energy -= energyConsumption
         
 //        if hero.onGround {
-            hero.physicsBody?.velocity = CGVector(dx: CGFloat(300 * hero.speedMult), dy: (hero.physicsBody?.velocity.dy)!)
+            hero.physicsBody?.velocity = CGVector(dx: CGFloat(heroVelocity * hero.speedMult), dy: (hero.physicsBody?.velocity.dy)!)
 //        }
         hero.Fall()
     }
