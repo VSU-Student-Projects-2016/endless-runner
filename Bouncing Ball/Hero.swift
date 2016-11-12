@@ -46,8 +46,9 @@ class Hero: SKSpriteNode {
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         position = pos
-        //physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(self.size.width / 2))
+        
         physicsBody = SKPhysicsBody(rectangleOf: texture.size())
+        physicsBody?.allowsRotation = false
         physicsBody?.categoryBitMask = categoryBitMask
         physicsBody?.mass = (physicsBody?.mass)! * 1.7
         physicsBody?.contactTestBitMask = contactTestBitMask
@@ -64,31 +65,32 @@ class Hero: SKSpriteNode {
     }
     
     func Jump() {
-//        if jumpsAllowed > 0 && energy >= doubleJumpCost || jumpsAllowed == maxJumpsAllowed {
-//            if jumpsAllowed < maxJumpsAllowed {
-//                energy -= doubleJumpCost
-//            }
-//            self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 100.0)) // don't hardcode the force
-        
-//        if jumpsAllowed > 0 {
-//            self.physicsBody?.velocity = CGVector(dx: (self.physicsBody?.velocity.dx)!, dy: 0)
-//            self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpPower)) // don't hardcode the force
-//            
-//            onGround = false
-//            StopRunning()
-//            ChangeImage(image: "hero_jump")
-//            
-//            jumpsAllowed -= 1
-//            jumped = true
-//        }
-        
-        if onGround {
-            onGround = false
-            self.physicsBody?.velocity = CGVector(dx: (self.physicsBody?.velocity.dx)!, dy: 0)
-            self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpPower)) // don't hardcode the force
-            StopRunning()
-            ChangeImage(image: "3_Jump")
-            jumped = true
+        if jumpsAllowed > 0 {
+            if jumpsAllowed == maxJumpsAllowed {
+                //self.physicsBody?.velocity = CGVector(dx: (self.physicsBody?.velocity.dx)!, dy: 0)
+                self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpPower)) // don't hardcode the force
+                
+                onGround = false
+                StopRunning()
+                ChangeImage(image: "3_Jump")
+                
+                jumpsAllowed -= 1
+                //jumped = true
+            }
+            else {
+                if energy >= doubleJumpCost {
+                    energy -= doubleJumpCost
+                    self.physicsBody?.velocity = CGVector(dx: (self.physicsBody?.velocity.dx)!, dy: 0)
+                    self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpPower)) // don't hardcode the force
+                    
+                    onGround = false
+                    StopRunning()
+                    ChangeImage(image: "3_Jump")
+                    
+                    jumpsAllowed -= 1
+                    //jumped = true
+                }
+            }
         }
     }
     

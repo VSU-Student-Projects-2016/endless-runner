@@ -12,8 +12,6 @@ import UIKit
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
-//    var currGroundBar: GroundBar!
-//    var nextGroundBar: GroundBar!
     var currPlatform: PlatformTemplate!
     var nextPlatform: PlatformTemplate!
     
@@ -21,6 +19,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var score = 0;
     let scoreText = SKLabelNode(fontNamed: "Chalkduster")
     var hero: Hero!
+    var energyConsumption = Float(0.0001)
     
     
     let cameraNode = SKCameraNode()
@@ -125,7 +124,19 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact:SKPhysicsContact) {
         // Checking and changing onGround variable
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Ground){
-            hero.Land()
+            let heroTmp: SKNode
+            let groundTmp: SKNode
+            if contact.bodyA.categoryBitMask == ColliderType.Hero {
+                heroTmp = contact.bodyA.node!
+                groundTmp = contact.bodyB.node!
+            }
+            else {
+                heroTmp = contact.bodyB.node!
+                groundTmp = contact.bodyA.node!
+            }
+            if heroTmp.position.y > groundTmp.position.y {
+                hero.Land()
+            }
         }
 
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Bonus){
@@ -205,14 +216,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    func didEnd(_ contact:SKPhysicsContact) {
-        if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Ground) {
-            if (!hero.jumped) {
-                hero.jumpsAllowed -= 1
-            }
-        }
-    }
-    
+//    func didEnd(_ contact:SKPhysicsContact) {
+//        if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Ground) {
+//            if (!hero.jumped) {
+//                hero.jumpsAllowed -= 1
+//            }
+//        }
+//    }
+
     func died() {
         if let scene = GameScene.unarchiveFromFile(file: "GameScene") as? GameScene {
             let skView = self.view as SKView!
@@ -267,6 +278,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         if hero.speedMult < 1.0 {
             hero.speedMult = 1.0
         }
+        
+        hero.energy -= energyConsumption
         
 //        if hero.onGround {
             hero.physicsBody?.velocity = CGVector(dx: CGFloat(300 * hero.speedMult), dy: (hero.physicsBody?.velocity.dy)!)
