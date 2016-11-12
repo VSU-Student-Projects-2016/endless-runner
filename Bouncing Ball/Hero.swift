@@ -35,9 +35,6 @@ class Hero: SKSpriteNode {
         let texture = SKTexture(imageNamed: image)
         super.init(texture: texture, color: .clear, size: texture.size())
         
-//        walkFrames.append(SKTexture(imageNamed: "hero"))
-//        walkFrames.append(SKTexture(imageNamed: "hero_move1"))
-        
         for i in 1..<9 {
             walkFrames.append(SKTexture(imageNamed: String(i) + "Cat"))
         }
@@ -48,16 +45,16 @@ class Hero: SKSpriteNode {
         position = pos
         
         physicsBody = SKPhysicsBody(rectangleOf: texture.size())
-        physicsBody?.allowsRotation = false
-        physicsBody?.categoryBitMask = categoryBitMask
-        physicsBody?.mass = (physicsBody?.mass)! * 1.7
-        physicsBody?.contactTestBitMask = contactTestBitMask
-        physicsBody?.collisionBitMask = collisionBitMask
-        physicsBody?.affectedByGravity = true
-        physicsBody?.restitution = 0.0
-        //physicsBody?.velocity = CGVector(dx: 300.0, dy: 0.0)
-        physicsBody?.linearDamping = 0
-        physicsBody?.friction = 0
+        physicsBody!.allowsRotation = false
+        physicsBody!.categoryBitMask = categoryBitMask
+        physicsBody!.mass = (physicsBody?.mass)! * 1.7
+        physicsBody!.contactTestBitMask = contactTestBitMask
+        physicsBody!.collisionBitMask = collisionBitMask
+        physicsBody!.affectedByGravity = true
+        physicsBody!.restitution = 0.0
+        //physicsBody!.velocity = CGVector(dx: 300.0, dy: 0.0)
+        physicsBody!.linearDamping = 0
+        physicsBody!.friction = 0
     }
     
     func ChangeImage(image: String) {
@@ -67,28 +64,25 @@ class Hero: SKSpriteNode {
     func Jump() {
         if jumpsAllowed > 0 {
             if jumpsAllowed == maxJumpsAllowed {
-                //self.physicsBody?.velocity = CGVector(dx: (self.physicsBody?.velocity.dx)!, dy: 0)
-                self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpPower)) // don't hardcode the force
+                self.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: jumpPower))
                 
                 onGround = false
                 StopRunning()
                 ChangeImage(image: "3_Jump")
                 
                 jumpsAllowed -= 1
-                //jumped = true
             }
             else {
                 if energy >= doubleJumpCost {
                     energy -= doubleJumpCost
-                    self.physicsBody?.velocity = CGVector(dx: (self.physicsBody?.velocity.dx)!, dy: 0)
-                    self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpPower)) // don't hardcode the force
+                    self.physicsBody!.velocity = CGVector(dx: self.physicsBody!.velocity.dx, dy: 0)
+                    self.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: jumpPower))
                     
                     onGround = false
                     StopRunning()
                     ChangeImage(image: "3_Jump")
                     
                     jumpsAllowed -= 1
-                    //jumped = true
                 }
             }
         }
@@ -102,7 +96,7 @@ class Hero: SKSpriteNode {
     }
     
     func Land() {
-        self.physicsBody?.velocity.dy = CGFloat(0)
+        self.physicsBody!.velocity = CGVector(dx: self.physicsBody!.velocity.dx, dy: 0)
         onGround = true
         ChangeImage(image: "2_Fall")
         Run()

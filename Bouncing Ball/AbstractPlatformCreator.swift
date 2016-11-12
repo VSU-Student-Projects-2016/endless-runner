@@ -10,7 +10,8 @@ import Foundation
 import SpriteKit
 
 class AbstractPlatformCreator {
-    let bonusPosHeight = CGFloat(20)
+    let bonusHighPosHeight = CGFloat(150)
+    let bonusLowPosHeight = CGFloat(40)
     let bonusPosMult = CGFloat(50)
     let smallPlatformHeight = CGFloat(100)
     let platformGapWidth = CGFloat(200)

@@ -66,8 +66,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         // don't hardcode "200" below
         hero = Hero(image: "1Cat", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground, collisionBitMask: ColliderType.Ground)
         
-        garbageCollector = GarbageCollector(pos: CGPoint(x: frame.minX-200, y: frame.midY),
-                                            size: CGSize(width: 50, height: frame.size.height*2))
+        garbageCollector = GarbageCollector(pos: CGPoint(x: frame.minX - 200, y: frame.midY),
+                                            size: CGSize(width: 50, height: frame.size.height * 2))
         addChild(garbageCollector)
         
         fallDetector = GarbageCollector(pos: CGPoint(x: frame.minX, y: frame.minY - 500), size : CGSize(width: frame.size.width * 1.5, height: 10.0))
@@ -128,7 +128,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact:SKPhysicsContact) {
-        // Checking and changing onGround variable
+        
+        // Hero touches the ground
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Ground){
             let heroTmp: SKNode
             let groundTmp: SKNode
@@ -145,6 +146,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
 
+        // Hero collects a bonus
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Bonus){
             
             if hero.energy < 1.0 {
@@ -166,6 +168,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             scoreText.text = String(score)
         }
         
+        // Hero rushes into an enemy
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Enemy){
             var enemy: Enemy
             if contact.bodyA.categoryBitMask == ColliderType.Enemy {
@@ -183,6 +186,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        // Remove an off-screen bonus
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Bonus | ColliderType.GarbageCollector){
             if contact.bodyA.categoryBitMask == ColliderType.Bonus {
                 platformGenerator.addBonusToPool(bonus: contact.bodyA.node as! Bonus)
@@ -193,6 +197,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        // Remove an off-screen enemy
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Enemy | ColliderType.GarbageCollector){
             if contact.bodyA.categoryBitMask == ColliderType.Enemy {
                 platformGenerator.addEnemyToPool(enemy: contact.bodyA.node as! Enemy)
@@ -203,6 +208,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        // Enemy touches the ground
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Enemy | ColliderType.Ground){
             if contact.bodyA.categoryBitMask == ColliderType.Enemy {
                 if contact.bodyA.node is JumpingEnemy {
@@ -215,21 +221,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        
+        // Hero goes off-screen
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.GarbageCollector) {
                 died()
         }
         
     }
-    
-//    func didEnd(_ contact:SKPhysicsContact) {
-//        if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Ground) {
-//            if (!hero.jumped) {
-//                hero.jumpsAllowed -= 1
-//            }
-//        }
-//    }
 
+    // Game Over
     func died() {
         if let scene = GameScene.unarchiveFromFile(file: "GameScene") as? GameScene {
             let skView = self.view as SKView!
@@ -242,6 +241,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    // Remove buttons and energy bar
     func removeViews() {
         exitButton.removeFromSuperview()
         pauseButton.removeFromSuperview()
@@ -259,29 +259,25 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         
+        // Update energy bar
         energyBar.progress = hero.energy
-        // Create new ground block
+        
+        // Create new ground template
         if hero.position.x > currPlatform.position.x + currPlatform.width / 2 && (nextPlatform == nil) {
             
-            nextPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: currPlatform.position.x + currPlatform.width, y: currPlatform.position.y))
+            nextPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: currPlatform.position.x + currPlatform.width - 5, y: currPlatform.position.y))
             addChild(nextPlatform)
-//            print("Next platform created")
-//            print("next platform pos: ")
-//            print(currPlatform.position.x + currPlatform.width)
         }
         
-        // Delete old ground and switch next and current blocks
+        // Delete old ground set and swap next and current blocks
         if currPlatform.position.x + currPlatform.width <= self.scene!.camera!.position.x - self.frame.width / 2 {
             self.currPlatform.removeFromParent()
-            print("Left camera border: ")
-            print(self.scene!.camera!.position.x - self.frame.width / 2)
-            print("Template pos + half template width: ")
-            print(currPlatform.position.x + currPlatform.width / 2)
             
             //platformGenerator.addPlatformToPool(platform: currPlatform)
             currPlatform = self.nextPlatform!
             nextPlatform = nil
             
+            // Increase difficulty
             if heroVelocity < maxVelocity {
                 platformsPassed += 1
                 if platformsPassed == platformPassToSpeedUp {
@@ -294,20 +290,21 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        // Decrease hero speed after dash
         if hero.speedMult > 1.0 {
             hero.speedMult -= 0.05
-//            hero.speedMult -= Float(currentTime - lastUpdateTimeInterval)
-//            print(currentTime - lastUpdateTimeInterval)
         }
         if hero.speedMult < 1.0 {
             hero.speedMult = 1.0
         }
         
+        // Make hero yet a little more tired
         hero.energy -= energyConsumption
         
-//        if hero.onGround {
-            hero.physicsBody?.velocity = CGVector(dx: CGFloat(heroVelocity * hero.speedMult), dy: (hero.physicsBody?.velocity.dy)!)
-//        }
+        // Keep hero's speed
+        hero.physicsBody!.velocity = CGVector(dx: CGFloat(heroVelocity * hero.speedMult), dy: hero.physicsBody!.velocity.dy)
+        
+        // Handle hero's fall
         hero.Fall()
     }
     

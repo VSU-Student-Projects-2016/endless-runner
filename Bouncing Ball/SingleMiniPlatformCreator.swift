@@ -27,7 +27,7 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
         platformTemplate.grounds.append(ground2)
         platformTemplate.width = ground1.size.width + ground2.size.width
         
-        let smallPlatform = GroundBar(image: "0_25desert", pos: CGPoint(x: ground1.position.x + ground1.size.width / 2, y: ground1.position.y + smallPlatformHeight))
+        let smallPlatform = GroundBar(image: "0_25desert", pos: CGPoint(x: ground1.position.x + ground1.size.width / 2, y: ground1.position.y + smallPlatformHeight * 2))
         scene.addChild(smallPlatform)
         platformTemplate.grounds.append(smallPlatform)
         

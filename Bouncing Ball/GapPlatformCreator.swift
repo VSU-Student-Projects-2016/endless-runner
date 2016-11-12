@@ -33,7 +33,7 @@ class GapPlatformCreator : AbstractPlatformCreator {
             let step = Float.pi / 4
             for i in 0..<5 {
                 let pos = CGPoint(x: ground1.position.x + ground1.size.width / 2, y: ground1.position.y)
-                let bonus = Bonus(image: "fish", pos: CGPoint(x: pos.x + CGFloat(bonusPosMult * CGFloat(i)), y: pos.y + bonusPosHeight + bonusPosMult * CGFloat(sin(step * Float(i)))))
+                let bonus = Bonus(image: "fish", pos: CGPoint(x: pos.x + CGFloat(bonusPosMult * CGFloat(i)), y: pos.y + bonusHighPosHeight + bonusPosMult * CGFloat(sin(step * Float(i)))))
                 scene.addChild(bonus)
                 platformTemplate.bonuses.append(bonus)
             }

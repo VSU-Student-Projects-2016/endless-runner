@@ -47,19 +47,19 @@ class TripleMiniPlatformCreator : AbstractPlatformCreator {
         }
         
         for i in 0..<4 {
-            let bonus = Bonus(image: "fish", pos: CGPoint(x: leftSmallPlatform.position.x - leftSmallPlatform.size.width / 4 + CGFloat(i)*bonusPosMult, y : leftSmallPlatform.position.y + bonusPosHeight))
+            let bonus = Bonus(image: "fish", pos: CGPoint(x: leftSmallPlatform.position.x - leftSmallPlatform.size.width / 4 + CGFloat(i)*bonusPosMult, y : leftSmallPlatform.position.y + bonusLowPosHeight))
             scene.addChild(bonus)
             platformTemplate.bonuses.append(bonus)
         }
         
         for i in 0..<4 {
-            let bonus = Bonus(image: "fish", pos: CGPoint(x: smallPlatform.position.x - smallPlatform.size.width / 4 + CGFloat(i)*bonusPosMult, y : smallPlatform.position.y + bonusPosHeight))
+            let bonus = Bonus(image: "fish", pos: CGPoint(x: smallPlatform.position.x - smallPlatform.size.width / 4 + CGFloat(i)*bonusPosMult, y : smallPlatform.position.y + bonusLowPosHeight))
             scene.addChild(bonus)
             platformTemplate.bonuses.append(bonus)
         }
         
         for i in 0..<4 {
-            let bonus = Bonus(image: "fish", pos: CGPoint(x: rightSmallPlatform.position.x - rightSmallPlatform.size.width / 4 + CGFloat(i)*bonusPosMult, y : rightSmallPlatform.position.y + bonusPosHeight))
+            let bonus = Bonus(image: "fish", pos: CGPoint(x: rightSmallPlatform.position.x - rightSmallPlatform.size.width / 4 + CGFloat(i)*bonusPosMult, y : rightSmallPlatform.position.y + bonusLowPosHeight))
             scene.addChild(bonus)
             platformTemplate.bonuses.append(bonus)
         }
