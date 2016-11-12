@@ -10,9 +10,9 @@ import Foundation
 import SpriteKit
 
 class SingleMiniPlatformCreator : AbstractPlatformCreator {
-    let bonusPosHeight = CGFloat(20)
-    let bonusPosMult = CGFloat(50)
-    let smallPlatformHeight = CGFloat(200)
+    //let bonusPosHeight = CGFloat(20)
+    //let bonusPosMult = CGFloat(50)
+    //let smallPlatformHeight = CGFloat(200)
     
     override func createPlatform(scene: PlayScene, pos: CGPoint) -> PlatformTemplate {
         let platformTemplate = PlatformTemplate()

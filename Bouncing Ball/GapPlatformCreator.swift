@@ -10,9 +10,9 @@ import Foundation
 import SpriteKit
 
 class GapPlatformCreator : AbstractPlatformCreator {
-    let bonusPosHeight = CGFloat(200)
-    let bonusPosMult = CGFloat(50)
-    let platformGapWidth = CGFloat(200)
+    //let bonusPosHeight = CGFloat(200)
+    //let bonusPosMult = CGFloat(50)
+    //let platformGapWidth = CGFloat(200)
     
     override func createPlatform(scene: PlayScene, pos: CGPoint) -> PlatformTemplate {
         let platformTemplate = PlatformTemplate()

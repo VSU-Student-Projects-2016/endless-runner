@@ -15,14 +15,22 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var currPlatform: PlatformTemplate!
     var nextPlatform: PlatformTemplate!
     
-    var heroVelocity: Float!
+    var heroVelocity = Float(300)
+    let maxVelocity = Float(600)
     
     var platformGenerator = PlatformGenerator()
     var score = 0;
     let scoreText = SKLabelNode(fontNamed: "Chalkduster")
     var hero: Hero!
     var energyConsumption = Float(0.0001)
+    let energyConsumptionIncrease = Float(0.0001)
+    let maxEnergyConsumption = Float(0.001)
     
+    //var lastUpdateTimeInterval: TimeInterval = 0
+    var platformsPassed = 0
+    var platformPassToSpeedUp = 5
+    
+    var speedUpMult = Float(1.1)
     
     let cameraNode = SKCameraNode()
     
@@ -58,8 +66,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         // don't hardcode "200" below
         hero = Hero(image: "1Cat", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground, collisionBitMask: ColliderType.Ground)
         
-        heroVelocity = 300
-        
         garbageCollector = GarbageCollector(pos: CGPoint(x: frame.minX-200, y: frame.midY),
                                             size: CGSize(width: 50, height: frame.size.height*2))
         addChild(garbageCollector)
@@ -82,7 +88,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(cameraNode)
         self.camera = cameraNode
         
-        currPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY * 0.35))
+        currPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY + frame.midY * 0.3))
         self.addChild(currPlatform)
         self.addChild(self.hero)
         
@@ -248,9 +254,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if hero.onGround {
-//            hero.Jump()
-//        }
         hero.Jump()
     }
     
@@ -258,30 +261,43 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         energyBar.progress = hero.energy
         // Create new ground block
-        if self.hero.position.x > self.currPlatform.position.x + self.currPlatform.width / 2 && (nextPlatform == nil) {
+        if hero.position.x > currPlatform.position.x + currPlatform.width / 2 && (nextPlatform == nil) {
             
-            nextPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: self.currPlatform.position.x + self.currPlatform.width, y: self.frame.minY * 0.35))//y: self.currPlatform.position.y))
+            nextPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: currPlatform.position.x + currPlatform.width, y: currPlatform.position.y))
             addChild(nextPlatform)
-            print("Next platform created")
-            print("next platform pos: ")
-            print(self.currPlatform.position.x + self.currPlatform.width)
+//            print("Next platform created")
+//            print("next platform pos: ")
+//            print(currPlatform.position.x + currPlatform.width)
         }
         
         // Delete old ground and switch next and current blocks
-        if self.currPlatform.position.x + self.currPlatform.width <= self.scene!.camera!.position.x - self.frame.width / 2 {
+        if currPlatform.position.x + currPlatform.width <= self.scene!.camera!.position.x - self.frame.width / 2 {
             self.currPlatform.removeFromParent()
             print("Left camera border: ")
             print(self.scene!.camera!.position.x - self.frame.width / 2)
             print("Template pos + half template width: ")
-            print(self.currPlatform.position.x + self.currPlatform.width / 2)
+            print(currPlatform.position.x + currPlatform.width / 2)
             
             //platformGenerator.addPlatformToPool(platform: currPlatform)
-            self.currPlatform = self.nextPlatform!
-            self.nextPlatform = nil
+            currPlatform = self.nextPlatform!
+            nextPlatform = nil
+            
+            if heroVelocity < maxVelocity {
+                platformsPassed += 1
+                if platformsPassed == platformPassToSpeedUp {
+                    heroVelocity *= speedUpMult
+                    platformsPassed = 0
+                    if energyConsumption < maxEnergyConsumption {
+                        energyConsumption += energyConsumptionIncrease
+                    }
+                }
+            }
         }
         
         if hero.speedMult > 1.0 {
             hero.speedMult -= 0.05
+//            hero.speedMult -= Float(currentTime - lastUpdateTimeInterval)
+//            print(currentTime - lastUpdateTimeInterval)
         }
         if hero.speedMult < 1.0 {
             hero.speedMult = 1.0
