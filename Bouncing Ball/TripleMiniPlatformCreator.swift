@@ -27,15 +27,15 @@ class TripleMiniPlatformCreator : AbstractPlatformCreator {
         platformTemplate.grounds.append(ground2)
         platformTemplate.width = ground1.size.width + ground2.size.width
         
-        let smallPlatform = GroundBar(image: "0_25desert", pos: CGPoint(x: ground1.position.x + ground1.size.width / 2, y: ground1.position.y + smallPlatformHeight * 2))
+        let smallPlatform = PlatformBar(image: "0_25desert", pos: CGPoint(x: ground1.position.x + ground1.size.width / 2, y: ground1.position.y + smallPlatformHeight * 2))
         scene.addChild(smallPlatform)
         platformTemplate.grounds.append(smallPlatform)
         
-        let leftSmallPlatform = GroundBar(image: "0_25desert", pos: CGPoint(x: smallPlatform.position.x - smallPlatform.size.width, y: smallPlatform.position.y - smallPlatformHeight))
+        let leftSmallPlatform = PlatformBar(image: "0_25desert", pos: CGPoint(x: smallPlatform.position.x - smallPlatform.size.width, y: smallPlatform.position.y - smallPlatformHeight))
         scene.addChild(leftSmallPlatform)
         platformTemplate.grounds.append(leftSmallPlatform)
         
-        let rightSmallPlatform = GroundBar(image: "0_25desert", pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width, y: smallPlatform.position.y - smallPlatformHeight))
+        let rightSmallPlatform = PlatformBar(image: "0_25desert", pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width, y: smallPlatform.position.y - smallPlatformHeight))
         scene.addChild(rightSmallPlatform)
         platformTemplate.grounds.append(rightSmallPlatform)
         

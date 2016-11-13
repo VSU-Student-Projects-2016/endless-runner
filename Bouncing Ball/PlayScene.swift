@@ -64,7 +64,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         exitButton.addTarget(self, action: #selector(self.exitButtonPressed(_:)), for: .touchUpInside)
         
         // don't hardcode "200" below
-        hero = Hero(image: "1Cat", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground, collisionBitMask: ColliderType.Ground)
+        hero = Hero(image: "1Cat", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground | ColliderType.PlatformSensor, collisionBitMask: ColliderType.Ground)
         
         garbageCollector = GarbageCollector(pos: CGPoint(x: frame.minX - 200, y: frame.midY),
                                             size: CGSize(width: 50, height: frame.size.height * 2))
@@ -127,7 +127,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    func didBegin(_ contact:SKPhysicsContact) {
+    func didBegin(_ contact: SKPhysicsContact) {
         
         // Hero touches the ground
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Ground){
@@ -226,8 +226,44 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 died()
         }
         
+        if (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == (ColliderType.Hero | ColliderType.PlatformSensor) {
+            let hero: Hero
+            let sensor: PlatformBar
+            print("Hero touched sensor")
+            if contact.bodyA.categoryBitMask == ColliderType.Hero {
+                hero = contact.bodyA.node! as! Hero
+                sensor = contact.bodyB.node! as! PlatformBar
+            } else {
+                hero = contact.bodyB.node! as! Hero
+                sensor = contact.bodyA.node! as! PlatformBar
+            }
+            if hero.position.y > sensor.position.y {
+                sensor.MakeSolid()
+                //(sensor.parent as! PlatformBar).MakeSolid()
+            }
+        }
+        
     }
 
+    func didEnd(_ contact: SKPhysicsContact) {
+        if contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask == ColliderType.Hero | ColliderType.PlatformSensor {
+            let hero: Hero
+            let sensor: PlatformBar
+            print("Hero touched sensor")
+            if contact.bodyA.categoryBitMask == ColliderType.Hero {
+                hero = contact.bodyA.node! as! Hero
+                sensor = contact.bodyB.node! as! PlatformBar
+            } else {
+                hero = contact.bodyB.node! as! Hero
+                sensor = contact.bodyA.node! as! PlatformBar
+            }
+            if hero.position.y > sensor.position.y {
+                sensor.MakeSolid()
+                //(sensor.parent as! PlatformBar).MakeSolid()
+            }
+        }
+    }
+    
     // Game Over
     func died() {
         if let scene = GameScene.unarchiveFromFile(file: "GameScene") as? GameScene {

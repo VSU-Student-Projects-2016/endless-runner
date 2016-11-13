@@ -11,7 +11,7 @@ import SpriteKit
 
 class PlatformTemplate: SKNode {
     
-    var grounds = [GroundBar]()
+    var grounds = [SKSpriteNode]()
     var enemies = [Enemy]()
     var bonuses = [Bonus]()
     var width = CGFloat(0)

@@ -23,12 +23,12 @@ class GroundBar: SKSpriteNode {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.position = pos
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
-        self.physicsBody?.isDynamic = false
-        self.physicsBody?.categoryBitMask = categoryBitMask
-        self.physicsBody?.contactTestBitMask = contactTestBitMask
-        self.physicsBody?.collisionBitMask = collisionBitMask
-        self.physicsBody?.restitution = 0.0
-        self.physicsBody?.friction = 0
+        self.physicsBody!.isDynamic = false
+        self.physicsBody!.categoryBitMask = categoryBitMask
+        self.physicsBody!.contactTestBitMask = contactTestBitMask
+        self.physicsBody!.collisionBitMask = collisionBitMask
+        self.physicsBody!.restitution = 0.0
+        self.physicsBody!.friction = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
