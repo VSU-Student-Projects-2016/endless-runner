@@ -227,9 +227,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == (ColliderType.Hero | ColliderType.PlatformSensor) {
+
             let hero: Hero
             let sensor: PlatformBar
-            print("Hero touched sensor")
             if contact.bodyA.categoryBitMask == ColliderType.Hero {
                 hero = contact.bodyA.node! as! Hero
                 sensor = contact.bodyB.node! as! PlatformBar
@@ -239,29 +239,27 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
             if hero.position.y > sensor.position.y {
                 sensor.MakeSolid()
-                //(sensor.parent as! PlatformBar).MakeSolid()
             }
         }
         
     }
 
     func didEnd(_ contact: SKPhysicsContact) {
-        if contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask == ColliderType.Hero | ColliderType.PlatformSensor {
-            let hero: Hero
-            let sensor: PlatformBar
-            print("Hero touched sensor")
-            if contact.bodyA.categoryBitMask == ColliderType.Hero {
-                hero = contact.bodyA.node! as! Hero
-                sensor = contact.bodyB.node! as! PlatformBar
-            } else {
-                hero = contact.bodyB.node! as! Hero
-                sensor = contact.bodyA.node! as! PlatformBar
-            }
-            if hero.position.y > sensor.position.y {
-                sensor.MakeSolid()
-                //(sensor.parent as! PlatformBar).MakeSolid()
-            }
-        }
+//        if contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask == ColliderType.Hero | ColliderType.PlatformSensor {
+//            
+//            let hero: Hero
+//            let sensor: PlatformBar?
+//            if contact.bodyA.categoryBitMask == ColliderType.Hero {
+//                hero = contact.bodyA.node! as! Hero
+//                sensor = contact.bodyB?.node? as? PlatformBar
+//            } else {
+//                hero = contact.bodyB.node! as! Hero
+//                sensor = contact.bodyA?.node? as? PlatformBar
+//            }
+//            if hero.position.y > sensor?.position.y {
+//                sensor.MakeSolid()
+//            }
+//        }
     }
     
     // Game Over
