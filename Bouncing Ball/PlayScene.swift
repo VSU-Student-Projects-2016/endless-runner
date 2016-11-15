@@ -79,7 +79,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(scoreText)
         
         // World initialization
-        self.backgroundColor = UIColor.blue
+        self.backgroundColor = UIColor.lightGray
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
         
@@ -226,6 +226,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 died()
         }
         
+        // Hero touches a platform sensor
         if (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == (ColliderType.Hero | ColliderType.PlatformSensor) {
 
             let hero: Hero

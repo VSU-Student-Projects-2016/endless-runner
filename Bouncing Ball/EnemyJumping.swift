@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class JumpingEnemy: Enemy{
-    let jumpForce = 35.0
+    let jumpForce = 75.0
     
     convenience init(image: String, pos: CGPoint) {
         self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
@@ -21,8 +21,10 @@ class JumpingEnemy: Enemy{
     }
     
     func Jump() {
-        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpForce))
-        //ChangeImage(image: "hero_jump")
+        if self.physicsBody!.velocity.dy <= 10 {
+            self.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: jumpForce))
+            //ChangeImage(image: "hero_jump")
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

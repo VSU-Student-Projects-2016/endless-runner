@@ -11,7 +11,7 @@ import SpriteKit
 
 class Hero: SKSpriteNode {
     
-    private(set) public var onGround = true
+    private(set) public var onGround = false
     var energy = Float(1.0)
     let energyDelta = Float(0.05)
     let dashCost = Float(0.1)
@@ -44,10 +44,11 @@ class Hero: SKSpriteNode {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         position = pos
         
-        physicsBody = SKPhysicsBody(rectangleOf: texture.size())
+        //physicsBody = SKPhysicsBody(rectangleOf: texture.size())
+        physicsBody = SKPhysicsBody(circleOfRadius: texture.size().height/2)
         physicsBody!.allowsRotation = false
         physicsBody!.categoryBitMask = categoryBitMask
-        physicsBody!.mass = (physicsBody?.mass)! * 1.7
+        physicsBody!.mass = (physicsBody?.mass)! * 3.5
         physicsBody!.contactTestBitMask = contactTestBitMask
         physicsBody!.collisionBitMask = collisionBitMask
         physicsBody!.affectedByGravity = true
@@ -96,12 +97,14 @@ class Hero: SKSpriteNode {
     }
     
     func Land() {
-        self.physicsBody!.velocity = CGVector(dx: self.physicsBody!.velocity.dx, dy: 0)
-        onGround = true
-        ChangeImage(image: "2_Fall")
-        Run()
-        jumpsAllowed = maxJumpsAllowed
-        jumped = false
+        if !onGround {
+            self.physicsBody!.velocity = CGVector(dx: self.physicsBody!.velocity.dx, dy: 0)
+            onGround = true
+            ChangeImage(image: "2_Fall")
+            Run()
+            jumpsAllowed = maxJumpsAllowed
+            jumped = false
+        }
     }
     
     func Run() {
