@@ -18,9 +18,9 @@ class VariousPlatformCreator : AbstractPlatformCreator {
         let platformTemplate = PlatformTemplate()
         platformTemplate.position = pos
         let ground = GroundBar(image: "desert", pos: pos)
-        let platformLeft = GroundBar(image: "0_25desert", pos: pos)
-        let platformRight = GroundBar(image: "0_25desert", pos: pos)
-        let platformMiddle = GroundBar(image: "0_25desert", pos: pos)
+        let platformLeft = PlatformBar(image: "0_25desert", pos: pos)
+        let platformRight = PlatformBar(image: "0_25desert", pos: pos)
+        let platformMiddle = PlatformBar(image: "0_25desert", pos: pos)
         
         ground.position = CGPoint(x: ground.position.x + ground.size.width / 2, y: ground.position.y)
         platformLeft.position = CGPoint(x: ground.position.x, y: ground.position.y + smallPlatformHeight)

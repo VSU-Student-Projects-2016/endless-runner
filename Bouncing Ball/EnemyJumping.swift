@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class JumpingEnemy: Enemy{
-    let jumpForce = 80.0
+    let jumpForce = 35.0
     
     convenience init(image: String, pos: CGPoint) {
         self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)

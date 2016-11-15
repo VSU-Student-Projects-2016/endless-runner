@@ -36,7 +36,7 @@ class PlatformBar: SKSpriteNode {
         self.physicsBody!.isDynamic = false
         self.physicsBody!.categoryBitMask = ColliderType.PlatformSensor
         self.physicsBody!.contactTestBitMask = ColliderType.Hero
-        self.physicsBody!.collisionBitMask = ColliderType.Hero | ColliderType.Enemy
+        self.physicsBody!.collisionBitMask = ColliderType.Hero
         //        self.physicsBody!.categoryBitMask = categoryBitMask
         //        self.physicsBody!.contactTestBitMask = contactTestBitMask
         //        self.physicsBody!.collisionBitMask = collisionBitMask
@@ -56,18 +56,6 @@ class PlatformBar: SKSpriteNode {
         self.physicsBody!.collisionBitMask = ColliderType.Hero
         self.physicsBody!.restitution = 0.0
         self.physicsBody!.friction = 0
-//        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
-//        self.physicsBody!.isDynamic = false
-//        self.physicsBody!.categoryBitMask = ColliderType.Ground
-//        self.physicsBody!.contactTestBitMask = ColliderType.Hero
-//        self.physicsBody!.collisionBitMask = ColliderType.Hero
-////        self.physicsBody!.categoryBitMask = categoryBitMask
-////        self.physicsBody!.contactTestBitMask = contactTestBitMask
-////        self.physicsBody!.collisionBitMask = collisionBitMask
-//        self.physicsBody!.restitution = 0.0
-//        self.physicsBody!.friction = 0
-        //sensor!.removeFromParent()
-        print("Platform became solid")
     }
     
     required init?(coder aDecoder: NSCoder) {

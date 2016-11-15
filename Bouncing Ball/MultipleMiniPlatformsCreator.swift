@@ -17,10 +17,10 @@ class MultipleMiniPlatformCreator : AbstractPlatformCreator {
     override func createPlatform(scene: PlayScene, pos: CGPoint) -> PlatformTemplate {
         let platformTemplate = PlatformTemplate()
         platformTemplate.position = pos
-        let ground1 = GroundBar(image: "0_25desert", pos: pos)
-        let ground2 = GroundBar(image: "0_25desert", pos: pos)
-        let ground3 = GroundBar(image: "0_25desert", pos: pos)
-        let ground4 = GroundBar(image: "0_25desert", pos: pos)
+        let ground1 = PlatformBar(image: "0_25desert", pos: pos)
+        let ground2 = PlatformBar(image: "0_25desert", pos: pos)
+        let ground3 = PlatformBar(image: "0_25desert", pos: pos)
+        let ground4 = PlatformBar(image: "0_25desert", pos: pos)
         
         ground1.position = CGPoint(x: ground1.position.x + ground1.size.width / 2, y: ground1.position.y)
         ground2.position = CGPoint(x: ground1.position.x + ground1.size.width, y: ground1.position.y + smallPlatformHeight)
