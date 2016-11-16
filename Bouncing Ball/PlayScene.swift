@@ -26,6 +26,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let energyConsumptionIncrease = Float(0.0001)
     let maxEnergyConsumption = Float(0.001)
     
+    var stopErrorText = SKLabelNode(fontNamed: "Chalkduster")
+    var lastHeroPosition = CGPoint(x: 0.0, y: 0.0)
+    
     //var lastUpdateTimeInterval: TimeInterval = 0
     var platformsPassed = 0
     var platformPassToSpeedUp = 5
@@ -88,9 +91,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(cameraNode)
         self.camera = cameraNode
         
+        // Temporary error notice
+        stopErrorText.text = "Hero doesn't move"
+        stopErrorText.fontSize = 42
+        stopErrorText.position = cameraNode.position
+        lastHeroPosition = hero.position
+        
         currPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY + frame.midY * 0.3))
         self.addChild(currPlatform)
         self.addChild(self.hero)
+        print(currPlatform.position.y) // log
         
         energyBar = UIProgressView(progressViewStyle: UIProgressViewStyle.default)
         energyBar.center = CGPoint(x: frame.maxX - 150, y: frame.minY + 20)
@@ -276,6 +286,20 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         
+        // Temporary stop error handling
+        if hero.position == lastHeroPosition && stopErrorText.position != cameraNode.position {
+            //stopErrorText = SKLabelNode(fontNamed: "Chalkduster")
+            stopErrorText.text = "Hero doesn't move"
+            stopErrorText.fontSize = 42
+            stopErrorText.position = cameraNode.position
+            stopErrorText.position = cameraNode.position
+            self.addChild(stopErrorText)
+        }
+        if hero.position != lastHeroPosition {
+            stopErrorText.removeFromParent()
+        }
+        lastHeroPosition = hero.position
+        
         // Update energy bar
         energyBar.progress = hero.energy
         
@@ -293,6 +317,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             //platformGenerator.addPlatformToPool(platform: currPlatform)
             currPlatform = self.nextPlatform!
             nextPlatform = nil
+            
+            print(currPlatform.position.y) // log
             
             // Increase difficulty
             if heroVelocity < maxVelocity {
