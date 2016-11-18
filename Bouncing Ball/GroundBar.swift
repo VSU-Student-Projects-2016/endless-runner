@@ -18,6 +18,7 @@ class GroundBar: SKSpriteNode {
     init(image: String, pos: CGPoint, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32) {
         
         let texture = SKTexture(imageNamed: image)
+        //let texture = SKTexture(imageNamed: "desert_rnd")
         super.init(texture: texture, color: .clear, size: CGSize(width: round(texture.size().width), height: round(texture.size().height)))
         
         print("Ground width: " + String(describing: texture.size().width))
@@ -25,7 +26,8 @@ class GroundBar: SKSpriteNode {
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.position = pos
-        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
+        //self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
+        self.physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.0, size: texture.size())
         self.physicsBody!.isDynamic = false
         self.physicsBody!.categoryBitMask = categoryBitMask
         self.physicsBody!.contactTestBitMask = contactTestBitMask
