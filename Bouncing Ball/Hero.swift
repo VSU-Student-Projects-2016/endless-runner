@@ -20,7 +20,8 @@ public class Hero: SKSpriteNode {
     let maxJumpsAllowed = 2
     var jumpsAllowed = 2
     var jumped = false
-    var powerUps = [PowerUp]()
+    
+    var powerUps = [PowerUpTypes: PowerUp]()
     
     let jumpPower = 80.0
     
@@ -64,27 +65,18 @@ public class Hero: SKSpriteNode {
     }
     
     public func update() {
-        for powerUp in powerUps {
+        for powerUp in powerUps.values {
             powerUp.update()
         }
     }
     
-    public func getShield() -> Int {
-        for i in 0..<powerUps.count {
-            if powerUps[i] is ShieldPU {
-                return i
-            }
-        }
-        return -1
-    }
-    
-    func Jump() {
+    func jump() {
         if jumpsAllowed > 0 {
             if jumpsAllowed == maxJumpsAllowed {
                 self.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: jumpPower))
                 
                 onGround = false
-                StopRunning()
+                stopRunning()
                 ChangeImage(image: "3_Jump")
                 
                 jumpsAllowed -= 1
@@ -96,7 +88,7 @@ public class Hero: SKSpriteNode {
                     self.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: jumpPower))
                     
                     onGround = false
-                    StopRunning()
+                    stopRunning()
                     ChangeImage(image: "3_Jump")
                     
                     jumpsAllowed -= 1
@@ -105,36 +97,36 @@ public class Hero: SKSpriteNode {
         }
     }
     
-    func Dash() {
+    func dash() {
         if (energy >= dashCost && speedMult == 1.0) {
             energy -= dashCost
             speedMult *= 4
         }
     }
     
-    func Land() {
+    func land() {
         if !onGround {
             self.physicsBody!.velocity = CGVector(dx: self.physicsBody!.velocity.dx, dy: 0)
             onGround = true
             ChangeImage(image: "2_Fall")
-            Run()
+            run()
             jumpsAllowed = maxJumpsAllowed
             jumped = false
         }
     }
     
-    func Run() {
+    func run() {
         self.run(SKAction.repeatForever(SKAction.animate(with: walkFrames,
                                                          timePerFrame: 0.1,
                                                          resize: false,
                                                          restore: true)), withKey: "run")
     }
     
-    func StopRunning() {
+    func stopRunning() {
         self.removeAction(forKey: "run")
     }
     
-    func Fall() {
+    func fall() {
         if !onGround && physicsBody!.velocity.dy < CGFloat(0) {
             ChangeImage(image: "1_Fall")
         }

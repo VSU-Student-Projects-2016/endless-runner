@@ -29,14 +29,12 @@ public class ShieldPU: SKSpriteNode, PowerUp {
  
     public func onAdd(to hero: Hero) {
         self.hero = hero
+        shieldTextureOnHero?.zPosition = 99
         hero.addChild(shieldTextureOnHero!)
-        for i in 0..<hero.powerUps.count {
-            if (hero.powerUps[i] is ShieldPU) {
-                hero.powerUps[i].removeFromHero()
-                //hero.powerUps.remove(at: i)
-            }
+        if hero.powerUps[PowerUpTypes.Shield] != nil {
+            hero.powerUps[PowerUpTypes.Shield]!.removeFromHero()
         }
-        hero.powerUps.append(self)
+        hero.powerUps[PowerUpTypes.Shield] = self
     }
     
     public func update() {
@@ -53,14 +51,8 @@ public class ShieldPU: SKSpriteNode, PowerUp {
     }
     
     public func removeFromHero() {
-        for i in 0..<Int(hero!.powerUps.count) {
-            if hero!.powerUps[i] is ShieldPU {
-                print("Power up was removed")
-                //hero!.powerUps[i].removeFromParent()
-                shieldTextureOnHero?.removeFromParent()
-                hero!.powerUps.remove(at: i)
-            }
-        }
+        shieldTextureOnHero!.removeFromParent()
+        hero!.powerUps[PowerUpTypes.Shield] = nil
     }
     
     required public init?(coder aDecoder: NSCoder) {

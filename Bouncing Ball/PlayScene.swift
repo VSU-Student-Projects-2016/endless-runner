@@ -26,6 +26,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let energyConsumptionIncrease = Float(0.0001)
     let maxEnergyConsumption = Float(0.001)
     
+    var complexity = 0
     var stopErrorText = SKLabelNode(fontNamed: "Chalkduster")
     var lastHeroPosition = CGPoint(x: 0.0, y: 0.0)
     
@@ -68,6 +69,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         // don't hardcode "200" below
         hero = Hero(image: "1Cat", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground | ColliderType.PlatformSensor, collisionBitMask: ColliderType.Ground)
+        //hero.zPosition = -12
         
         garbageCollector = GarbageCollector(pos: CGPoint(x: frame.minX - 200, y: frame.midY),
                                             size: CGSize(width: 50, height: frame.size.height * 2))
@@ -97,7 +99,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         stopErrorText.position = cameraNode.position
         lastHeroPosition = hero.position
         
-        currPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY + frame.midY * 0.3))
+        currPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY + frame.midY * 0.3), complexity: complexity)
         self.addChild(currPlatform)
         self.addChild(self.hero)
         print(currPlatform.position.y) // log
@@ -121,7 +123,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func dashButtonPressed(_ sender: UIButton!){
-        hero.Dash();
+        hero.dash();
     }
     
     func exitButtonPressed(_ sender: UIButton!) {
@@ -152,7 +154,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 groundTmp = contact.bodyA.node!
             }
             if heroTmp.position.y > groundTmp.position.y {
-                hero.Land()
+                hero.land()
             }
         }
 
@@ -188,10 +190,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 enemy = contact.bodyB.node as! Enemy
             }
             
-            let shieldIndex = hero.getShield()
-            if shieldIndex != -1 {
-                hero.powerUps[shieldIndex].onEnemyContact(enemy: enemy)
-            }
+            hero.powerUps[PowerUpTypes.Shield]?.onEnemyContact(enemy: enemy)
             
             if enemy is JumpingEnemy {
                 hero.energy -= 0.5
@@ -305,7 +304,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        hero.Jump()
+        hero.jump()
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -331,7 +330,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         // Create new ground template
         if hero.position.x > currPlatform.position.x + currPlatform.width / 2 && (nextPlatform == nil) {
             
-            nextPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: currPlatform.position.x + currPlatform.width - 5, y: currPlatform.position.y))
+            nextPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: currPlatform.position.x + currPlatform.width - 5, y: currPlatform.position.y), complexity: complexity)
             addChild(nextPlatform)
         }
         
@@ -373,7 +372,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         hero.physicsBody!.velocity = CGVector(dx: CGFloat(heroVelocity * hero.speedMult), dy: hero.physicsBody!.velocity.dy)
         
         // Handle hero's fall
-        hero.Fall()
+        hero.fall()
     }
     
     override func didSimulatePhysics() {

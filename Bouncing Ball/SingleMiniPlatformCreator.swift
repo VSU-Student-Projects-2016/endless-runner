@@ -14,7 +14,7 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
     //let bonusPosMult = CGFloat(50)
     //let smallPlatformHeight = CGFloat(200)
     
-    override func createPlatform(scene: PlayScene, pos: CGPoint) -> PlatformTemplate {
+    override func createPlatform(scene: PlayScene, pos: CGPoint, complexity: Int) -> PlatformTemplate {
         let platformTemplate = PlatformTemplate()
         platformTemplate.position = pos
         let ground1 = GroundBar(image: "desert", pos: pos)

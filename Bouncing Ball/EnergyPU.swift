@@ -13,14 +13,14 @@ public class EnergyPU: SKSpriteNode, PowerUp {
     let maxTimeLimit = 300
     var currentTime = 300
     var hero: Hero?
-    var shieldTextureOnHero: SKSpriteNode?
+    var energyTextureOnHero: SKSpriteNode?
     let energyIncrease = Float(0.001)
     
     public init(image: String) {
         let texture = SKTexture(imageNamed: image)
         super.init(texture: texture, color: .clear, size: texture.size())
         
-        shieldTextureOnHero = SKSpriteNode(texture: texture)
+        energyTextureOnHero = SKSpriteNode(texture: texture)
         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         physicsBody!.categoryBitMask = ColliderType.PowerUp
         physicsBody!.contactTestBitMask = ColliderType.Hero
@@ -30,14 +30,12 @@ public class EnergyPU: SKSpriteNode, PowerUp {
     
     public func onAdd(to hero: Hero) {
         self.hero = hero
-        hero.addChild(shieldTextureOnHero!)
-        for i in 0..<hero.powerUps.count {
-            if (hero.powerUps[i] is EnergyPU) {
-                hero.powerUps[i].removeFromHero()
-                //hero.powerUps.remove(at: i)
-            }
+        energyTextureOnHero?.zPosition = 99
+        hero.addChild(energyTextureOnHero!)
+        if hero.powerUps[PowerUpTypes.Energy] != nil {
+            hero.powerUps[PowerUpTypes.Energy]!.removeFromHero()
         }
-        hero.powerUps.append(self)
+        hero.powerUps[PowerUpTypes.Energy] = self
     }
     
     public func update() {
@@ -57,14 +55,8 @@ public class EnergyPU: SKSpriteNode, PowerUp {
     }
     
     public func removeFromHero() {
-        for i in 0..<Int(hero!.powerUps.count) {
-            if hero!.powerUps[i] is EnergyPU {
-                print("Power up was removed")
-                //hero!.powerUps[i].removeFromParent()
-                shieldTextureOnHero?.removeFromParent()
-                hero!.powerUps.remove(at: i)
-            }
-        }
+        energyTextureOnHero!.removeFromParent()
+        hero!.powerUps[PowerUpTypes.Energy] = nil
     }
     
     required public init?(coder aDecoder: NSCoder) {

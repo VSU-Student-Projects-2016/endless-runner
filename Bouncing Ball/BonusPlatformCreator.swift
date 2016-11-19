@@ -13,7 +13,7 @@ class BonusPlatformCreator : AbstractPlatformCreator {
     //let bonusPosHeight = CGFloat(200)
     //let bonusPosMult = CGFloat(50)
     
-    override func createPlatform(scene: PlayScene, pos: CGPoint) -> PlatformTemplate {
+    override func createPlatform(scene: PlayScene, pos: CGPoint, complexity: Int) -> PlatformTemplate {
         
         let platformTemplate = PlatformTemplate()
         platformTemplate.position = pos

@@ -16,7 +16,7 @@ class AbstractPlatformCreator {
     let smallPlatformHeight = CGFloat(100)
     let platformGapWidth = CGFloat(200)
     
-    func createPlatform(scene: PlayScene, pos: CGPoint) -> PlatformTemplate {
+    func createPlatform(scene: PlayScene, pos: CGPoint, complexity: Int) -> PlatformTemplate {
         fatalError("This method must be overridden")
     }
     func random(left: Int, right: Int) -> Int {
