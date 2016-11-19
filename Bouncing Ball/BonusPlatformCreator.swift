@@ -26,7 +26,7 @@ class BonusPlatformCreator : AbstractPlatformCreator {
             platformTemplate.width += ground.size.width
             
             // Add power-up
-            let shield = ShieldPU(image: "hero");
+            let shield = EnergyPU(image: "hero");
             shield.position = CGPoint(x: ground.position.x + ground.size.width / 2, y: ground.position.y + smallPlatformHeight * 2)
             scene.addChild(shield)
             

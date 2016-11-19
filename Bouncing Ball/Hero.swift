@@ -45,11 +45,11 @@ public class Hero: SKSpriteNode {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         position = pos
         
-        physicsBody = SKPhysicsBody(rectangleOf: texture.size())
-        //physicsBody = SKPhysicsBody(circleOfRadius: texture.size().height/2)
+        //physicsBody = SKPhysicsBody(rectangleOf: texture.size())
+        physicsBody = SKPhysicsBody(circleOfRadius: texture.size().height/2)
         physicsBody!.allowsRotation = false
         physicsBody!.categoryBitMask = categoryBitMask
-        physicsBody!.mass = (physicsBody?.mass)! * 1.3 //* 3.5
+        physicsBody!.mass = (physicsBody?.mass)! * 3.5 //* 1.3 
         physicsBody!.contactTestBitMask = contactTestBitMask
         physicsBody!.collisionBitMask = collisionBitMask
         physicsBody!.affectedByGravity = true

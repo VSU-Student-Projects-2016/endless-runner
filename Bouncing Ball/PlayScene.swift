@@ -269,11 +269,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         if (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == (ColliderType.Hero | ColliderType.PowerUp) {
             if (contact.bodyA.categoryBitMask == ColliderType.PowerUp) {
-                (contact.bodyA.node! as! ShieldPU).onAdd(to: hero)
-                (contact.bodyA.node! as! ShieldPU).removeFromParent()
+                (contact.bodyA.node! as! PowerUp).onAdd(to: hero)
+                contact.bodyA.node!.removeFromParent()
             } else {
-                (contact.bodyB.node! as! ShieldPU).onAdd(to: hero)
-                (contact.bodyB.node! as! ShieldPU).removeFromParent()
+                (contact.bodyB.node! as! PowerUp).onAdd(to: hero)
+                contact.bodyB.node!.removeFromParent()
             }
         }
         

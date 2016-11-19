@@ -12,6 +12,7 @@
 		84B9D7881DD8D8C7008E8F4B /* PlatformBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */; };
 		AE1B41A91D9FDDA300D27A14 /* GameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B41A81D9FDDA300D27A14 /* GameNode.swift */; };
 		AE92EEAD1DE054D50002AE3F /* ShieldPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE92EEAC1DE054D50002AE3F /* ShieldPU.swift */; };
+		AE92EEAF1DE065840002AE3F /* EnergyPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE92EEAE1DE065840002AE3F /* EnergyPU.swift */; };
 		AE9549781DB22B1D0003B6B2 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9549771DB22B1D0003B6B2 /* Hero.swift */; };
 		AE95497B1DB236E40003B6B2 /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE95497A1DB236E40003B6B2 /* ColliderType.swift */; };
 		AE95497D1DB23F260003B6B2 /* GroundBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE95497C1DB23F250003B6B2 /* GroundBar.swift */; };
@@ -46,6 +47,7 @@
 		84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformBar.swift; sourceTree = "<group>"; };
 		AE1B41A81D9FDDA300D27A14 /* GameNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameNode.swift; sourceTree = "<group>"; };
 		AE92EEAC1DE054D50002AE3F /* ShieldPU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldPU.swift; sourceTree = "<group>"; };
+		AE92EEAE1DE065840002AE3F /* EnergyPU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyPU.swift; sourceTree = "<group>"; };
 		AE9549771DB22B1D0003B6B2 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		AE95497A1DB236E40003B6B2 /* ColliderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColliderType.swift; sourceTree = "<group>"; };
 		AE95497C1DB23F250003B6B2 /* GroundBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroundBar.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				846A77EA1DD639B8001D583F /* VariousPlatformCreator.swift */,
 				84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */,
 				AE92EEAC1DE054D50002AE3F /* ShieldPU.swift */,
+				AE92EEAE1DE065840002AE3F /* EnergyPU.swift */,
 			);
 			path = "Bouncing Ball";
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				AE9829E41DC4AD360065F3B0 /* PlatformTemplate.swift in Sources */,
 				AEF052A91DBB5E6F000F8F0B /* Bonus.swift in Sources */,
 				AE1B41A91D9FDDA300D27A14 /* GameNode.swift in Sources */,
+				AE92EEAF1DE065840002AE3F /* EnergyPU.swift in Sources */,
 				AECFADFB1D968743007ADC7B /* BlockStatus.swift in Sources */,
 				AECFADE91D967D36007ADC7B /* GameViewController.swift in Sources */,
 				AEF052AD1DBB8C23000F8F0B /* EnemyJumping.swift in Sources */,
