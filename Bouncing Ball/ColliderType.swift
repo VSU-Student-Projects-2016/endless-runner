@@ -16,4 +16,5 @@ public struct ColliderType {
     public static let Bonus:            UInt32 = 0b1000
     public static let GarbageCollector: UInt32 = 0b10000
     public static let PlatformSensor:   UInt32 = 0b100000
+    public static let PowerUp:          UInt32 = 0b1000000
 }

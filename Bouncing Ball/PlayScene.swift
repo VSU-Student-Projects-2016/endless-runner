@@ -188,6 +188,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 enemy = contact.bodyB.node as! Enemy
             }
             
+            let shieldIndex = hero.getShield()
+            if shieldIndex != -1 {
+                hero.powerUps[shieldIndex].onEnemyContact(enemy: enemy)
+            }
+            
             if enemy is JumpingEnemy {
                 hero.energy -= 0.5
                 if hero.energy < 0 {
@@ -203,6 +208,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 contact.bodyA.node!.removeFromParent()
             } else {
                 platformGenerator.addBonusToPool(bonus: contact.bodyB.node as! Bonus)
+                contact.bodyB.node!.removeFromParent()
+            }
+        }
+        
+        // Remove an off-screen power-up
+        if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.PowerUp | ColliderType.GarbageCollector){
+            if contact.bodyA.categoryBitMask == ColliderType.PowerUp {
+                contact.bodyA.node!.removeFromParent()
+            } else {
                 contact.bodyB.node!.removeFromParent()
             }
         }
@@ -253,6 +267,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        if (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == (ColliderType.Hero | ColliderType.PowerUp) {
+            if (contact.bodyA.categoryBitMask == ColliderType.PowerUp) {
+                (contact.bodyA.node! as! ShieldPU).onAdd(to: hero)
+                (contact.bodyA.node! as! ShieldPU).removeFromParent()
+            } else {
+                (contact.bodyB.node! as! ShieldPU).onAdd(to: hero)
+                (contact.bodyB.node! as! ShieldPU).removeFromParent()
+            }
+        }
+        
     }
     
     // Game Over
@@ -285,6 +309,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        hero.update()
         
         // Temporary stop error handling
         if hero.position == lastHeroPosition && stopErrorText.position != cameraNode.position {

@@ -14,6 +14,7 @@ class BonusPlatformCreator : AbstractPlatformCreator {
     //let bonusPosMult = CGFloat(50)
     
     override func createPlatform(scene: PlayScene, pos: CGPoint) -> PlatformTemplate {
+        
         let platformTemplate = PlatformTemplate()
         platformTemplate.position = pos
         for j in 0..<2 {
@@ -23,6 +24,11 @@ class BonusPlatformCreator : AbstractPlatformCreator {
             scene.addChild(ground)
             platformTemplate.grounds.append(ground)
             platformTemplate.width += ground.size.width
+            
+            // Add power-up
+            let shield = ShieldPU(image: "hero");
+            shield.position = CGPoint(x: ground.position.x + ground.size.width / 2, y: ground.position.y + smallPlatformHeight * 2)
+            scene.addChild(shield)
             
             let randNum = random(left: 0, right: 10)
             
@@ -36,6 +42,7 @@ class BonusPlatformCreator : AbstractPlatformCreator {
                 }
             }
         }
+        
         return platformTemplate
     }
 }

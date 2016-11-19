@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class Hero: SKSpriteNode {
+public class Hero: SKSpriteNode {
     
     private(set) public var onGround = false
     var energy = Float(1.0)
@@ -20,6 +20,7 @@ class Hero: SKSpriteNode {
     let maxJumpsAllowed = 2
     var jumpsAllowed = 2
     var jumped = false
+    var powerUps = [PowerUp]()
     
     let jumpPower = 80.0
     
@@ -44,11 +45,11 @@ class Hero: SKSpriteNode {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         position = pos
         
-        //physicsBody = SKPhysicsBody(rectangleOf: texture.size())
-        physicsBody = SKPhysicsBody(circleOfRadius: texture.size().height/2)
+        physicsBody = SKPhysicsBody(rectangleOf: texture.size())
+        //physicsBody = SKPhysicsBody(circleOfRadius: texture.size().height/2)
         physicsBody!.allowsRotation = false
         physicsBody!.categoryBitMask = categoryBitMask
-        physicsBody!.mass = (physicsBody?.mass)! * 3.5 //* 1.3 //* 3.5
+        physicsBody!.mass = (physicsBody?.mass)! * 1.3 //* 3.5
         physicsBody!.contactTestBitMask = contactTestBitMask
         physicsBody!.collisionBitMask = collisionBitMask
         physicsBody!.affectedByGravity = true
@@ -60,6 +61,21 @@ class Hero: SKSpriteNode {
     
     func ChangeImage(image: String) {
         self.texture = SKTexture(imageNamed: image)
+    }
+    
+    public func update() {
+        for powerUp in powerUps {
+            powerUp.update()
+        }
+    }
+    
+    public func getShield() -> Int {
+        for i in 0..<powerUps.count {
+            if powerUps[i] is ShieldPU {
+                return i
+            }
+        }
+        return -1
     }
     
     func Jump() {
@@ -124,7 +140,7 @@ class Hero: SKSpriteNode {
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

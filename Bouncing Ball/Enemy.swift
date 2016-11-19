@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class Enemy: SKSpriteNode {
+public class Enemy: SKSpriteNode {
     
     //private(set) public var onGround = true
     
@@ -45,8 +45,11 @@ class Enemy: SKSpriteNode {
         self.texture = SKTexture(imageNamed: image)
     }
     
+    func die() {
+        self.removeFromParent()
+    }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
