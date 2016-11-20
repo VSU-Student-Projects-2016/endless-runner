@@ -11,7 +11,7 @@ import SpriteKit
 
 class LeapingEnemy: Enemy{
     let horizontalForce = -75.0
-    let verticalForce = 50.0
+    let verticalForce = 65.0
     let playerSensor = SKNode()
     
     convenience init(image: String, pos: CGPoint) {
