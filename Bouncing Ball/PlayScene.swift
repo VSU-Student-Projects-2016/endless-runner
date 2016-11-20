@@ -190,9 +190,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 enemy = contact.bodyB.node as! Enemy
             }
             
-            hero.powerUps[PowerUpTypes.Shield]?.onEnemyContact(enemy: enemy)
+            hero.powerUps[PowerUpTypes.Shield]?.onContact(with: enemy)
             
-            if enemy is JumpingEnemy {
+            if !enemy.isDead {
                 hero.energy -= 0.5
                 if hero.energy < 0 {
                     hero.energy = 0
@@ -266,6 +266,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        // Hero grabs power-up
         if (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == (ColliderType.Hero | ColliderType.PowerUp) {
             if (contact.bodyA.categoryBitMask == ColliderType.PowerUp) {
                 (contact.bodyA.node! as! PowerUp).onAdd(to: hero)

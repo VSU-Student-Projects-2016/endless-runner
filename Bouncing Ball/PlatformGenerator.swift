@@ -31,21 +31,21 @@ class PlatformGenerator {
     
     func getPlatform(scene: PlayScene, pos: CGPoint, complexity: Int) -> PlatformTemplate {
 
-        let randNum = random(left: 0, right: 6)
-        switch randNum {
-        case 0:
-            return (GapPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
-        case 1:
-            return (BonusPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
-        case 2:
-            return (TripleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
-        case 3:
-            return (MultipleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
-        case 4:
-            return (VariousPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
-        default:
+//        let randNum = random(left: 0, right: 6)
+//        switch randNum {
+//        case 0:
+//            return (GapPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
+//        case 1:
+//            return (BonusPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
+//        case 2:
+//            return (TripleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
+//        case 3:
+//            return (MultipleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
+//        case 4:
+//            return (VariousPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
+//        default:
             return (SingleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
-        }
+//        }
     }
     
     func addEnemyToPool(enemy: Enemy){

@@ -13,7 +13,7 @@ public protocol Updatable {
 }
 public protocol PowerUp {
      func onAdd(to hero: Hero)
-     func onEnemyContact(enemy: Enemy)
+     func onContact(with enemy: Enemy)
      //func onEnergyStep()
      func update()
      //func shouldAffectEnergy()

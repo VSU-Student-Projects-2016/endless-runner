@@ -15,6 +15,7 @@ public class Enemy: SKSpriteNode {
     
     private let enemyAnimatedAtlas = SKTextureAtlas(named: "Hero Images")
     var standingFrames = [SKTexture]()
+    private(set) public var isDead = false
     
     convenience init(image: String, pos: CGPoint) {
         self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground | ColliderType.PlatformSensor)
@@ -46,6 +47,7 @@ public class Enemy: SKSpriteNode {
     }
     
     func die() {
+        isDead = true
         self.removeFromParent()
     }
     

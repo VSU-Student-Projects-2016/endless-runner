@@ -11,10 +11,12 @@ import SpriteKit
 
 class AbstractPlatformCreator {
     let bonusHighPosHeight = CGFloat(150)
+    let bonusMidPosHeight = CGFloat(90)
     let bonusLowPosHeight = CGFloat(40)
     let bonusPosMult = CGFloat(50)
     let smallPlatformHeight = CGFloat(100)
     let platformGapWidth = CGFloat(200)
+    let overlayWidth = CGFloat(5)
     
     func createPlatform(scene: PlayScene, pos: CGPoint, complexity: Int) -> PlatformTemplate {
         fatalError("This method must be overridden")

@@ -15,8 +15,9 @@ class PlatformTemplate: SKNode {
     var enemies = [Enemy]()
     var bonuses = [Bonus]()
     var width = CGFloat(0)
-    let bonusPosHeight = CGFloat(200)
-    let bonusPosMult = CGFloat(50)
+//    let bonusPosHeight = CGFloat(200)
+//    let bonusPosMult = CGFloat(50)
+//    let overlayWidth = CGFloat(5)
     
     override init() {
         super.init()

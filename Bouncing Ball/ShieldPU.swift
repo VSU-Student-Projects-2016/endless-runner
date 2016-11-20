@@ -45,7 +45,7 @@ public class ShieldPU: SKSpriteNode, PowerUp {
         }
     }
     
-    public func onEnemyContact(enemy: Enemy) {
+    public func onContact(with enemy: Enemy) {
         removeFromHero()
         enemy.die()
     }

@@ -10,7 +10,7 @@
 		844D7CA51DD5EAE20000318D /* MultipleMiniPlatformsCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844D7CA41DD5EAE10000318D /* MultipleMiniPlatformsCreator.swift */; };
 		846A77EB1DD639B8001D583F /* VariousPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846A77EA1DD639B8001D583F /* VariousPlatformCreator.swift */; };
 		84B9D7881DD8D8C7008E8F4B /* PlatformBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */; };
-		AE1B41A91D9FDDA300D27A14 /* GameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B41A81D9FDDA300D27A14 /* GameNode.swift */; };
+		84D215D71DE1A3B90070F691 /* LeapingEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D215D61DE1A3B90070F691 /* LeapingEnemy.swift */; };
 		AE92EEAD1DE054D50002AE3F /* ShieldPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE92EEAC1DE054D50002AE3F /* ShieldPU.swift */; };
 		AE92EEAF1DE065840002AE3F /* EnergyPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE92EEAE1DE065840002AE3F /* EnergyPU.swift */; };
 		AE92EEB11DE071E90002AE3F /* PowerUpTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE92EEB01DE071E90002AE3F /* PowerUpTypes.swift */; };
@@ -29,7 +29,6 @@
 		AECFADEE1D967D36007ADC7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AECFADED1D967D36007ADC7B /* Assets.xcassets */; };
 		AECFADF11D967D36007ADC7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AECFADEF1D967D36007ADC7B /* LaunchScreen.storyboard */; };
 		AECFADF91D9682FF007ADC7B /* PlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECFADF81D9682FF007ADC7B /* PlayScene.swift */; };
-		AECFADFB1D968743007ADC7B /* BlockStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECFADFA1D968743007ADC7B /* BlockStatus.swift */; };
 		AEE835011DCDD35F00F3B79A /* AbstractPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE835001DCDD35F00F3B79A /* AbstractPlatformCreator.swift */; };
 		AEE835031DCDD41C00F3B79A /* BonusPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE835021DCDD41C00F3B79A /* BonusPlatformCreator.swift */; };
 		AEE835051DCDDAE500F3B79A /* GapPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */; };
@@ -46,7 +45,7 @@
 		844D7CA41DD5EAE10000318D /* MultipleMiniPlatformsCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleMiniPlatformsCreator.swift; sourceTree = "<group>"; };
 		846A77EA1DD639B8001D583F /* VariousPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariousPlatformCreator.swift; sourceTree = "<group>"; };
 		84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformBar.swift; sourceTree = "<group>"; };
-		AE1B41A81D9FDDA300D27A14 /* GameNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameNode.swift; sourceTree = "<group>"; };
+		84D215D61DE1A3B90070F691 /* LeapingEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeapingEnemy.swift; sourceTree = "<group>"; };
 		AE92EEAC1DE054D50002AE3F /* ShieldPU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldPU.swift; sourceTree = "<group>"; };
 		AE92EEAE1DE065840002AE3F /* EnergyPU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyPU.swift; sourceTree = "<group>"; };
 		AE92EEB01DE071E90002AE3F /* PowerUpTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerUpTypes.swift; sourceTree = "<group>"; };
@@ -67,7 +66,6 @@
 		AECFADF01D967D36007ADC7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AECFADF21D967D36007ADC7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AECFADF81D9682FF007ADC7B /* PlayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayScene.swift; sourceTree = "<group>"; };
-		AECFADFA1D968743007ADC7B /* BlockStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockStatus.swift; sourceTree = "<group>"; };
 		AEE835001DCDD35F00F3B79A /* AbstractPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractPlatformCreator.swift; sourceTree = "<group>"; };
 		AEE835021DCDD41C00F3B79A /* BonusPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BonusPlatformCreator.swift; sourceTree = "<group>"; };
 		AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GapPlatformCreator.swift; sourceTree = "<group>"; };
@@ -91,10 +89,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84D215D81DE1A3CC0070F691 /* Enemies */ = {
+			isa = PBXGroup;
+			children = (
+				AEF052A61DBB5BA7000F8F0B /* Enemy.swift */,
+				AEF052AC1DBB8C23000F8F0B /* EnemyJumping.swift */,
+				AEF052AE1DBB8C3D000F8F0B /* EnemyDashing.swift */,
+				84D215D61DE1A3B90070F691 /* LeapingEnemy.swift */,
+			);
+			name = Enemies;
+			sourceTree = "<group>";
+		};
+		84D215D91DE1A3EF0070F691 /* PlatformSets */ = {
+			isa = PBXGroup;
+			children = (
+				AEE835001DCDD35F00F3B79A /* AbstractPlatformCreator.swift */,
+				AEE835021DCDD41C00F3B79A /* BonusPlatformCreator.swift */,
+				AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */,
+				AEE835061DCDE5F700F3B79A /* TripleMiniPlatformCreator.swift */,
+				AEE835081DCDEC0F00F3B79A /* SingleMiniPlatformCreator.swift */,
+				844D7CA41DD5EAE10000318D /* MultipleMiniPlatformsCreator.swift */,
+				846A77EA1DD639B8001D583F /* VariousPlatformCreator.swift */,
+			);
+			name = PlatformSets;
+			sourceTree = "<group>";
+		};
+		84D215DA1DE1A4BF0070F691 /* PowerUps */ = {
+			isa = PBXGroup;
+			children = (
+				AEAD429E1DD73D510068E1CC /* PowerUp.swift */,
+				AE92EEAC1DE054D50002AE3F /* ShieldPU.swift */,
+				AE92EEAE1DE065840002AE3F /* EnergyPU.swift */,
+				AE92EEB01DE071E90002AE3F /* PowerUpTypes.swift */,
+			);
+			name = PowerUps;
+			sourceTree = "<group>";
+		};
+		84D215DB1DE1A5210070F691 /* Bonuses */ = {
+			isa = PBXGroup;
+			children = (
+				AEF052A81DBB5E6F000F8F0B /* Bonus.swift */,
+			);
+			name = Bonuses;
+			sourceTree = "<group>";
+		};
+		84D215DC1DE1A5320070F691 /* Platforms */ = {
+			isa = PBXGroup;
+			children = (
+				84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */,
+				AE95497C1DB23F250003B6B2 /* GroundBar.swift */,
+			);
+			name = Platforms;
+			sourceTree = "<group>";
+		};
 		AECFADD41D967D36007ADC7B = {
 			isa = PBXGroup;
 			children = (
-				AECFADDF1D967D36007ADC7B /* Bouncing Ball */,
+				AECFADDF1D967D36007ADC7B /* EndlessRunner */,
 				AECFADDE1D967D36007ADC7B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,9 +158,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AECFADDF1D967D36007ADC7B /* Bouncing Ball */ = {
+		AECFADDF1D967D36007ADC7B /* EndlessRunner */ = {
 			isa = PBXGroup;
 			children = (
+				84D215DB1DE1A5210070F691 /* Bonuses */,
+				84D215D81DE1A3CC0070F691 /* Enemies */,
+				84D215DC1DE1A5320070F691 /* Platforms */,
+				84D215D91DE1A3EF0070F691 /* PlatformSets */,
+				84D215DA1DE1A4BF0070F691 /* PowerUps */,
 				AECFADE01D967D36007ADC7B /* AppDelegate.swift */,
 				AECFADE21D967D36007ADC7B /* GameScene.sks */,
 				AECFADE41D967D36007ADC7B /* Actions.sks */,
@@ -120,31 +176,13 @@
 				AECFADEF1D967D36007ADC7B /* LaunchScreen.storyboard */,
 				AECFADF21D967D36007ADC7B /* Info.plist */,
 				AECFADF81D9682FF007ADC7B /* PlayScene.swift */,
-				AECFADFA1D968743007ADC7B /* BlockStatus.swift */,
-				AEAD429E1DD73D510068E1CC /* PowerUp.swift */,
-				AE1B41A81D9FDDA300D27A14 /* GameNode.swift */,
 				AE9549771DB22B1D0003B6B2 /* Hero.swift */,
 				AE95497A1DB236E40003B6B2 /* ColliderType.swift */,
-				AE95497C1DB23F250003B6B2 /* GroundBar.swift */,
-				AEF052A81DBB5E6F000F8F0B /* Bonus.swift */,
 				AEF052AA1DBB78AE000F8F0B /* GarbageCollector.swift */,
-				AEF052A61DBB5BA7000F8F0B /* Enemy.swift */,
-				AEF052AC1DBB8C23000F8F0B /* EnemyJumping.swift */,
-				AEF052AE1DBB8C3D000F8F0B /* EnemyDashing.swift */,
 				AE9829E11DC49EA80065F3B0 /* PlatformGenerator.swift */,
 				AE9829E31DC4AD360065F3B0 /* PlatformTemplate.swift */,
-				AEE835001DCDD35F00F3B79A /* AbstractPlatformCreator.swift */,
-				AEE835021DCDD41C00F3B79A /* BonusPlatformCreator.swift */,
-				AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */,
-				AEE835061DCDE5F700F3B79A /* TripleMiniPlatformCreator.swift */,
-				AEE835081DCDEC0F00F3B79A /* SingleMiniPlatformCreator.swift */,
-				844D7CA41DD5EAE10000318D /* MultipleMiniPlatformsCreator.swift */,
-				846A77EA1DD639B8001D583F /* VariousPlatformCreator.swift */,
-				84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */,
-				AE92EEAC1DE054D50002AE3F /* ShieldPU.swift */,
-				AE92EEAE1DE065840002AE3F /* EnergyPU.swift */,
-				AE92EEB01DE071E90002AE3F /* PowerUpTypes.swift */,
 			);
+			name = EndlessRunner;
 			path = "Bouncing Ball";
 			sourceTree = "<group>";
 		};
@@ -184,7 +222,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AECFADD81D967D36007ADC7B /* Build configuration list for PBXProject "Bouncing Ball" */;
+			buildConfigurationList = AECFADD81D967D36007ADC7B /* Build configuration list for PBXProject "EndlessRunner" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -228,9 +266,7 @@
 				AEF052AB1DBB78AE000F8F0B /* GarbageCollector.swift in Sources */,
 				AE9829E41DC4AD360065F3B0 /* PlatformTemplate.swift in Sources */,
 				AEF052A91DBB5E6F000F8F0B /* Bonus.swift in Sources */,
-				AE1B41A91D9FDDA300D27A14 /* GameNode.swift in Sources */,
 				AE92EEAF1DE065840002AE3F /* EnergyPU.swift in Sources */,
-				AECFADFB1D968743007ADC7B /* BlockStatus.swift in Sources */,
 				AECFADE91D967D36007ADC7B /* GameViewController.swift in Sources */,
 				AEF052AD1DBB8C23000F8F0B /* EnemyJumping.swift in Sources */,
 				AEAD429F1DD73D510068E1CC /* PowerUp.swift in Sources */,
@@ -242,6 +278,7 @@
 				AE92EEAD1DE054D50002AE3F /* ShieldPU.swift in Sources */,
 				AEF052A71DBB5BA7000F8F0B /* Enemy.swift in Sources */,
 				AEE835091DCDEC0F00F3B79A /* SingleMiniPlatformCreator.swift in Sources */,
+				84D215D71DE1A3B90070F691 /* LeapingEnemy.swift in Sources */,
 				AE95497B1DB236E40003B6B2 /* ColliderType.swift in Sources */,
 				84B9D7881DD8D8C7008E8F4B /* PlatformBar.swift in Sources */,
 				AEF052AF1DBB8C3D000F8F0B /* EnemyDashing.swift in Sources */,
@@ -395,7 +432,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AECFADD81D967D36007ADC7B /* Build configuration list for PBXProject "Bouncing Ball" */ = {
+		AECFADD81D967D36007ADC7B /* Build configuration list for PBXProject "EndlessRunner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AECFADF31D967D36007ADC7B /* Debug */,
