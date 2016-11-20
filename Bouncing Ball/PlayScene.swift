@@ -181,7 +181,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Hero rushes into an enemy
-        if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Enemy){
+        if contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask == ColliderType.Hero | ColliderType.Enemy {
             var enemy: Enemy
             if contact.bodyA.categoryBitMask == ColliderType.Enemy {
                 enemy = contact.bodyA.node as! Enemy
@@ -200,8 +200,17 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        // Hero touches enemy sensor
+        if contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask == ColliderType.Hero | ColliderType.EnemySensor {
+            if contact.bodyA.categoryBitMask == ColliderType.EnemySensor {
+                (contact.bodyA.node!.parent as! LeapingEnemy).leap()
+            } else {
+                (contact.bodyB.node!.parent as! LeapingEnemy).leap()
+            }
+        }
+        
         // Remove an off-screen bonus
-        if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Bonus | ColliderType.GarbageCollector){
+        if contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask == ColliderType.Bonus | ColliderType.GarbageCollector {
             if contact.bodyA.categoryBitMask == ColliderType.Bonus {
                 platformGenerator.addBonusToPool(bonus: contact.bodyA.node as! Bonus)
                 contact.bodyA.node!.removeFromParent()
@@ -235,11 +244,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Enemy | ColliderType.Ground){
             if contact.bodyA.categoryBitMask == ColliderType.Enemy {
                 if contact.bodyA.node is JumpingEnemy {
-                    (contact.bodyA.node as! JumpingEnemy).Jump()
+                    (contact.bodyA.node as! JumpingEnemy).jump()
                 }
             } else {
                 if contact.bodyB.node is JumpingEnemy {
-                    (contact.bodyB.node as! JumpingEnemy).Jump()
+                    (contact.bodyB.node as! JumpingEnemy).jump()
                 }
             }
         }

@@ -20,7 +20,7 @@ class JumpingEnemy: Enemy{
         super.init(image: image, pos: pos, categoryBitMask: categoryBitMask, contactTestBitMask: contactTestBitMask, collisionBitMask: collisionBitMask)
     }
     
-    func Jump() {
+    func jump() {
         if self.physicsBody!.velocity.dy <= 10 {
             self.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: jumpForce))
             //ChangeImage(image: "hero_jump")

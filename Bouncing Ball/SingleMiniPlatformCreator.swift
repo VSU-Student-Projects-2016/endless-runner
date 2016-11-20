@@ -65,6 +65,10 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
         scene.addChild(enemy)
         platformTemplate.enemies.append(enemy)
         
+        let leapingEnemy = LeapingEnemy(image: "block1", pos: CGPoint(x: ground3.position.x, y: smallPlatform.position.y - smallPlatformHeight))
+        scene.addChild(leapingEnemy)
+        platformTemplate.enemies.append(leapingEnemy)
+        
         
         return platformTemplate
     }
