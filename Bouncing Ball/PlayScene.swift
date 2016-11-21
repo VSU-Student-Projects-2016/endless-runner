@@ -26,7 +26,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let energyConsumptionIncrease = Float(0.0001)
     let maxEnergyConsumption = Float(0.001)
     
-    var complexity = 0
+    var difficulty = 0
     var stopErrorText = SKLabelNode(fontNamed: "Chalkduster")
     var lastHeroPosition = CGPoint(x: 0.0, y: 0.0)
     
@@ -99,7 +99,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         stopErrorText.position = cameraNode.position
         lastHeroPosition = hero.position
         
-        currPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY + frame.midY * 0.3), complexity: complexity)
+        currPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY + frame.midY * 0.3), difficulty: difficulty)
         self.addChild(currPlatform)
         self.addChild(self.hero)
         print(currPlatform.position.y) // log
@@ -340,7 +340,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         // Create new ground template
         if hero.position.x > currPlatform.position.x + currPlatform.width / 2 && (nextPlatform == nil) {
             
-            nextPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: currPlatform.position.x + currPlatform.width - 5, y: currPlatform.position.y), complexity: complexity)
+            nextPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: currPlatform.position.x + currPlatform.width - 5, y: currPlatform.position.y), difficulty: difficulty)
             addChild(nextPlatform)
         }
         

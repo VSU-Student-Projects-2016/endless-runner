@@ -29,22 +29,24 @@ class PlatformGenerator {
         platformPool.append(GroundBar(image: "ponyland", pos: CGPoint.zero))
     }
     
-    func getPlatform(scene: PlayScene, pos: CGPoint, complexity: Int) -> PlatformTemplate {
+    func getPlatform(scene: PlayScene, pos: CGPoint, difficulty: Int) -> PlatformTemplate {
 
-//        let randNum = random(left: 0, right: 6)
+//        let randNum = random(left: 0, right: 7)
 //        switch randNum {
 //        case 0:
-//            return (GapPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
+//            return (GapPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        case 1:
-//            return (BonusPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
+//            return (BonusPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        case 2:
-//            return (TripleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
+//            return (TripleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        case 3:
-//            return (MultipleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
+//            return (MultipleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        case 4:
-//            return (VariousPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
+//            return (VariousPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
+//        case 5:
+            return (LongJumpPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        default:
-            return (SingleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, complexity: complexity)
+//            return (SingleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        }
     }
     

@@ -10,11 +10,8 @@ import Foundation
 import SpriteKit
 
 class GapPlatformCreator : AbstractPlatformCreator {
-    //let bonusPosHeight = CGFloat(200)
-    //let bonusPosMult = CGFloat(50)
-    //let platformGapWidth = CGFloat(200)
     
-    override func createPlatform(scene: PlayScene, pos: CGPoint, complexity: Int) -> PlatformTemplate {
+    override func createPlatform(scene: PlayScene, pos: CGPoint, difficulty: Int) -> PlatformTemplate {
         let platformTemplate = PlatformTemplate()
         platformTemplate.position = pos
         let ground1 = GroundBar(image: "desert", pos: pos)

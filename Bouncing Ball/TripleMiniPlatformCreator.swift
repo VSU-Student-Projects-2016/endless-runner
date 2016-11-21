@@ -10,11 +10,8 @@ import Foundation
 import SpriteKit
 
 class TripleMiniPlatformCreator : AbstractPlatformCreator {
-    //let bonusPosHeight = CGFloat(20)
-    //let bonusPosMult = CGFloat(50)
-    //let smallPlatformHeight = CGFloat(100)
     
-    override func createPlatform(scene: PlayScene, pos: CGPoint, complexity: Int) -> PlatformTemplate {
+    override func createPlatform(scene: PlayScene, pos: CGPoint, difficulty: Int) -> PlatformTemplate {
         let platformTemplate = PlatformTemplate()
         platformTemplate.position = pos
         let ground1 = GroundBar(image: "desert", pos: pos)
