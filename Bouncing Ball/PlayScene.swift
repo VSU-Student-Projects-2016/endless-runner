@@ -25,6 +25,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var energyConsumption = Float(0.0001)
     let energyConsumptionIncrease = Float(0.0001)
     let maxEnergyConsumption = Float(0.001)
+    let platformOverlayWidth = CGFloat(10)
     
     var difficulty = 0
     var stopErrorText = SKLabelNode(fontNamed: "Chalkduster")
@@ -340,7 +341,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         // Create new ground template
         if hero.position.x > currPlatform.position.x + currPlatform.width / 2 && (nextPlatform == nil) {
             
-            nextPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: currPlatform.position.x + currPlatform.width - 5, y: currPlatform.position.y), difficulty: difficulty)
+            nextPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: currPlatform.position.x + currPlatform.width - platformOverlayWidth, y: currPlatform.position.y), difficulty: difficulty)
             addChild(nextPlatform)
         }
         

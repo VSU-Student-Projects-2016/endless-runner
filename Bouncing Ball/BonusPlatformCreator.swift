@@ -14,32 +14,39 @@ class BonusPlatformCreator : AbstractPlatformCreator {
     override func createPlatform(scene: PlayScene, pos: CGPoint, difficulty: Int) -> PlatformTemplate {
         
         let platformTemplate = PlatformTemplate()
+        var randNum: Int
         platformTemplate.position = pos
-        for j in 0..<2 {
+        for i in 0..<2 {
             let ground = GroundBar(image: "desert", pos: pos)
             ground.position = CGPoint(x: ground.position.x + ground.size.width / 2, y: ground.position.y)
-            ground.position = CGPoint(x: ground.position.x + CGFloat(j) * ground.size.width, y: ground.position.y)
+            ground.position = CGPoint(x: ground.position.x + CGFloat(i) * ground.size.width, y: ground.position.y)
+            if i > 0 {
+                ground.position = CGPoint(x: ground.position.x - overlayWidth, y: ground.position.y)
+            }
             scene.addChild(ground)
             platformTemplate.grounds.append(ground)
-            platformTemplate.width += ground.size.width
+            platformTemplate.width += ground.size.width - overlayWidth
+            if i > 0 {
+                platformTemplate.width -= overlayWidth
+            }
             
             // Add power-up
-            let shield = EnergyPU(image: "hero");
-            shield.position = CGPoint(x: ground.position.x + ground.size.width / 2, y: ground.position.y + smallPlatformHeight * 2)
-            scene.addChild(shield)
+            randNum = random(left: 0, right: 10)
+            if i == 0 && randNum < 3 {
+                let enegryBooster = EnergyPU(image: "hero");
+                enegryBooster.position = CGPoint(x: ground.position.x + ground.size.width / 2, y: ground.position.y + smallPlatformHeight * 2)
+                scene.addChild(enegryBooster)
+            }
             
-            let randNum = random(left: 0, right: 10)
+            randNum = random(left: 0, right: 10)
             
+            // Add bonuses arc
             if (randNum < 7) {
-                let step = Float.pi / 4
-                for i in 0..<5 {
-                    let pos = ground.position
-                    let bonus = Bonus(image: "fish", pos: CGPoint(x: pos.x + CGFloat(bonusPosMult * CGFloat(i)), y: pos.y + bonusHighPosHeight + bonusPosMult * CGFloat(sin(step * Float(i)))))
-                    scene.addChild(bonus)
-                    platformTemplate.bonuses.append(bonus)
-                }
+                addBonuses(scene: scene, pos: CGPoint(x: ground.position.x, y: ground.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 5)
             }
         }
+        
+        
         
         return platformTemplate
     }
