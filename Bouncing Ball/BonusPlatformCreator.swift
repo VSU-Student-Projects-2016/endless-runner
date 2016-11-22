@@ -34,7 +34,7 @@ class BonusPlatformCreator : AbstractPlatformCreator {
             randNum = random(left: 0, right: 10)
             if i == 0 && randNum < 3 {
                 let enegryBooster = EnergyPU(image: "hero");
-                enegryBooster.position = CGPoint(x: ground.position.x + ground.size.width / 2, y: ground.position.y + smallPlatformHeight * 2)
+                enegryBooster.position = CGPoint(x: ground.position.x + ground.size.width / 2, y: ground.position.y + smallPlatformHeight * 2.5)
                 scene.addChild(enegryBooster)
             }
             

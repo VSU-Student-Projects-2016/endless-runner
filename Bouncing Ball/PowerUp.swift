@@ -8,9 +8,9 @@
 
 import SpriteKit
 
-public protocol Updatable {
-    func update()
-}
+//public protocol Updatable {
+//    func update()
+//}
 public protocol PowerUp {
      func onAdd(to hero: Hero)
      func onContact(with enemy: Enemy)

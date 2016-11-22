@@ -32,7 +32,15 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
         scene.addChild(smallPlatform)
         platformTemplate.grounds.append(smallPlatform)
         
+        // Add extra small platform
+        var randNum = random(left: 0, right: 10)
+        if randNum < 4 {
+            let smallPlatformMid = PlatformBar(image: "0_25desert", pos: CGPoint(x: ground1.position.x + ground1.size.width / 4, y: ground1.position.y + smallPlatformHeight))
+            scene.addChild(smallPlatformMid)
+            platformTemplate.grounds.append(smallPlatformMid)
+        }
         
+        // place bonuces for dash randomly
         let step = Float.pi / 4
         for i in 0..<6 {
             let pos = CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2, y: smallPlatform.position.y + bonusMidPosHeight)
@@ -41,14 +49,6 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
             platformTemplate.bonuses.append(bonus)
         }
         
-//        let shield = EnergyPU(image: "hero");
-//        shield.position = CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 5, y: smallPlatform.position.y + bonusLowPosHeight)
-//        scene.addChild(shield)
-        
-//        let bonus = Bonus(image: "fish", pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 5, y: smallPlatform.position.y + bonusLowPosHeight))
-//        scene.addChild(bonus)
-//        platformTemplate.bonuses.append(bonus)
-        
         for i in 0..<5 {
             let pos = CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 6, y: smallPlatform.position.y + bonusMidPosHeight)
             let bonus = Bonus(image: "fish", pos: CGPoint(x: pos.x + CGFloat(bonusPosMult * CGFloat(i)), y: pos.y + bonusPosMult * CGFloat(sin(step * Float(i)))))
@@ -56,19 +56,57 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
             platformTemplate.bonuses.append(bonus)
         }
         
+        // add random gold fish instead powerup
         let shield = ShieldPU(image: "hero");
         shield.position = CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight)
         scene.addChild(shield)
         
+        // Add standing enemy
+        randNum = random(left: 0, right: 10)
+        if randNum < 7 {
+            let enemy = Enemy(image: "block1", pos: CGPoint(x: ground1.position.x + smallPlatform.size.width, y: smallPlatform.position.y - smallPlatformHeight))
+            scene.addChild(enemy)
+            platformTemplate.enemies.append(enemy)
+        }
         
-        let enemy = JumpingEnemy(image: "block1", pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width, y: smallPlatform.position.y - smallPlatformHeight))
-        scene.addChild(enemy)
-        platformTemplate.enemies.append(enemy)
+        // Add jumping enemy
+        randNum = random(left: 0, right: 10)
+        if randNum < 8 {
+            let jumpingEnemy = JumpingEnemy(image: "block1", pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width, y: smallPlatform.position.y - smallPlatformHeight))
+            scene.addChild(jumpingEnemy)
+            platformTemplate.enemies.append(jumpingEnemy)
+        }
         
-        let leapingEnemy = LeapingEnemy(image: "block1", pos: CGPoint(x: ground3.position.x, y: smallPlatform.position.y - smallPlatformHeight))
-        scene.addChild(leapingEnemy)
-        platformTemplate.enemies.append(leapingEnemy)
+        // Add leaping/dashing enemy here
+        randNum = random(left: 0, right: 10)
+        var leapingEnemyAdded = false
+        if randNum < 5 {
+            let leapingEnemy = LeapingEnemy(image: "block1", pos: CGPoint(x: ground3.position.x - ground3.size.width / 8, y: smallPlatform.position.y - smallPlatformHeight))
+            scene.addChild(leapingEnemy)
+            platformTemplate.enemies.append(leapingEnemy)
+            leapingEnemyAdded = true
+        } else {
+            let dashingEnemy = DashingEnemy(image: "block1", pos: CGPoint(x: ground3.position.x - ground3.size.width / 8, y: smallPlatform.position.y - smallPlatformHeight))
+            scene.addChild(dashingEnemy)
+            platformTemplate.enemies.append(dashingEnemy)
+        }
         
+        randNum = random(left: 0, right: 10)
+        if randNum < 7 {
+            if leapingEnemyAdded {
+                let dashingEnemy = DashingEnemy(image: "block1", pos: CGPoint(x: ground3.position.x + ground3.size.width / 8, y: smallPlatform.position.y - smallPlatformHeight))
+                scene.addChild(dashingEnemy)
+                platformTemplate.enemies.append(dashingEnemy)
+            } else {
+                let leapingEnemy = LeapingEnemy(image: "block1", pos: CGPoint(x: ground3.position.x + ground3.size.width / 8, y: smallPlatform.position.y - smallPlatformHeight))
+                scene.addChild(leapingEnemy)
+                platformTemplate.enemies.append(leapingEnemy)
+            }
+        } else {
+            let enemy = Enemy(image: "block1", pos: CGPoint(x: ground3.position.x + ground3.size.width / 8, y: smallPlatform.position.y - smallPlatformHeight))
+            scene.addChild(enemy)
+            platformTemplate.enemies.append(enemy)
+        }
         
         return platformTemplate
     }

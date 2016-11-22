@@ -204,9 +204,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         // Hero touches enemy sensor
         if contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask == ColliderType.Hero | ColliderType.EnemySensor {
             if contact.bodyA.categoryBitMask == ColliderType.EnemySensor {
-                (contact.bodyA.node!.parent as! LeapingEnemy).leap()
+                (contact.bodyA.node!.parent as! Enemy).act()
             } else {
-                (contact.bodyB.node!.parent as! LeapingEnemy).leap()
+                (contact.bodyB.node!.parent as! Enemy).act()
             }
         }
         

@@ -60,7 +60,7 @@ public class Hero: SKSpriteNode {
         physicsBody!.friction = 0
     }
     
-    func ChangeImage(image: String) {
+    func changeImage(image: String) {
         self.texture = SKTexture(imageNamed: image)
     }
     
@@ -77,7 +77,7 @@ public class Hero: SKSpriteNode {
                 
                 onGround = false
                 stopRunning()
-                ChangeImage(image: "3_Jump")
+                changeImage(image: "3_Jump")
                 
                 jumpsAllowed -= 1
             }
@@ -89,7 +89,7 @@ public class Hero: SKSpriteNode {
                     
                     onGround = false
                     stopRunning()
-                    ChangeImage(image: "3_Jump")
+                    changeImage(image: "3_Jump")
                     
                     jumpsAllowed -= 1
                 }
@@ -108,7 +108,7 @@ public class Hero: SKSpriteNode {
         if !onGround {
             self.physicsBody!.velocity = CGVector(dx: self.physicsBody!.velocity.dx, dy: 0)
             onGround = true
-            ChangeImage(image: "2_Fall")
+            changeImage(image: "2_Fall")
             run()
             jumpsAllowed = maxJumpsAllowed
             jumped = false
@@ -128,7 +128,7 @@ public class Hero: SKSpriteNode {
     
     func fall() {
         if !onGround && physicsBody!.velocity.dy < CGFloat(0) {
-            ChangeImage(image: "1_Fall")
+            changeImage(image: "1_Fall")
         }
     }
     

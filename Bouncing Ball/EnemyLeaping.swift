@@ -12,7 +12,7 @@ import SpriteKit
 class LeapingEnemy: Enemy{
     let horizontalForce = -75.0
     let verticalForce = 65.0
-    let playerSensor = SKNode()
+    
     
     convenience init(image: String, pos: CGPoint) {
         self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
@@ -28,10 +28,10 @@ class LeapingEnemy: Enemy{
         playerSensor.physicsBody!.categoryBitMask = ColliderType.EnemySensor
         playerSensor.physicsBody!.contactTestBitMask = ColliderType.Hero
         self.addChild(playerSensor)
-        playerSensor.position = CGPoint(x: -300, y: 0)
+        playerSensor.position = CGPoint(x: sensorPos, y: 0)
     }
     
-    func leap() {
+    override func act() {
         self.physicsBody!.applyImpulse(CGVector(dx: horizontalForce, dy: verticalForce))
         playerSensor.removeFromParent()
         //ChangeImage(image: "hero_jump")

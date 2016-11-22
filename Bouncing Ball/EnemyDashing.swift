@@ -9,8 +9,8 @@
 import Foundation
 import SpriteKit
 
-class DashingEnemy: Enemy{
-    let velocity = CGVector(dx: -150, dy: 0)
+class DashingEnemy: Enemy {
+    let velocity = CGVector(dx: -250, dy: 0)
     
     convenience init(image: String, pos: CGPoint) {
         self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
@@ -18,7 +18,19 @@ class DashingEnemy: Enemy{
     
     override init(image: String, pos: CGPoint, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32){
         super.init(image: image, pos: pos, categoryBitMask: categoryBitMask, contactTestBitMask: contactTestBitMask, collisionBitMask: collisionBitMask)
-        physicsBody?.velocity = velocity
+        //physicsBody!.velocity = velocity
+        
+        playerSensor.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10.0, height: 300.0))
+        playerSensor.physicsBody!.affectedByGravity = false
+        playerSensor.physicsBody!.categoryBitMask = ColliderType.EnemySensor
+        playerSensor.physicsBody!.contactTestBitMask = ColliderType.Hero
+        self.addChild(playerSensor)
+        playerSensor.position = CGPoint(x: sensorPos, y: 0)
+    }
+    
+    override func act() {
+        //physicsBody!.applyImpulse(dashForce)
+        physicsBody!.velocity = velocity
     }
     
     
