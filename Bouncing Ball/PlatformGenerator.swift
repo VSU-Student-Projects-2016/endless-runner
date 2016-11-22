@@ -34,7 +34,7 @@ class PlatformGenerator {
 //        let randNum = random(left: 0, right: 7)
 //        switch randNum {
 //        case 0:
-//            return (GapPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
+            return (GapPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        case 1:
 //            return (BonusPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        case 2:
@@ -46,7 +46,7 @@ class PlatformGenerator {
 //        case 5:
 //            return (LongJumpPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        default:
-            return (SingleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
+//            return (SingleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        }
     }
     

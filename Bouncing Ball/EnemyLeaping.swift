@@ -23,12 +23,12 @@ class LeapingEnemy: Enemy{
         
         //self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         //position = pos
-        playerSensor.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10.0, height: 300.0))
+        playerSensor.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10.0, height: 400.0))
         playerSensor.physicsBody!.affectedByGravity = false
         playerSensor.physicsBody!.categoryBitMask = ColliderType.EnemySensor
         playerSensor.physicsBody!.contactTestBitMask = ColliderType.Hero
         self.addChild(playerSensor)
-        playerSensor.position = CGPoint(x: sensorPos, y: 0)
+        playerSensor.position = CGPoint(x: sensorPos, y: -150)
     }
     
     override func act() {
