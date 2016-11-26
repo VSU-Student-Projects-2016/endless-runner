@@ -23,7 +23,8 @@ class AbstractPlatformCreator {
     }
     
     func addBonuses(scene: PlayScene, pos: CGPoint, stepHorizontal: CGFloat, quantity: Int) {
-        let stepVertical = CGFloat.pi / 4
+        //let stepVertical = CGFloat.pi / 4
+        let stepVertical = CGFloat.pi / CGFloat(quantity - 1)
         //let stepHorizontal = CGFloat(length / CGFloat(quantity - 1))
         for i in 0..<quantity {
             let bonus = Bonus(image: "fish", pos: CGPoint(x: pos.x + CGFloat(stepHorizontal * CGFloat(i)), y: pos.y + bonusPosMult * CGFloat(sin(stepVertical * CGFloat(i)))))

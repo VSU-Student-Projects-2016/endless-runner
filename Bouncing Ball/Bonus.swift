@@ -14,26 +14,30 @@ class Bonus: SKSpriteNode {
     //private let bonusAnimatedAtlas = SKTextureAtlas(named: "Hero Images")
     //var walkFrames = [SKTexture]()
     
+    var energyMod: Float?
+    var score: Int?
+    
     convenience init(image: String, pos: CGPoint) {
-        self.init(image: image, pos: pos, categoryBitMask: ColliderType.Bonus, contactTestBitMask: ColliderType.Hero, collisionBitMask: ColliderType.None)
+        self.init(image: image, pos: pos, categoryBitMask: ColliderType.Bonus, contactTestBitMask: ColliderType.Hero, collisionBitMask: ColliderType.None, energyMod: 0.03, score: 1)
     }
     
-    init(image: String, pos: CGPoint, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32) {
+    init(image: String, pos: CGPoint, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32, energyMod: Float, score: Int) {
         
         let texture = SKTexture(imageNamed: image)
         super.init(texture: texture, color: .clear, size: texture.size())
         
-        //walkFrames.append(SKTexture(imageNamed: "fish"))
+        self.energyMod = energyMod
+        self.score = score
+        
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         position = pos
         physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(self.size.width / 1.5)) // find the best size
-        physicsBody?.affectedByGravity = false
-        physicsBody?.categoryBitMask = categoryBitMask
-        physicsBody?.contactTestBitMask = contactTestBitMask
-        physicsBody?.collisionBitMask = collisionBitMask
-        //physicsBody?.affectedByGravity = false
-        physicsBody?.isDynamic = false
+        physicsBody!.affectedByGravity = false
+        physicsBody!.categoryBitMask = categoryBitMask
+        physicsBody!.contactTestBitMask = contactTestBitMask
+        physicsBody!.collisionBitMask = collisionBitMask
+        physicsBody!.isDynamic = false
     }
     
     func ChangeImage(image: String) {

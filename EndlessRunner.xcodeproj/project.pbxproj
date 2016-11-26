@@ -12,6 +12,7 @@
 		84AE9E7A1DE2F07500A361CE /* LongJumpPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AE9E791DE2F07500A361CE /* LongJumpPlatformCreator.swift */; };
 		84B9D7881DD8D8C7008E8F4B /* PlatformBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */; };
 		84D215D71DE1A3B90070F691 /* EnemyLeaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D215D61DE1A3B90070F691 /* EnemyLeaping.swift */; };
+		AE64566C1DE9898B00610C84 /* GoldBonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE64566B1DE9898B00610C84 /* GoldBonus.swift */; };
 		AE92EEAD1DE054D50002AE3F /* ShieldPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE92EEAC1DE054D50002AE3F /* ShieldPU.swift */; };
 		AE92EEAF1DE065840002AE3F /* EnergyPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE92EEAE1DE065840002AE3F /* EnergyPU.swift */; };
 		AE92EEB11DE071E90002AE3F /* PowerUpTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE92EEB01DE071E90002AE3F /* PowerUpTypes.swift */; };
@@ -48,6 +49,7 @@
 		84AE9E791DE2F07500A361CE /* LongJumpPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongJumpPlatformCreator.swift; sourceTree = "<group>"; };
 		84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformBar.swift; sourceTree = "<group>"; };
 		84D215D61DE1A3B90070F691 /* EnemyLeaping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyLeaping.swift; sourceTree = "<group>"; };
+		AE64566B1DE9898B00610C84 /* GoldBonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoldBonus.swift; sourceTree = "<group>"; };
 		AE92EEAC1DE054D50002AE3F /* ShieldPU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldPU.swift; sourceTree = "<group>"; };
 		AE92EEAE1DE065840002AE3F /* EnergyPU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyPU.swift; sourceTree = "<group>"; };
 		AE92EEB01DE071E90002AE3F /* PowerUpTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerUpTypes.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				AEF052A81DBB5E6F000F8F0B /* Bonus.swift */,
+				AE64566B1DE9898B00610C84 /* GoldBonus.swift */,
 			);
 			name = Bonuses;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				AECFADF91D9682FF007ADC7B /* PlayScene.swift in Sources */,
 				AEE835051DCDDAE500F3B79A /* GapPlatformCreator.swift in Sources */,
 				AECFADE11D967D36007ADC7B /* AppDelegate.swift in Sources */,
+				AE64566C1DE9898B00610C84 /* GoldBonus.swift in Sources */,
 				AE9829E21DC49EA80065F3B0 /* PlatformGenerator.swift in Sources */,
 				AEE835031DCDD41C00F3B79A /* BonusPlatformCreator.swift in Sources */,
 			);

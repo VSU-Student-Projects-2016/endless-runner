@@ -24,6 +24,7 @@ class DashingEnemy: Enemy {
         playerSensor.physicsBody!.affectedByGravity = false
         playerSensor.physicsBody!.categoryBitMask = ColliderType.EnemySensor
         playerSensor.physicsBody!.contactTestBitMask = ColliderType.Hero
+        playerSensor.physicsBody!.isDynamic = false
         self.addChild(playerSensor)
         playerSensor.position = CGPoint(x: sensorPos, y: -150)
     }

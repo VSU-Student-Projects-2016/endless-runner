@@ -161,23 +161,25 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
 
         // Hero collects a bonus
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Bonus){
+            var bonus: Bonus
+            if contact.bodyA.categoryBitMask == ColliderType.Bonus {
+                bonus = contact.bodyA.node as! Bonus
+            } else {
+                bonus = contact.bodyB.node as! Bonus
+            }
             
             if hero.energy < 1.0 {
-                hero.energy += hero.energyDelta
+                hero.energy += bonus.energyMod!
             }
             
             if hero.energy > 1.0 {
                 hero.energy = 1.0
             }
             
-            if contact.bodyA.categoryBitMask == ColliderType.Bonus {
-                platformGenerator.addBonusToPool(bonus: contact.bodyA.node as! Bonus)
-                contact.bodyA.node!.removeFromParent()
-            } else {
-                platformGenerator.addBonusToPool(bonus: contact.bodyB.node as! Bonus)
-                contact.bodyB.node!.removeFromParent()
-            }
-            score += 1
+            platformGenerator.addBonusToPool(bonus: bonus)
+            bonus.removeFromParent()
+            
+            score += bonus.score!
             scoreText.text = String(score)
         }
         
