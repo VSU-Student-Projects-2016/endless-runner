@@ -60,7 +60,7 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
             addBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 6, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 5)
             
             // add bad bonuses
-            addBadBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 3, y: ground2.position.y + bonusLowPosHeight), stepHorizontal: bonusPosMult, quantity: 5)
+            addBonusLine(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 3, y: ground2.position.y + bonusLowPosHeight), stepHorizontal: bonusPosMult, quantity: 5)
             
             // add shield powerup or gold fish
             randNum = random(left: 0, right: 10)
@@ -78,7 +78,7 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
             addBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 11)
             
             // add bad bonuses
-            addBadBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 3, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 6)
+            addBonusLine(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 3, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 6)
             
             // add shield powerup or gold fish
             randNum = random(left: 0, right: 10)

@@ -17,12 +17,12 @@ class TripleMiniPlatformCreator : AbstractPlatformCreator {
         let ground1 = GroundBar(image: "desert", pos: pos)
         let ground2 = GroundBar(image: "desert", pos: pos)
         ground1.position = CGPoint(x: ground1.position.x + ground1.size.width / 2, y: ground1.position.y)
-        ground2.position = CGPoint(x: ground1.position.x + ground1.size.width, y: ground1.position.y)
+        ground2.position = CGPoint(x: ground1.position.x + ground1.size.width - overlayWidth, y: ground1.position.y)
         scene.addChild(ground1)
         scene.addChild(ground2)
         platformTemplate.grounds.append(ground1)
         platformTemplate.grounds.append(ground2)
-        platformTemplate.width = ground1.size.width + ground2.size.width
+        platformTemplate.width = ground1.size.width + ground2.size.width - overlayWidth
         
         let smallPlatform = PlatformBar(image: "0_25desert", pos: CGPoint(x: ground1.position.x + ground1.size.width / 2, y: ground1.position.y + smallPlatformHeight * 2))
         scene.addChild(smallPlatform)
@@ -36,11 +36,21 @@ class TripleMiniPlatformCreator : AbstractPlatformCreator {
         scene.addChild(rightSmallPlatform)
         platformTemplate.grounds.append(rightSmallPlatform)
         
-        let randNum = random(left: 0, right: 2)
+        var randNum = random(left: 0, right: 2)
         if randNum == 0 {
             let enemy = JumpingEnemy(image: "block1", pos: CGPoint(x: smallPlatform.position.x, y: smallPlatform.position.y - smallPlatformHeight))
             scene.addChild(enemy)
             platformTemplate.enemies.append(enemy)
+        }
+        
+        randNum = random(left: 0, right: 10)
+        if randNum < 5 {
+            let goldBonus = GoldBonus(image: "gold_fish", pos: CGPoint(x: smallPlatform.position.x, y: ground2.position.y + bonusLowPosHeight))
+            scene.addChild(goldBonus)
+        } else {
+            let energyPU = EnergyPU(image: "hero")
+            energyPU.position = CGPoint(x: smallPlatform.position.x, y: ground2.position.y + bonusLowPosHeight)
+            scene.addChild(energyPU)
         }
         
         for i in 0..<4 {

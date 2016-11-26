@@ -51,7 +51,7 @@ class LongJumpPlatformCreator : AbstractPlatformCreator {
         // add bad bonuses
         randNum = random(left: 0, right: 10)
         if randNum - difficulty < 0 {
-        addBadBonuses(scene: scene, pos: CGPoint(x: ground1.position.x + ground1.size.width / 2 + bonusPosMult, y: ground1.position.y + bonusHighPosHeight), stepHorizontal: bonusPosMult, quantity: 3)
+        addBonusLine(scene: scene, pos: CGPoint(x: ground1.position.x + ground1.size.width / 2 + bonusPosMult, y: ground1.position.y + bonusHighPosHeight), stepHorizontal: bonusPosMult, quantity: 3)
         }
         
         // add leaping enemy

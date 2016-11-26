@@ -100,7 +100,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         stopErrorText.position = cameraNode.position
         lastHeroPosition = hero.position
         
-        currPlatform = platformGenerator.getPlatform(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY + frame.midY * 0.3), difficulty: difficulty)
+        currPlatform = platformGenerator.getStartPlatform(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY + frame.midY * 0.3), difficulty: difficulty)
         self.addChild(currPlatform)
         self.addChild(self.hero)
         print(currPlatform.position.y) // log

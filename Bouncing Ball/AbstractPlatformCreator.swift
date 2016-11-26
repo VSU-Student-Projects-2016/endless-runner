@@ -33,10 +33,17 @@ class AbstractPlatformCreator {
         }
     }
     
-    func addBadBonuses(scene: PlayScene, pos: CGPoint, stepHorizontal: CGFloat, quantity: Int) {
-        for i in 0..<quantity {
-            let badBonus = BadBonus(image: "gold_fish-1", pos: CGPoint(x: pos.x + CGFloat(stepHorizontal * CGFloat(i)), y: pos.y))
-            scene.addChild(badBonus)
+    func addBonusLine(scene: PlayScene, pos: CGPoint, stepHorizontal: CGFloat, quantity: Int, isBadBonus : Bool = true) {
+        if isBadBonus {
+            for i in 0..<quantity {
+                let badBonus = BadBonus(image: "gold_fish-1", pos: CGPoint(x: pos.x + CGFloat(stepHorizontal * CGFloat(i)), y: pos.y))
+                scene.addChild(badBonus)
+            }
+        } else {
+            for i in 0..<quantity {
+                let bonus = Bonus(image: "fish", pos: CGPoint(x: pos.x + CGFloat(stepHorizontal * CGFloat(i)), y: pos.y))
+                scene.addChild(bonus)
+            }
         }
     }
     
