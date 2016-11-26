@@ -14,45 +14,50 @@ class VariousPlatformCreator : AbstractPlatformCreator {
     override func createPlatform(scene: PlayScene, pos: CGPoint, difficulty: Int) -> PlatformTemplate {
         let platformTemplate = PlatformTemplate()
         platformTemplate.position = pos
-        let ground = GroundBar(image: "desert", pos: pos)
+        let ground1 = GroundBar(image: "desert", pos: pos)
+        let ground2 = GroundBar(image: "desert", pos: pos)
+        ground1.position = CGPoint(x: ground1.position.x + ground1.size.width / 2, y: ground1.position.y)
+        ground2.position = CGPoint(x: ground1.position.x + ground1.size.width - overlayWidth, y: ground1.position.y)
+        
         let platformLeft = PlatformBar(image: "0_25desert", pos: pos)
         let platformRight = PlatformBar(image: "0_25desert", pos: pos)
         let platformMiddle = PlatformBar(image: "0_25desert", pos: pos)
         
-        ground.position = CGPoint(x: ground.position.x + ground.size.width / 2, y: ground.position.y)
-        platformLeft.position = CGPoint(x: ground.position.x, y: ground.position.y + smallPlatformHeight)
-        platformRight.position = CGPoint(x: ground.position.x + ground.size.width - platformRight.size.width, y: ground.position.y + smallPlatformHeight)
+        //ground1.position = CGPoint(x: ground1.position.x + ground1.size.width / 2, y: ground1.position.y)
+        platformLeft.position = CGPoint(x: ground1.position.x, y: ground1.position.y + smallPlatformHeight)
+        platformRight.position = CGPoint(x: ground1.position.x + ground1.size.width - platformRight.size.width, y: ground1.position.y + smallPlatformHeight)
         var randNum = random(left: 0, right: 2)
         if randNum == 0 {
-            platformMiddle.position = CGPoint(x: ground.position.x + platformLeft.size.width * 1.5, y: ground.position.y + smallPlatformHeight)
+            platformMiddle.position = CGPoint(x: ground1.position.x + platformLeft.size.width * 1.5, y: ground1.position.y + smallPlatformHeight)
         }
         else{
-            platformMiddle.position = CGPoint(x: ground.position.x + platformLeft.size.width * 1.5, y: ground.position.y + smallPlatformHeight * 2)
+            platformMiddle.position = CGPoint(x: ground1.position.x + platformLeft.size.width * 1.5, y: ground1.position.y + smallPlatformHeight * 2)
         }
         
-        scene.addChild(ground)
+        scene.addChild(ground1)
+        scene.addChild(ground2)
         scene.addChild(platformLeft)
         scene.addChild(platformRight)
         scene.addChild(platformMiddle)
         
-        platformTemplate.grounds.append(ground)
+        platformTemplate.grounds.append(ground1)
+        platformTemplate.grounds.append(ground2)
         platformTemplate.grounds.append(platformLeft)
         platformTemplate.grounds.append(platformRight)
         platformTemplate.grounds.append(platformMiddle)
-        platformTemplate.width = ground.size.width
+        platformTemplate.width = ground1.size.width + ground2.size.width
         
         randNum = random(left: 0, right: 3)
         switch randNum {
         case 0:
-            let enemy = JumpingEnemy(image: "block1", pos: CGPoint(x: platformRight.position.x + platformRight.size.width, y: platformRight.position.y - smallPlatformHeight / 2))
+            let enemy = JumpingEnemy(image: "block1", pos: CGPoint(x: platformLeft.position.x + platformLeft.size.width, y: platformLeft.position.y - smallPlatformHeight / 2))
             scene.addChild(enemy)
             platformTemplate.enemies.append(enemy)
         case 1:
-            let enemy = Enemy(image: "block1", pos: CGPoint(x: platformRight.position.x - platformRight.size.width, y: platformRight.position.y - smallPlatformHeight / 2))
+            let enemy = Enemy(image: "block1", pos: CGPoint(x: platformLeft.position.x + platformLeft.size.width, y: platformLeft.position.y - smallPlatformHeight / 2))
             scene.addChild(enemy)
             platformTemplate.enemies.append(enemy)
-        default:
-            break
+        default: break
         }
         
         randNum = random(left: 0, right: 3)
@@ -62,7 +67,7 @@ class VariousPlatformCreator : AbstractPlatformCreator {
             scene.addChild(enemy)
             platformTemplate.enemies.append(enemy)
         case 1:
-            let enemy = Enemy(image: "block1", pos: CGPoint(x: platformMiddle.position.x + platformMiddle.size.width, y: platformRight.position.y - smallPlatformHeight / 2))
+            let enemy = DashingEnemy(image: "block1", pos: CGPoint(x: platformMiddle.position.x + platformMiddle.size.width, y: platformRight.position.y - smallPlatformHeight / 2))
             scene.addChild(enemy)
             platformTemplate.enemies.append(enemy)
         default:
@@ -70,7 +75,7 @@ class VariousPlatformCreator : AbstractPlatformCreator {
         }
         
         for i in 0..<4 {
-            let bonus = Bonus(image: "fish", pos: CGPoint(x: platformMiddle.position.x - platformMiddle.size.width / 4 + CGFloat(i)*bonusPosMult, y : ground.position.y + bonusLowPosHeight))
+            let bonus = Bonus(image: "fish", pos: CGPoint(x: platformMiddle.position.x - platformMiddle.size.width / 4 + CGFloat(i)*bonusPosMult, y : ground1.position.y + bonusLowPosHeight))
             scene.addChild(bonus)
             platformTemplate.bonuses.append(bonus)
         }
@@ -89,6 +94,15 @@ class VariousPlatformCreator : AbstractPlatformCreator {
                 platformTemplate.bonuses.append(bonus)
             }
         }
+        
+        addBonuses(scene: scene, pos: CGPoint(x: platformRight.position.x + platformRight.size.width / 2, y: platformRight.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 10)
+        
+        randNum = random(left: 0, right: 10)
+        if randNum - difficulty < 5 {
+            let enemy = LeapingEnemy(image: "block1", pos: CGPoint(x: ground2.position.x + bonusPosMult * 10, y: ground2.position.y + 200))
+            scene.addChild(enemy)
+        }
+        
         return platformTemplate
     }
 }
