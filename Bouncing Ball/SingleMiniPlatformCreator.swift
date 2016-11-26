@@ -59,6 +59,9 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
             // add bonus arc
             addBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 6, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 5)
             
+            // add bad bonuses
+            addBadBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 3, y: ground2.position.y + bonusLowPosHeight), stepHorizontal: bonusPosMult, quantity: 5)
+            
             // add shield powerup
             let shield = ShieldPU(image: "hero");
             shield.position = CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight)
@@ -66,6 +69,9 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
         } else {
             // add bonus arc
             addBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 11)
+            
+            // add bad bonuses
+            addBadBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 3, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 6)
             
             // add shield powerup
             let shield = ShieldPU(image: "hero");

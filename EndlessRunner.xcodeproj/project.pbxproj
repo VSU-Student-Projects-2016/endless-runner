@@ -13,6 +13,7 @@
 		84B9D7881DD8D8C7008E8F4B /* PlatformBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */; };
 		84D215D71DE1A3B90070F691 /* EnemyLeaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D215D61DE1A3B90070F691 /* EnemyLeaping.swift */; };
 		AE64566C1DE9898B00610C84 /* GoldBonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE64566B1DE9898B00610C84 /* GoldBonus.swift */; };
+		AE64566E1DE9934000610C84 /* BadBonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE64566D1DE9934000610C84 /* BadBonus.swift */; };
 		AE92EEAD1DE054D50002AE3F /* ShieldPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE92EEAC1DE054D50002AE3F /* ShieldPU.swift */; };
 		AE92EEAF1DE065840002AE3F /* EnergyPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE92EEAE1DE065840002AE3F /* EnergyPU.swift */; };
 		AE92EEB11DE071E90002AE3F /* PowerUpTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE92EEB01DE071E90002AE3F /* PowerUpTypes.swift */; };
@@ -50,6 +51,7 @@
 		84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformBar.swift; sourceTree = "<group>"; };
 		84D215D61DE1A3B90070F691 /* EnemyLeaping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyLeaping.swift; sourceTree = "<group>"; };
 		AE64566B1DE9898B00610C84 /* GoldBonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoldBonus.swift; sourceTree = "<group>"; };
+		AE64566D1DE9934000610C84 /* BadBonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadBonus.swift; sourceTree = "<group>"; };
 		AE92EEAC1DE054D50002AE3F /* ShieldPU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldPU.swift; sourceTree = "<group>"; };
 		AE92EEAE1DE065840002AE3F /* EnergyPU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyPU.swift; sourceTree = "<group>"; };
 		AE92EEB01DE071E90002AE3F /* PowerUpTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerUpTypes.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				AEF052A81DBB5E6F000F8F0B /* Bonus.swift */,
 				AE64566B1DE9898B00610C84 /* GoldBonus.swift */,
+				AE64566D1DE9934000610C84 /* BadBonus.swift */,
 			);
 			name = Bonuses;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				AECFADE91D967D36007ADC7B /* GameViewController.swift in Sources */,
 				AEF052AD1DBB8C23000F8F0B /* EnemyJumping.swift in Sources */,
 				AEAD429F1DD73D510068E1CC /* PowerUp.swift in Sources */,
+				AE64566E1DE9934000610C84 /* BadBonus.swift in Sources */,
 				846A77EB1DD639B8001D583F /* VariousPlatformCreator.swift in Sources */,
 				AE9549781DB22B1D0003B6B2 /* Hero.swift in Sources */,
 				AE95497D1DB23F260003B6B2 /* GroundBar.swift in Sources */,

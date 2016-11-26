@@ -44,9 +44,9 @@ class PlatformGenerator {
 //        case 4:
 //            return (VariousPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        case 5:
-//            return (LongJumpPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
+            return (LongJumpPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        default:
-            return (SingleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
+//            return (SingleMiniPlatformCreator()).createPlatform(scene: scene, pos: pos, difficulty: difficulty)
 //        }
     }
     
