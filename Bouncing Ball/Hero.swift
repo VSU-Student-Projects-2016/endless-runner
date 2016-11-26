@@ -37,8 +37,8 @@ public class Hero: SKSpriteNode {
         let texture = SKTexture(imageNamed: image)
         super.init(texture: texture, color: .clear, size: texture.size())
         
-        for i in 1..<9 {
-            walkFrames.append(SKTexture(imageNamed: String(i) + "Cat"))
+        for i in 1..<6 {
+            walkFrames.append(SKTexture(imageNamed: "sprint" + String(i)))
         }
         
         jumpsAllowed = maxJumpsAllowed

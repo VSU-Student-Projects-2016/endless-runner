@@ -30,6 +30,11 @@ class BonusPlatformCreator : AbstractPlatformCreator {
                 platformTemplate.width -= overlayWidth
             }
             
+            // add bad bonuses under power-up
+            randNum = random(left: 0, right: 10)
+            if i == 0 && randNum - difficulty < 6 {
+                addBadBonuses(scene: scene, pos: CGPoint(x: ground.position.x + ground.size.width / 2 - bonusPosMult * 2, y: ground.position.y + bonusHighPosHeight), stepHorizontal: bonusPosMult, quantity: 5)
+            }
             // Add power-up
             randNum = random(left: 0, right: 10)
             if i == 0 && randNum < 3 {
@@ -38,12 +43,15 @@ class BonusPlatformCreator : AbstractPlatformCreator {
                 scene.addChild(enegryBooster)
             }
             
-            randNum = random(left: 0, right: 10)
-            
             // Add bonuses arc
-            if (randNum < 7) {
+            randNum = random(left: 0, right: 10)
+            if (randNum < 8) {
                 addBonuses(scene: scene, pos: CGPoint(x: ground.position.x, y: ground.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 5)
             }
+            if randNum - difficulty < 2 {
+                addBadBonuses(scene: scene, pos: CGPoint(x: ground.position.x + bonusPosMult / 2, y: ground.position.y + bonusLowPosHeight), stepHorizontal: bonusPosMult, quantity: 4)
+            }
+            
         }
         
         

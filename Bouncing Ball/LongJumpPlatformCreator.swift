@@ -39,30 +39,49 @@ class LongJumpPlatformCreator : AbstractPlatformCreator {
         scene.addChild(smallPlatform)
         platformTemplate.grounds.append(smallPlatform)
         
-        // add bonus half arc
-        addBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 9, halfArc: true)
-        
-        // add bad bonuses
-        addBadBonuses(scene: scene, pos: CGPoint(x: ground1.position.x + ground1.size.width / 2 + bonusPosMult, y: ground1.position.y + bonusHighPosHeight), stepHorizontal: bonusPosMult, quantity: 3)
         
         // add dashing enemy
-        let dashEnemy = DashingEnemy(image: "block1", pos: CGPoint(x: smallPlatform.position.x, y: ground1.position.y + 200))
-        scene.addChild(dashEnemy)
-        platformTemplate.enemies.append(dashEnemy)
+        randNum = random(left: 0, right: 10)
+        if randNum < 9 {
+            let dashEnemy = DashingEnemy(image: "block1", pos: CGPoint(x: smallPlatform.position.x, y: ground1.position.y + 200))
+            scene.addChild(dashEnemy)
+            platformTemplate.enemies.append(dashEnemy)
+        }
+        
+        // add bad bonuses
+        randNum = random(left: 0, right: 10)
+        if randNum - difficulty < 0 {
+        addBadBonuses(scene: scene, pos: CGPoint(x: ground1.position.x + ground1.size.width / 2 + bonusPosMult, y: ground1.position.y + bonusHighPosHeight), stepHorizontal: bonusPosMult, quantity: 3)
+        }
         
         // add leaping enemy
-        let leapingEnemy = LeapingEnemy(image: "block1", pos: CGPoint(x: ground2.position.x - ground1.size.width * 3 / 8, y: ground2.position.y + 200))
-        scene.addChild(leapingEnemy)
-        platformTemplate.enemies.append(leapingEnemy)
+        randNum = random(left: 0, right: 10)
+        if randNum - difficulty < 2 {
+            let leapingEnemy = LeapingEnemy(image: "block1", pos: CGPoint(x: ground2.position.x - ground1.size.width * 3 / 8, y: ground2.position.y + 200))
+            scene.addChild(leapingEnemy)
+            platformTemplate.enemies.append(leapingEnemy)
+        }
         
         let smallPlatformBonus = PlatformBar(image: "0_25desert", pos: CGPoint(x: ground2.position.x - ground2.size.width / 4, y: ground2.position.y + smallPlatformHeight * 3))
         scene.addChild(smallPlatformBonus)
         platformTemplate.grounds.append(smallPlatformBonus)
 
         
-        let shield = ShieldPU(image: "hero_fall");
-        shield.position = CGPoint(x: smallPlatformBonus.position.x, y: smallPlatformBonus.position.y + bonusLowPosHeight)
-        scene.addChild(shield)
+        // add bonus half arc
+        randNum = random(left: 0, right: 10)
+        if randNum < 5 {
+            addBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 9, halfArc: true)
+        
+            let shield = ShieldPU(image: "hero_fall");
+            shield.position = CGPoint(x: smallPlatformBonus.position.x, y: smallPlatformBonus.position.y + bonusLowPosHeight)
+            scene.addChild(shield)
+        } else {
+            addBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult * 2, quantity: 5, halfArc: true)
+            
+            let energyBooster = EnergyPU(image: "hero");
+            energyBooster.position = CGPoint(x: smallPlatformBonus.position.x, y: smallPlatformBonus.position.y + bonusLowPosHeight)
+            scene.addChild(energyBooster)
+        }
 
         
         

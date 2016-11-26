@@ -34,7 +34,7 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
         
         // Add extra small platform
         var randNum = random(left: 0, right: 10)
-        if randNum < 4 {
+        if randNum + difficulty < 11 {
             let smallPlatformMid = PlatformBar(image: "0_25desert", pos: CGPoint(x: ground1.position.x + ground1.size.width / 4, y: ground1.position.y + smallPlatformHeight))
             scene.addChild(smallPlatformMid)
             platformTemplate.grounds.append(smallPlatformMid)
@@ -62,10 +62,17 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
             // add bad bonuses
             addBadBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 3, y: ground2.position.y + bonusLowPosHeight), stepHorizontal: bonusPosMult, quantity: 5)
             
-            // add shield powerup
-            let shield = ShieldPU(image: "hero");
-            shield.position = CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight)
-            scene.addChild(shield)
+            // add shield powerup or gold fish
+            randNum = random(left: 0, right: 10)
+            if randNum + difficulty < 14 {
+                let shield = ShieldPU(image: "hero");
+                shield.position = CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight)
+                scene.addChild(shield)
+            } else {
+                let goldBonus = GoldBonus(image: "gold_fish", pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight));
+                scene.addChild(goldBonus)
+            }
+            
         } else {
             // add bonus arc
             addBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 11)
@@ -73,10 +80,16 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
             // add bad bonuses
             addBadBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 3, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 6)
             
-            // add shield powerup
-            let shield = ShieldPU(image: "hero");
-            shield.position = CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight)
-            scene.addChild(shield)
+            // add shield powerup or gold fish
+            randNum = random(left: 0, right: 10)
+            if randNum + difficulty < 14 {
+                let shield = ShieldPU(image: "hero");
+                shield.position = CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight)
+                scene.addChild(shield)
+            } else {
+                let goldBonus = GoldBonus(image: "gold_fish", pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight));
+                scene.addChild(goldBonus)
+            }
         }
         
         // add random gold fish instead powerup
