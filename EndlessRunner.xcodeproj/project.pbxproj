@@ -111,12 +111,12 @@
 			children = (
 				AEE835001DCDD35F00F3B79A /* AbstractPlatformCreator.swift */,
 				AEE835021DCDD41C00F3B79A /* BonusPlatformCreator.swift */,
+				84AE9E791DE2F07500A361CE /* LongJumpPlatformCreator.swift */,
+				AEE835081DCDEC0F00F3B79A /* SingleMiniPlatformCreator.swift */,
 				AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */,
 				AEE835061DCDE5F700F3B79A /* TripleMiniPlatformCreator.swift */,
-				AEE835081DCDEC0F00F3B79A /* SingleMiniPlatformCreator.swift */,
 				844D7CA41DD5EAE10000318D /* MultipleMiniPlatformsCreator.swift */,
 				846A77EA1DD639B8001D583F /* VariousPlatformCreator.swift */,
-				84AE9E791DE2F07500A361CE /* LongJumpPlatformCreator.swift */,
 			);
 			name = PlatformSets;
 			sourceTree = "<group>";
