@@ -21,6 +21,7 @@ public class Hero: SKSpriteNode {
     var jumpsAllowed = 2
     var jumped = false
     let jumpSound = SKAudioNode(fileNamed: SOUND_EFFECT_JUMP)
+    let enemyContactSound = SKAudioNode(fileNamed: SOUND_EFFECT_ENEMY_CONTACT)
     
     let maxLives = 3
     var lives = 3
@@ -48,7 +49,9 @@ public class Hero: SKSpriteNode {
         //jumpSound! = SKAudioNode(fileNamed: SOUND_EFFECT_JUMP)
         jumpSound.autoplayLooped = false
         self.addChild(jumpSound)
-
+        
+        enemyContactSound.autoplayLooped = false
+        self.addChild(enemyContactSound)
         
         jumpsAllowed = maxJumpsAllowed
         
@@ -74,6 +77,7 @@ public class Hero: SKSpriteNode {
     }
     
     public func hitByEnemy() {
+        enemyContactSound.run(SKAction.play())
         lives -= 1
     }
     

@@ -12,6 +12,8 @@ import SpriteKit
 class DashingEnemy: Enemy {
     let velocity = CGVector(dx: -250, dy: 0)
     
+    let enemySound = SKAudioNode(fileNamed: SOUND_EFFECT_DASHING_ENEMY)
+    
     convenience init(image: String, pos: CGPoint) {
         self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
     }
@@ -27,11 +29,15 @@ class DashingEnemy: Enemy {
         playerSensor.physicsBody!.isDynamic = false
         self.addChild(playerSensor)
         playerSensor.position = CGPoint(x: sensorPos, y: -150)
+        
+        enemySound.autoplayLooped = false
+        self.addChild(enemySound)
     }
     
     override func act() {
         //physicsBody!.applyImpulse(dashForce)
         physicsBody!.velocity = velocity
+        enemySound.run(SKAction.play())
     }
     
     

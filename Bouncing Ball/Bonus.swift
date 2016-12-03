@@ -11,9 +11,6 @@ import SpriteKit
 
 class Bonus: SKSpriteNode {
     
-    //private let bonusAnimatedAtlas = SKTextureAtlas(named: "Hero Images")
-    //var walkFrames = [SKTexture]()
-    
     var energyMod: Float?
     var score: Int?
     let bonusSound = SKAudioNode(fileNamed: SOUND_EFFECT_BONUS)
@@ -47,15 +44,7 @@ class Bonus: SKSpriteNode {
         self.texture = SKTexture(imageNamed: image)
     }
     
-    func playSound() {
-        //let bonusSound = SKAudioNode(fileNamed: SOUND_EFFECT_BONUS)
-        //bonusSound.autoplayLooped = false
-        //self.addChild(bonusSound)
-        bonusSound.run(SKAction.play())
-        print("Sound played")
-    }
-    
-    
+ 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

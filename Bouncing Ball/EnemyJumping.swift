@@ -13,6 +13,8 @@ class JumpingEnemy: Enemy{
     let jumpForce = 75.0
     var active = false
     
+    let enemySound = SKAudioNode(fileNamed: SOUND_EFFECT_JUMPING_ENEMY)
+    
     convenience init(image: String, pos: CGPoint) {
         self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
     }
@@ -26,12 +28,15 @@ class JumpingEnemy: Enemy{
         playerSensor.physicsBody!.isDynamic = false
         self.addChild(playerSensor)
         playerSensor.position = CGPoint(x: sensorPos, y: -150)
+        enemySound.autoplayLooped = false
+        self.addChild(enemySound)
     }
     
     func jump() {
         if self.physicsBody!.velocity.dy <= 10 && active {
             self.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: jumpForce))
             //ChangeImage(image: "hero_jump")
+            enemySound.run(SKAction.play())
         }
     }
     

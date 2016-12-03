@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bouncing Ball/Hero.swift"
-            timestampString = "502449588.010319"
+            timestampString = "502459889.935337"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "init(image:pos:categoryBitMask:contactTestBitMask:collisionBitMask:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -394,12 +394,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bouncing Ball/Bonus.swift"
-            timestampString = "502453037.862699"
+            timestampString = "502458981.148899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "init(pos:categoryBitMask:contactTestBitMask:collisionBitMask:energyMod:score:)"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "init(image:pos:categoryBitMask:contactTestBitMask:collisionBitMask:energyMod:score:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

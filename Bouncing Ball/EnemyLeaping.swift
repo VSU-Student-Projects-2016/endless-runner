@@ -13,6 +13,7 @@ class LeapingEnemy: Enemy{
     let horizontalForce = -75.0
     let verticalForce = 65.0
     
+    let enemySound = SKAudioNode(fileNamed: SOUND_EFFECT_LEAPING_ENEMY)
     
     convenience init(image: String, pos: CGPoint) {
         self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
@@ -30,11 +31,15 @@ class LeapingEnemy: Enemy{
         playerSensor.physicsBody!.isDynamic = false
         self.addChild(playerSensor)
         playerSensor.position = CGPoint(x: sensorPos, y: -150)
+        
+        enemySound.autoplayLooped = false
+        self.addChild(enemySound)
     }
     
     override func act() {
         self.physicsBody!.applyImpulse(CGVector(dx: horizontalForce, dy: verticalForce))
         playerSensor.removeFromParent()
+        enemySound.run(SKAction.play())
         //ChangeImage(image: "hero_jump")
     }
     
