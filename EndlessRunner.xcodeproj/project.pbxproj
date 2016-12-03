@@ -33,6 +33,9 @@
 		AECFADEE1D967D36007ADC7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AECFADED1D967D36007ADC7B /* Assets.xcassets */; };
 		AECFADF11D967D36007ADC7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AECFADEF1D967D36007ADC7B /* LaunchScreen.storyboard */; };
 		AECFADF91D9682FF007ADC7B /* PlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECFADF81D9682FF007ADC7B /* PlayScene.swift */; };
+		AEE3CCE91DF2C71A004DDE3C /* heroJump.wav in Resources */ = {isa = PBXBuildFile; fileRef = AEE3CCE81DF2C71A004DDE3C /* heroJump.wav */; };
+		AEE3CCEB1DF2C9B6004DDE3C /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE3CCEA1DF2C9B6004DDE3C /* Sounds.swift */; };
+		AEE3CCED1DF2D4CE004DDE3C /* collectBonus.wav in Resources */ = {isa = PBXBuildFile; fileRef = AEE3CCEC1DF2D4CE004DDE3C /* collectBonus.wav */; };
 		AEE835011DCDD35F00F3B79A /* AbstractPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE835001DCDD35F00F3B79A /* AbstractPlatformCreator.swift */; };
 		AEE835031DCDD41C00F3B79A /* BonusPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE835021DCDD41C00F3B79A /* BonusPlatformCreator.swift */; };
 		AEE835051DCDDAE500F3B79A /* GapPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */; };
@@ -74,6 +77,9 @@
 		AECFADF01D967D36007ADC7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AECFADF21D967D36007ADC7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AECFADF81D9682FF007ADC7B /* PlayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayScene.swift; sourceTree = "<group>"; };
+		AEE3CCE81DF2C71A004DDE3C /* heroJump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = heroJump.wav; sourceTree = "<group>"; };
+		AEE3CCEA1DF2C9B6004DDE3C /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
+		AEE3CCEC1DF2D4CE004DDE3C /* collectBonus.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = collectBonus.wav; sourceTree = "<group>"; };
 		AEE835001DCDD35F00F3B79A /* AbstractPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractPlatformCreator.swift; sourceTree = "<group>"; };
 		AEE835021DCDD41C00F3B79A /* BonusPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BonusPlatformCreator.swift; sourceTree = "<group>"; };
 		AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GapPlatformCreator.swift; sourceTree = "<group>"; };
@@ -189,10 +195,13 @@
 				AECFADF21D967D36007ADC7B /* Info.plist */,
 				AECFADF81D9682FF007ADC7B /* PlayScene.swift */,
 				AE9549771DB22B1D0003B6B2 /* Hero.swift */,
+				AEE3CCEC1DF2D4CE004DDE3C /* collectBonus.wav */,
 				AE95497A1DB236E40003B6B2 /* ColliderType.swift */,
 				AEF052AA1DBB78AE000F8F0B /* GarbageCollector.swift */,
 				AE9829E11DC49EA80065F3B0 /* PlatformGenerator.swift */,
+				AEE3CCE81DF2C71A004DDE3C /* heroJump.wav */,
 				AE9829E31DC4AD360065F3B0 /* PlatformTemplate.swift */,
+				AEE3CCEA1DF2C9B6004DDE3C /* Sounds.swift */,
 			);
 			name = EndlessRunner;
 			path = "Bouncing Ball";
@@ -257,6 +266,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEE3CCE91DF2C71A004DDE3C /* heroJump.wav in Resources */,
+				AEE3CCED1DF2D4CE004DDE3C /* collectBonus.wav in Resources */,
 				AECFADEC1D967D36007ADC7B /* Main.storyboard in Resources */,
 				AECFADE31D967D36007ADC7B /* GameScene.sks in Resources */,
 				AECFADEE1D967D36007ADC7B /* Assets.xcassets in Resources */,
@@ -275,6 +286,7 @@
 				844D7CA51DD5EAE20000318D /* MultipleMiniPlatformsCreator.swift in Sources */,
 				AEE835071DCDE5F700F3B79A /* TripleMiniPlatformCreator.swift in Sources */,
 				AECFADE71D967D36007ADC7B /* GameScene.swift in Sources */,
+				AEE3CCEB1DF2C9B6004DDE3C /* Sounds.swift in Sources */,
 				AEF052AB1DBB78AE000F8F0B /* GarbageCollector.swift in Sources */,
 				AE9829E41DC4AD360065F3B0 /* PlatformTemplate.swift in Sources */,
 				84AE9E7A1DE2F07500A361CE /* LongJumpPlatformCreator.swift in Sources */,

@@ -20,6 +20,10 @@ public class Hero: SKSpriteNode {
     let maxJumpsAllowed = 2
     var jumpsAllowed = 2
     var jumped = false
+    let jumpSound = SKAudioNode(fileNamed: SOUND_EFFECT_JUMP)
+    
+    let maxLives = 3
+    var lives = 3
     
     var powerUps = [PowerUpTypes: PowerUp]()
     
@@ -40,6 +44,11 @@ public class Hero: SKSpriteNode {
         for i in 1..<6 {
             walkFrames.append(SKTexture(imageNamed: "sprint" + String(i)))
         }
+        
+        //jumpSound! = SKAudioNode(fileNamed: SOUND_EFFECT_JUMP)
+        jumpSound.autoplayLooped = false
+        self.addChild(jumpSound)
+
         
         jumpsAllowed = maxJumpsAllowed
         
@@ -64,6 +73,10 @@ public class Hero: SKSpriteNode {
         self.texture = SKTexture(imageNamed: image)
     }
     
+    public func hitByEnemy() {
+        lives -= 1
+    }
+    
     public func update() {
         for powerUp in powerUps.values {
             powerUp.update()
@@ -72,6 +85,8 @@ public class Hero: SKSpriteNode {
     
     func jump() {
         if jumpsAllowed > 0 {
+             jumpSound.run(SKAction.play())
+            
             if jumpsAllowed == maxJumpsAllowed {
                 self.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: jumpPower))
                 

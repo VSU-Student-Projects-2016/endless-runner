@@ -21,6 +21,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var platformGenerator = PlatformGenerator()
     var score = 0;
     let scoreText = SKLabelNode(fontNamed: "Chalkduster")
+    let livesText = SKLabelNode(fontNamed: "Chalkduster")
+    
     var hero: Hero!
     var energyConsumption = Float(0.0001)
     let energyConsumptionIncrease = Float(0.0001)
@@ -83,6 +85,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.scoreText.fontSize = 42
         self.scoreText.position = CGPoint(x: self.frame.maxX - 10, y: self.frame.maxY - 40)
         self.addChild(scoreText)
+        
+        self.livesText.text = "3"
+        self.livesText.fontSize = 42
+        self.livesText.position = CGPoint(x: self.frame.midX - 10, y: self.frame.maxY - 40)
+        self.addChild(livesText)
         
         // World initialization
         self.backgroundColor = UIColor.lightGray
@@ -161,12 +168,17 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
 
         // Hero collects a bonus
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Bonus){
+            
             var bonus: Bonus
             if contact.bodyA.categoryBitMask == ColliderType.Bonus {
                 bonus = contact.bodyA.node as! Bonus
             } else {
                 bonus = contact.bodyB.node as! Bonus
             }
+            //bonus.bonusSound.removeAllActions()
+            //bonus.bonusSound.run(SKAction.play())
+            
+            bonus.playSound()
             
             if hero.energy < 1.0 {
                 hero.energy += bonus.energyMod!
@@ -192,14 +204,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             else {
                 enemy = contact.bodyB.node as! Enemy
             }
-            
+
             hero.powerUps[PowerUpTypes.Shield]?.onContact(with: enemy)
             
             if !enemy.isDead {
-                hero.energy -= 0.5
-                if hero.energy < 0 {
-                    hero.energy = 0
+                hero.hitByEnemy()
+                if hero.lives == 0 {
+                    died()
                 }
+                livesText.text = String(hero.lives)
             }
         }
         
@@ -393,6 +406,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         cameraNode.position = CGPoint(x: hero.position.x + self.frame.width / 4, y: cameraNode.position.y)
         self.scoreText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2.2,
                                           y: scene!.camera!.position.y + frame.size.height / 2.7)
+        livesText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 3.2,
+                                     y: livesText.position.y)
         garbageCollector.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2 - garbageCollector.size.width, y: garbageCollector.position.y)
         
         fallDetector.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2, y: fallDetector.position.y)
