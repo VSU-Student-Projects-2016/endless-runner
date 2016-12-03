@@ -49,10 +49,10 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
             // add bonus or golden bonus randomly
             randNum = random(left: 0, right: 10)
             if randNum < 4{
-                let goldBonus = GoldBonus(image: "gold_fish", pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 5, y: smallPlatform.position.y + bonusLowPosHeight * 1.3))
+                let goldBonus = GoldBonus(pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 5, y: smallPlatform.position.y + bonusLowPosHeight * 1.3))
                 scene.addChild(goldBonus)
             } else {
-                let bonus = Bonus(image: "fish", pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 5, y: smallPlatform.position.y + bonusLowPosHeight * 1.3))
+                let bonus = Bonus(pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 5, y: smallPlatform.position.y + bonusLowPosHeight * 1.3))
                 scene.addChild(bonus)
             }
             
@@ -69,7 +69,7 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
                 shield.position = CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight)
                 scene.addChild(shield)
             } else {
-                let goldBonus = GoldBonus(image: "gold_fish", pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight));
+                let goldBonus = GoldBonus(pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight));
                 scene.addChild(goldBonus)
             }
             
@@ -87,7 +87,7 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
                 shield.position = CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight)
                 scene.addChild(shield)
             } else {
-                let goldBonus = GoldBonus(image: "gold_fish", pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight));
+                let goldBonus = GoldBonus(pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult * 11, y: smallPlatform.position.y + bonusLowPosHeight));
                 scene.addChild(goldBonus)
             }
         }

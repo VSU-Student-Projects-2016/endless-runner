@@ -50,7 +50,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var dashButton : UIButton!
     
     var energyBar : UIProgressView!
-     
+    
     override func didMove(to view: SKView) {
         view.showsPhysics = true
         pauseButton = UIButton(frame: CGRect(x: self.frame.midX, y: self.frame.minY, width: 100.0, height: 100.0))
@@ -118,6 +118,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         energyBar.transform = energyBar.transform.scaledBy(x: 1.5, y: 10)
         view.addSubview(energyBar)
         energyBar.progress = hero.energy
+        
     }
     
     func pauseButtonPressed(_ sender: UIButton!){
@@ -175,10 +176,21 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             } else {
                 bonus = contact.bodyB.node as! Bonus
             }
-            //bonus.bonusSound.removeAllActions()
-            //bonus.bonusSound.run(SKAction.play())
+            let bonusSound = SKAudioNode()
+            bonusSound.autoplayLooped = false
+            self.addChild(bonusSound)
             
-            bonus.playSound()
+            let playSound: SKAction
+            if bonus is BadBonus {
+                playSound = SKAction.playSoundFileNamed(SOUND_EFFECT_BAD_BONUS, waitForCompletion: true)
+            } else
+                if bonus is GoldBonus {
+                    playSound = SKAction.playSoundFileNamed(SOUND_EFFECT_BAD_BONUS, waitForCompletion: true)
+                } else {
+                    playSound = SKAction.playSoundFileNamed(SOUND_EFFECT_BONUS, waitForCompletion: true)
+            }
+            let remove = SKAction.removeFromParent()
+            bonusSound.run(SKAction.sequence([playSound, remove]))
             
             if hero.energy < 1.0 {
                 hero.energy += bonus.energyMod!

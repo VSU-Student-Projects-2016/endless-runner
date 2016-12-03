@@ -51,13 +51,13 @@ class GapPlatformCreator : AbstractPlatformCreator {
             let randNumForEnemy = random(left: 0, right: 10)
             if randNumForEnemy < 5 {
                 let enemy = JumpingEnemy(image: "block1", pos: CGPoint(x: ground2.position.x, y: ground2.position.y + smallPlatformHeight))
-                let goldBonus = GoldBonus(image: "gold_fish", pos: CGPoint(x: enemy.position.x, y: enemy.position.y + bonusHighPosHeight))
+                let goldBonus = GoldBonus(pos: CGPoint(x: enemy.position.x, y: enemy.position.y + bonusHighPosHeight))
                 scene.addChild(enemy)
                 platformTemplate.enemies.append(enemy)
                 scene.addChild(goldBonus)
             } else {
                 let enemy = LeapingEnemy(image: "block1", pos: CGPoint(x: ground2.position.x, y: ground2.position.y + smallPlatformHeight))
-                let goldBonus = GoldBonus(image: "gold_fish", pos: CGPoint(x: enemy.position.x - bonusPosMult * 6, y: ground2.position.y + bonusMidPosHeight))
+                let goldBonus = GoldBonus(pos: CGPoint(x: enemy.position.x - bonusPosMult * 6, y: ground2.position.y + bonusMidPosHeight))
                 scene.addChild(enemy)
                 platformTemplate.enemies.append(enemy)
                 scene.addChild(goldBonus)

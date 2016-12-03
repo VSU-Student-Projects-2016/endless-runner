@@ -36,6 +36,7 @@
 		AEE3CCE91DF2C71A004DDE3C /* heroJump.wav in Resources */ = {isa = PBXBuildFile; fileRef = AEE3CCE81DF2C71A004DDE3C /* heroJump.wav */; };
 		AEE3CCEB1DF2C9B6004DDE3C /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE3CCEA1DF2C9B6004DDE3C /* Sounds.swift */; };
 		AEE3CCED1DF2D4CE004DDE3C /* collectBonus.wav in Resources */ = {isa = PBXBuildFile; fileRef = AEE3CCEC1DF2D4CE004DDE3C /* collectBonus.wav */; };
+		AEE3CCEF1DF2E80C004DDE3C /* collectBadBonus.wav in Resources */ = {isa = PBXBuildFile; fileRef = AEE3CCEE1DF2E80C004DDE3C /* collectBadBonus.wav */; };
 		AEE835011DCDD35F00F3B79A /* AbstractPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE835001DCDD35F00F3B79A /* AbstractPlatformCreator.swift */; };
 		AEE835031DCDD41C00F3B79A /* BonusPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE835021DCDD41C00F3B79A /* BonusPlatformCreator.swift */; };
 		AEE835051DCDDAE500F3B79A /* GapPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */; };
@@ -80,6 +81,7 @@
 		AEE3CCE81DF2C71A004DDE3C /* heroJump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = heroJump.wav; sourceTree = "<group>"; };
 		AEE3CCEA1DF2C9B6004DDE3C /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		AEE3CCEC1DF2D4CE004DDE3C /* collectBonus.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = collectBonus.wav; sourceTree = "<group>"; };
+		AEE3CCEE1DF2E80C004DDE3C /* collectBadBonus.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = collectBadBonus.wav; sourceTree = "<group>"; };
 		AEE835001DCDD35F00F3B79A /* AbstractPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractPlatformCreator.swift; sourceTree = "<group>"; };
 		AEE835021DCDD41C00F3B79A /* BonusPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BonusPlatformCreator.swift; sourceTree = "<group>"; };
 		AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GapPlatformCreator.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				84D215DA1DE1A4BF0070F691 /* PowerUps */,
 				AECFADE01D967D36007ADC7B /* AppDelegate.swift */,
 				AECFADE21D967D36007ADC7B /* GameScene.sks */,
+				AEE3CCEE1DF2E80C004DDE3C /* collectBadBonus.wav */,
 				AECFADE41D967D36007ADC7B /* Actions.sks */,
 				AECFADE61D967D36007ADC7B /* GameScene.swift */,
 				AECFADE81D967D36007ADC7B /* GameViewController.swift */,
@@ -269,6 +272,7 @@
 				AEE3CCE91DF2C71A004DDE3C /* heroJump.wav in Resources */,
 				AEE3CCED1DF2D4CE004DDE3C /* collectBonus.wav in Resources */,
 				AECFADEC1D967D36007ADC7B /* Main.storyboard in Resources */,
+				AEE3CCEF1DF2E80C004DDE3C /* collectBadBonus.wav in Resources */,
 				AECFADE31D967D36007ADC7B /* GameScene.sks in Resources */,
 				AECFADEE1D967D36007ADC7B /* Assets.xcassets in Resources */,
 				AECFADF11D967D36007ADC7B /* LaunchScreen.storyboard in Resources */,

@@ -75,7 +75,7 @@ class VariousPlatformCreator : AbstractPlatformCreator {
         }
         
         for i in 0..<4 {
-            let bonus = Bonus(image: "fish", pos: CGPoint(x: platformMiddle.position.x - platformMiddle.size.width / 4 + CGFloat(i)*bonusPosMult, y : ground1.position.y + bonusLowPosHeight))
+            let bonus = Bonus(pos: CGPoint(x: platformMiddle.position.x - platformMiddle.size.width / 4 + CGFloat(i)*bonusPosMult, y : ground1.position.y + bonusLowPosHeight))
             scene.addChild(bonus)
             platformTemplate.bonuses.append(bonus)
         }
@@ -83,13 +83,13 @@ class VariousPlatformCreator : AbstractPlatformCreator {
         randNum = random(left: 0, right: 2)
         if randNum == 0 {
             for i in 0..<4 {
-                let bonus = Bonus(image: "fish", pos: CGPoint(x: platformLeft.position.x - platformLeft.size.width / 4 + CGFloat(i) * bonusPosMult, y : platformLeft.position.y + bonusLowPosHeight))
+                let bonus = Bonus(pos: CGPoint(x: platformLeft.position.x - platformLeft.size.width / 4 + CGFloat(i) * bonusPosMult, y : platformLeft.position.y + bonusLowPosHeight))
                 scene.addChild(bonus)
                 platformTemplate.bonuses.append(bonus)
             }
         
             for i in 0..<4 {
-                let bonus = Bonus(image: "fish", pos: CGPoint(x: platformRight.position.x - platformRight.size.width / 4 + CGFloat(i) * bonusPosMult, y : platformRight.position.y + bonusLowPosHeight))
+                let bonus = Bonus(pos: CGPoint(x: platformRight.position.x - platformRight.size.width / 4 + CGFloat(i) * bonusPosMult, y : platformRight.position.y + bonusLowPosHeight))
                 scene.addChild(bonus)
                 platformTemplate.bonuses.append(bonus)
             }

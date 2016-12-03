@@ -11,8 +11,8 @@ import SpriteKit
 
 class GoldBonus: Bonus {
     
-    convenience init(image: String, pos: CGPoint) {
-        self.init(image: image, pos: pos, categoryBitMask: ColliderType.Bonus, contactTestBitMask: ColliderType.Hero, collisionBitMask: ColliderType.None, energyMod: 0.1, score: 5)
+    convenience init(pos: CGPoint) {
+        self.init(image: "gold_fish", pos: pos, categoryBitMask: ColliderType.Bonus, contactTestBitMask: ColliderType.Hero, collisionBitMask: ColliderType.None, energyMod: 0.1, score: 5)
     }
     
     override init(image: String, pos: CGPoint, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32, energyMod: Float, score: Int) {

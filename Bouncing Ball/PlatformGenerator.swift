@@ -20,7 +20,7 @@ class PlatformGenerator {
         enemyPool.append(Enemy(image: "block1", pos: CGPoint(x: 0, y : 0)))
 
         for _ in (0..<10) {
-            bonusPool.append(Bonus(image: "fish", pos: CGPoint.zero))
+            bonusPool.append(Bonus(pos: CGPoint.zero))
         }
         
         platformPool.append(GroundBar(image: "desert", pos: CGPoint.zero))

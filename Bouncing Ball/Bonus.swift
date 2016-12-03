@@ -18,8 +18,8 @@ class Bonus: SKSpriteNode {
     var score: Int?
     let bonusSound = SKAudioNode(fileNamed: SOUND_EFFECT_BONUS)
     
-    convenience init(image: String, pos: CGPoint) {
-        self.init(image: image, pos: pos, categoryBitMask: ColliderType.Bonus, contactTestBitMask: ColliderType.Hero, collisionBitMask: ColliderType.None, energyMod: 0.03, score: 1)
+    convenience init(pos: CGPoint) {
+        self.init(image: "fish", pos: pos, categoryBitMask: ColliderType.Bonus, contactTestBitMask: ColliderType.Hero, collisionBitMask: ColliderType.None, energyMod: 0.03, score: 1)
     }
     
     init(image: String, pos: CGPoint, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32, energyMod: Float, score: Int) {
@@ -48,9 +48,9 @@ class Bonus: SKSpriteNode {
     }
     
     func playSound() {
-        let bonusSound = SKAudioNode(fileNamed: SOUND_EFFECT_BONUS)
-        bonusSound.autoplayLooped = false
-        self.addChild(bonusSound)
+        //let bonusSound = SKAudioNode(fileNamed: SOUND_EFFECT_BONUS)
+        //bonusSound.autoplayLooped = false
+        //self.addChild(bonusSound)
         bonusSound.run(SKAction.play())
         print("Sound played")
     }

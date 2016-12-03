@@ -45,7 +45,7 @@ class TripleMiniPlatformCreator : AbstractPlatformCreator {
         
         randNum = random(left: 0, right: 10)
         if randNum < 5 {
-            let goldBonus = GoldBonus(image: "gold_fish", pos: CGPoint(x: smallPlatform.position.x, y: ground2.position.y + bonusLowPosHeight))
+            let goldBonus = GoldBonus(pos: CGPoint(x: smallPlatform.position.x, y: ground2.position.y + bonusLowPosHeight))
             scene.addChild(goldBonus)
         } else {
             let energyPU = EnergyPU(image: "hero")
@@ -54,19 +54,19 @@ class TripleMiniPlatformCreator : AbstractPlatformCreator {
         }
         
         for i in 0..<4 {
-            let bonus = Bonus(image: "fish", pos: CGPoint(x: leftSmallPlatform.position.x - leftSmallPlatform.size.width / 4 + CGFloat(i)*bonusPosMult, y : leftSmallPlatform.position.y + bonusLowPosHeight))
+            let bonus = Bonus(pos: CGPoint(x: leftSmallPlatform.position.x - leftSmallPlatform.size.width / 4 + CGFloat(i)*bonusPosMult, y : leftSmallPlatform.position.y + bonusLowPosHeight))
             scene.addChild(bonus)
             platformTemplate.bonuses.append(bonus)
         }
         
         for i in 0..<4 {
-            let bonus = Bonus(image: "fish", pos: CGPoint(x: smallPlatform.position.x - smallPlatform.size.width / 4 + CGFloat(i)*bonusPosMult, y : smallPlatform.position.y + bonusLowPosHeight))
+            let bonus = Bonus(pos: CGPoint(x: smallPlatform.position.x - smallPlatform.size.width / 4 + CGFloat(i)*bonusPosMult, y : smallPlatform.position.y + bonusLowPosHeight))
             scene.addChild(bonus)
             platformTemplate.bonuses.append(bonus)
         }
         
         for i in 0..<4 {
-            let bonus = Bonus(image: "fish", pos: CGPoint(x: rightSmallPlatform.position.x - rightSmallPlatform.size.width / 4 + CGFloat(i)*bonusPosMult, y : rightSmallPlatform.position.y + bonusLowPosHeight))
+            let bonus = Bonus(pos: CGPoint(x: rightSmallPlatform.position.x - rightSmallPlatform.size.width / 4 + CGFloat(i)*bonusPosMult, y : rightSmallPlatform.position.y + bonusLowPosHeight))
             scene.addChild(bonus)
             platformTemplate.bonuses.append(bonus)
         }

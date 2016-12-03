@@ -10,5 +10,7 @@ import Foundation
 
 public let SOUND_EFFECT_JUMP = "heroJump"
 public let SOUND_EFFECT_BONUS = "collectBonus"
+public let SOUND_EFFECT_BAD_BONUS = "collectBadBonus"
+public let SOUND_EFFECT_GOLD_BONUS = "collectBadBonus"
 public let SOUND_EFFECT_ENEMY = "heroJump"
 public let SOUND_EFFECT_POWERUP = "heroJump"
