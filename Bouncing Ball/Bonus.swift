@@ -38,6 +38,13 @@ class Bonus: SKSpriteNode {
         physicsBody!.contactTestBitMask = contactTestBitMask
         physicsBody!.collisionBitMask = collisionBitMask
         physicsBody!.isDynamic = false
+        
+//        let particles = SKEmitterNode()
+//        particles.particleColor = UIColor.yellow
+//        particles.advanceSimulationTime(1)
+//        particles.numParticlesToEmit = 500
+//        particles.particleSpeed = 10
+//        self.addChild(particles)
     }
     
     func ChangeImage(image: String) {

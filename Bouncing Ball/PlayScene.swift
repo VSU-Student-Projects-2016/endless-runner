@@ -51,7 +51,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var energyBar : UIProgressView!
     
+    var defaults = UserDefaults.standard
+    
     override func didMove(to view: SKView) {
+        
+        if defaults.object(forKey: "highScore") == nil {
+            defaults.set(score, forKey: "highScore")
+        }
+        
         view.showsPhysics = true
         pauseButton = UIButton(frame: CGRect(x: self.frame.midX, y: self.frame.minY, width: 100.0, height: 100.0))
         pauseButton.setTitle("Pause Menu", for: .normal)
@@ -318,14 +325,29 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     // Game Over
     func died() {
-        if let scene = GameScene.unarchiveFromFile(file: "GameScene") as? GameScene {
-            let skView = self.view as SKView!
-            skView?.ignoresSiblingOrder = true
-            scene.size = (skView?.bounds.size)!
-            scene.scaleMode = .aspectFill
-            skView?.presentScene(scene)
-            removeViews()
+        self.isPaused = true
+        self.view?.addSubview(exitButton)
+        
+        pauseButton.removeFromSuperview()
+        
+        if score > defaults.integer(forKey: "highScore") {
+            defaults.set(score, forKey: "highScore")
+            defaults.synchronize()
         }
+        let highScore = SKLabelNode()
+        highScore.text = String(defaults.integer(forKey: "highScore"))
+        highScore.fontSize = 42
+        highScore.position = CGPoint(x: cameraNode.position.x, y: cameraNode.position.y)
+        self.addChild(highScore)
+        
+//        if let scene = GameScene.unarchiveFromFile(file: "GameScene") as? GameScene {
+//            let skView = self.view as SKView!
+//            skView?.ignoresSiblingOrder = true
+//            scene.size = (skView?.bounds.size)!
+//            scene.scaleMode = .aspectFill
+//            skView?.presentScene(scene)
+//            removeViews()
+//        }
         
     }
     
