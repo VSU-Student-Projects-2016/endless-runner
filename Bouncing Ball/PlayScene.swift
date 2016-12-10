@@ -12,6 +12,9 @@ import UIKit
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
+    var gameOverScreen : UIView?
+    var pauseScreen : UIView?
+    
     var currPlatform: PlatformTemplate!
     var nextPlatform: PlatformTemplate!
     
@@ -20,8 +23,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var platformGenerator = PlatformGenerator()
     var score = 0;
-    let scoreText = SKLabelNode(fontNamed: "Chalkduster")
-    let livesText = SKLabelNode(fontNamed: "Chalkduster")
+    let scoreText = SKLabelNode(fontNamed: "PressStart2P")
+    let livesText = SKLabelNode(fontNamed: "PressStart2P")
     
     var hero: Hero!
     var energyConsumption = Float(0.0001)
@@ -30,7 +33,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let platformOverlayWidth = CGFloat(10)
     
     var difficulty = 0
-    var stopErrorText = SKLabelNode(fontNamed: "Chalkduster")
+    var stopErrorText = SKLabelNode(fontNamed: "PressStart2P")
     var lastHeroPosition = CGPoint(x: 0.0, y: 0.0)
     
     //var lastUpdateTimeInterval: TimeInterval = 0
@@ -46,6 +49,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var pauseButton : UIButton!
     var exitButton : UIButton!
+    var replayButton : UIButton!
+    var continueButton : UIButton!
     
     var dashButton : UIButton!
     
@@ -53,29 +58,56 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var defaults = UserDefaults.standard
     
+    var lives = [SKSpriteNode]()
+    
     override func didMove(to view: SKView) {
+        for i in 0..<3 {
+            let texture = SKTexture(imageNamed: "heart")
+            let node = SKSpriteNode(texture: texture)
+            node.position = CGPoint(x: self.frame.midX - 10 + CGFloat(i*10), y: self.frame.maxY - 30)
+            lives.append(node)
+            addChild(node)
+        }
+        
+        pauseScreen = UIView()
+        gameOverScreen = UIView()
         
         if defaults.object(forKey: "highScore") == nil {
             defaults.set(score, forKey: "highScore")
         }
         
         view.showsPhysics = true
-        pauseButton = UIButton(frame: CGRect(x: self.frame.midX, y: self.frame.minY, width: 100.0, height: 100.0))
-        pauseButton.setTitle("Pause Menu", for: .normal)
+        pauseButton = UIButton(frame: CGRect(x: self.frame.midX - 100, y: self.frame.minY, width: 200.0, height: 100.0))
+        pauseButton.setTitle("Pause", for: .normal)
         pauseButton.setTitleColor(.red, for: .normal)
+        pauseButton.titleLabel!.font = UIFont(name: "PressStart2P", size: 14)
         pauseButton.addTarget(self, action: #selector(self.pauseButtonPressed(_:)), for: .touchUpInside)
         self.view?.addSubview(pauseButton)
         
         dashButton = UIButton(frame: CGRect(x: self.frame.minX, y: self.frame.maxY - 100, width: 100.0, height: 100.0))
         dashButton.setTitle("Dash", for: .normal)
         dashButton.setTitleColor(.red, for: .normal)
+        dashButton.titleLabel!.font = UIFont(name: "PressStart2P", size: 14)
         dashButton.addTarget(self, action: #selector(self.dashButtonPressed(_:)), for: .touchUpInside)
         self.view?.addSubview(dashButton)
         
-        exitButton = UIButton(frame: CGRect(x: self.frame.midX, y: self.frame.midY, width: 100.0, height: 100.0))
+        exitButton = UIButton(frame: CGRect(x:  self.frame.midX + 150, y: self.frame.midY, width: 100.0, height: 100.0))
         exitButton.setTitle("Exit", for: .normal)
-        exitButton.setTitleColor(.red, for: .normal)
+        exitButton.setTitleColor(.green, for: .normal)
+        exitButton.titleLabel!.font = UIFont(name: "PressStart2P", size: 14)
         exitButton.addTarget(self, action: #selector(self.exitButtonPressed(_:)), for: .touchUpInside)
+        
+        replayButton = UIButton(frame: CGRect(x:  self.frame.midX - 250, y: self.frame.midY, width: 100.0, height: 100.0))
+        replayButton.setTitle("Replay", for: .normal)
+        replayButton.setTitleColor(.green, for: .normal)
+        replayButton.titleLabel!.font = UIFont(name: "PressStart2P", size: 14)
+        replayButton.addTarget(self, action: #selector(self.replayButtonPressed(_:)), for: .touchUpInside)
+        
+        continueButton = UIButton(frame: CGRect(x:  self.frame.midX - 75, y: self.frame.midY, width: 150.0, height: 100.0))
+        continueButton.setTitle("Continue", for: .normal)
+        continueButton.setTitleColor(.green, for: .normal)
+        continueButton.titleLabel!.font = UIFont(name: "PressStart2P", size: 14)
+        continueButton.addTarget(self, action: #selector(self.continueButtonPressed(_:)), for: .touchUpInside)
         
         // don't hardcode "200" below
         hero = Hero(image: "1Cat", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground | ColliderType.PlatformSensor, collisionBitMask: ColliderType.Ground)
@@ -128,32 +160,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    func pauseButtonPressed(_ sender: UIButton!){
-        self.isPaused = !self.isPaused
-        if self.isPaused{
-            self.view?.addSubview(exitButton)
-        }
-        else {
-            exitButton.removeFromSuperview()
-        }
-    }
-    
-    func dashButtonPressed(_ sender: UIButton!){
-        hero.dash();
-    }
-    
-    func exitButtonPressed(_ sender: UIButton!) {
-        if let scene = GameScene.unarchiveFromFile(file: "GameScene") as? GameScene {
-
-            let skView = self.view as SKView!
-            skView?.ignoresSiblingOrder = true
-            scene.size = (skView?.bounds.size)!
-            scene.scaleMode = .aspectFill
-            skView?.presentScene(scene)
-            removeViews()
-        }
-        
-    }
     
     func didBegin(_ contact: SKPhysicsContact) {
         
@@ -323,40 +329,135 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func replayButtonPressed(_ sender: UIButton!){
+        gameOverScreen!.removeFromSuperview()
+        pauseScreen!.removeFromSuperview()
+        gameOverScreen = nil
+        pauseScreen = nil
+        removeViews()
+        
+        let scene = PlayScene(size: self.size)
+        let skView = self.view as SKView!
+        skView?.ignoresSiblingOrder = true
+        scene.scaleMode = .resizeFill
+        scene.size = (skView?.bounds.size)!
+        skView?.presentScene(scene)
+    }
+    
+    func continueButtonPressed(_ sender: UIButton!){
+        pause()
+    }
+    
+    
+    func pauseButtonPressed(_ sender: UIButton!){
+        pause()
+    }
+    
+    func dashButtonPressed(_ sender: UIButton!){
+        hero.dash();
+    }
+    
+    func exitButtonPressed(_ sender: UIButton!) {
+        gameOverScreen!.removeFromSuperview()
+        pauseScreen!.removeFromSuperview()
+        gameOverScreen = nil
+        pauseScreen = nil
+        removeViews()
+        
+        if let scene = GameScene.unarchiveFromFile(file: "GameScene") as? GameScene {
+            
+            let skView = self.view as SKView!
+            skView?.ignoresSiblingOrder = true
+            scene.size = (skView?.bounds.size)!
+            scene.scaleMode = .aspectFill
+            skView?.presentScene(scene)
+        }
+        
+    }
+    
+    func pause()
+    {
+        self.isPaused = !self.isPaused
+        
+        if isPaused {
+            //dashButton.removeFromSuperview()
+            pauseButton.removeFromSuperview()
+        
+            pauseScreen!.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+            pauseScreen!.sizeThatFits(self.frame.size)
+            pauseScreen!.frame.origin = CGPoint(x: self.frame.minX, y: self.frame.minY)
+            pauseScreen!.frame.size = self.frame.size
+            pauseScreen!.addSubview(exitButton)
+            pauseScreen!.addSubview(continueButton)
+            pauseScreen!.addSubview(replayButton)
+            self.view?.addSubview(pauseScreen!)
+//            exitButton.frame.origin = CGPoint(x: self.frame.midX + 100, y: self.frame.midY)
+//            replayButton.frame.origin = CGPoint(x: self.frame.midX, y: self.frame.midY)
+//            continueButton.frame.origin = CGPoint(x: self.frame.midX - 100, y: self.frame.midY)
+        } else {
+            pauseScreen!.removeFromSuperview()
+            exitButton.removeFromSuperview()
+            replayButton.removeFromSuperview()
+            continueButton.removeFromSuperview()
+            self.view?.addSubview(pauseButton)
+        }
+    }
+    
     // Game Over
     func died() {
-        self.isPaused = true
-        self.view?.addSubview(exitButton)
-        
+        dashButton.removeFromSuperview()
         pauseButton.removeFromSuperview()
+        
+        gameOverScreen?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        gameOverScreen?.sizeThatFits(self.frame.size)
+        exitButton.frame.origin = CGPoint(x: self.frame.midX + 50, y: self.frame.midY + 100)
+        replayButton.frame.origin = CGPoint(x: self.frame.midX - 150, y: self.frame.midY + 100)
+        gameOverScreen?.addSubview(exitButton)
+        gameOverScreen?.addSubview(replayButton)
+        gameOverScreen?.frame.origin = CGPoint(x: self.frame.minX, y: self.frame.minY)
+        gameOverScreen?.frame.size = self.frame.size
+//        var frame = gameOverScreen.frame
+//        frame.origin = CGPoint(x: self.frame.minX, y: self.frame.minY)
+//        frame.size = self.frame.size
+//        gameOverScreen.frame = frame
+        
+        self.isPaused = true
+        //self.view?.addSubview(exitButton)
+        
+        //pauseButton.removeFromSuperview()
         
         if score > defaults.integer(forKey: "highScore") {
             defaults.set(score, forKey: "highScore")
             defaults.synchronize()
         }
-        let highScore = SKLabelNode()
-        highScore.text = String(defaults.integer(forKey: "highScore"))
-        highScore.fontSize = 42
-        highScore.position = CGPoint(x: cameraNode.position.x, y: cameraNode.position.y)
-        self.addChild(highScore)
         
-//        if let scene = GameScene.unarchiveFromFile(file: "GameScene") as? GameScene {
-//            let skView = self.view as SKView!
-//            skView?.ignoresSiblingOrder = true
-//            scene.size = (skView?.bounds.size)!
-//            scene.scaleMode = .aspectFill
-//            skView?.presentScene(scene)
-//            removeViews()
-//        }
+        let highScore = UILabel()
+        
+        highScore.text = "Your highscore: " + String(defaults.integer(forKey: "highScore")) + "\n\n"
+            + "Your current score: " + String(score)
+        highScore.font = UIFont(name: "PressStart2P", size: 22)
+        highScore.numberOfLines = 3
+        highScore.textColor = UIColor.black
+        highScore.frame = CGRect(x: gameOverScreen!.frame.midX - 250, y: gameOverScreen!.frame.midY - 150, width: 500, height: 300)
+        //highScore.backgroundColor = UIColor.blue
+        highScore.textAlignment = NSTextAlignment.center
+        gameOverScreen!.addSubview(highScore)
+       
+        
+        self.view?.addSubview(gameOverScreen!)
         
     }
     
     // Remove buttons and energy bar
     func removeViews() {
         exitButton.removeFromSuperview()
+        exitButton = nil
         pauseButton.removeFromSuperview()
+        pauseButton = nil
         dashButton.removeFromSuperview()
+        dashButton = nil
         energyBar.removeFromSuperview()
+        energyBar = nil
     }
     
     func random(left: Int, right: Int) -> Int {
@@ -442,6 +543,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                                           y: scene!.camera!.position.y + frame.size.height / 2.7)
         livesText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 3.2,
                                      y: livesText.position.y)
+        for i in 0..<3 {
+            lives[i].position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 3.2,
+                                        y: lives[0].position.y)
+        }
         garbageCollector.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2 - garbageCollector.size.width, y: garbageCollector.position.y)
         
         fallDetector.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2, y: fallDetector.position.y)
