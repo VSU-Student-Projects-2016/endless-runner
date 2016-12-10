@@ -54,7 +54,7 @@ class VariousPlatformCreator : AbstractPlatformCreator {
             scene.addChild(enemy)
             platformTemplate.enemies.append(enemy)
         case 1:
-            let enemy = Enemy(image: "block1", pos: CGPoint(x: platformLeft.position.x + platformLeft.size.width, y: platformLeft.position.y - smallPlatformHeight / 2))
+            let enemy = StandingEnemy(image: "block1", pos: CGPoint(x: platformLeft.position.x + platformLeft.size.width, y: platformLeft.position.y - smallPlatformHeight / 2))
             scene.addChild(enemy)
             platformTemplate.enemies.append(enemy)
         default: break

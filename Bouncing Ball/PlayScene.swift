@@ -61,13 +61,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var lives = [SKSpriteNode]()
     
     override func didMove(to view: SKView) {
-        for i in 0..<3 {
-            let texture = SKTexture(imageNamed: "heart")
-            let node = SKSpriteNode(texture: texture)
-            node.position = CGPoint(x: self.frame.midX - 10 + CGFloat(i*10), y: self.frame.maxY - 30)
-            lives.append(node)
-            addChild(node)
-        }
         
         pauseScreen = UIView()
         gameOverScreen = UIView()
@@ -121,14 +114,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         addChild(fallDetector)
         
         self.scoreText.text = "0"
-        self.scoreText.fontSize = 42
+        self.scoreText.fontSize = 32
         self.scoreText.position = CGPoint(x: self.frame.maxX - 10, y: self.frame.maxY - 40)
         self.addChild(scoreText)
         
         self.livesText.text = "3"
         self.livesText.fontSize = 42
         self.livesText.position = CGPoint(x: self.frame.midX - 10, y: self.frame.maxY - 40)
-        self.addChild(livesText)
+        //self.addChild(livesText)
         
         // World initialization
         self.backgroundColor = UIColor.lightGray
@@ -158,6 +151,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         view.addSubview(energyBar)
         energyBar.progress = hero.energy
         
+        for i in 0..<hero.maxLives {
+            lives.append(SKSpriteNode(texture: SKTexture(imageNamed: "heart")))
+            lives[i].position = CGPoint(x: CGFloat(i*30), y: self.frame.maxY - 30)
+            addChild(lives[i])
+        }
     }
     
     
@@ -237,7 +235,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 if hero.lives == 0 {
                     died()
                 }
-                livesText.text = String(hero.lives)
+                lives[lives.count - 1].removeFromParent()
+                lives.remove(at: lives.count - 1)
             }
         }
         
@@ -405,6 +404,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     // Game Over
     func died() {
+        
+        for live in lives {
+            live.removeFromParent()
+        }
+        
         dashButton.removeFromSuperview()
         pauseButton.removeFromSuperview()
         
@@ -543,9 +547,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                                           y: scene!.camera!.position.y + frame.size.height / 2.7)
         livesText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 3.2,
                                      y: livesText.position.y)
-        for i in 0..<3 {
-            lives[i].position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 3.2,
-                                        y: lives[0].position.y)
+        for i in 0..<lives.count {
+            lives[i].position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 3.2 + CGFloat(i*40),
+                                        y: lives[i].position.y)
         }
         garbageCollector.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2 - garbageCollector.size.width, y: garbageCollector.position.y)
         

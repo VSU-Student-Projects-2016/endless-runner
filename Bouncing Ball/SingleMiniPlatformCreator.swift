@@ -98,7 +98,7 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
         // Add standing enemy
         randNum = random(left: 0, right: 10)
         if randNum < 7 {
-            let enemy = Enemy(image: "block1", pos: CGPoint(x: ground1.position.x + smallPlatform.size.width, y: smallPlatform.position.y - smallPlatformHeight))
+            let enemy = StandingEnemy(image: "block1", pos: CGPoint(x: ground1.position.x + smallPlatform.size.width, y: smallPlatform.position.y - smallPlatformHeight))
             scene.addChild(enemy)
             platformTemplate.enemies.append(enemy)
         }
@@ -137,7 +137,7 @@ class SingleMiniPlatformCreator : AbstractPlatformCreator {
                 platformTemplate.enemies.append(leapingEnemy)
             }
         } else {
-            let enemy = Enemy(image: "block1", pos: CGPoint(x: ground3.position.x + ground3.size.width / 8, y: smallPlatform.position.y - smallPlatformHeight))
+            let enemy = StandingEnemy(image: "block1", pos: CGPoint(x: ground3.position.x + ground3.size.width / 8, y: smallPlatform.position.y - smallPlatformHeight))
             scene.addChild(enemy)
             platformTemplate.enemies.append(enemy)
         }

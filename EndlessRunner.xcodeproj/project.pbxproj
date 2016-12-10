@@ -24,6 +24,7 @@
 		AE95497D1DB23F260003B6B2 /* GroundBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE95497C1DB23F250003B6B2 /* GroundBar.swift */; };
 		AE9829E21DC49EA80065F3B0 /* PlatformGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9829E11DC49EA80065F3B0 /* PlatformGenerator.swift */; };
 		AE9829E41DC4AD360065F3B0 /* PlatformTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9829E31DC4AD360065F3B0 /* PlatformTemplate.swift */; };
+		AEAABC8D1DFC39F7001A63E3 /* StandingEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAABC8C1DFC39F7001A63E3 /* StandingEnemy.swift */; };
 		AEAD429F1DD73D510068E1CC /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAD429E1DD73D510068E1CC /* PowerUp.swift */; };
 		AECFADE11D967D36007ADC7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECFADE01D967D36007ADC7B /* AppDelegate.swift */; };
 		AECFADE31D967D36007ADC7B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AECFADE21D967D36007ADC7B /* GameScene.sks */; };
@@ -70,6 +71,7 @@
 		AE95497C1DB23F250003B6B2 /* GroundBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroundBar.swift; sourceTree = "<group>"; };
 		AE9829E11DC49EA80065F3B0 /* PlatformGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformGenerator.swift; sourceTree = "<group>"; };
 		AE9829E31DC4AD360065F3B0 /* PlatformTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformTemplate.swift; sourceTree = "<group>"; };
+		AEAABC8C1DFC39F7001A63E3 /* StandingEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandingEnemy.swift; sourceTree = "<group>"; };
 		AEAD429E1DD73D510068E1CC /* PowerUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		AECFADDD1D967D36007ADC7B /* Bouncing Ball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bouncing Ball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AECFADE01D967D36007ADC7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				AEF052AC1DBB8C23000F8F0B /* EnemyJumping.swift */,
 				AEF052AE1DBB8C3D000F8F0B /* EnemyDashing.swift */,
 				84D215D61DE1A3B90070F691 /* EnemyLeaping.swift */,
+				AEAABC8C1DFC39F7001A63E3 /* StandingEnemy.swift */,
 			);
 			name = Enemies;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				AE9829E41DC4AD360065F3B0 /* PlatformTemplate.swift in Sources */,
 				84AE9E7A1DE2F07500A361CE /* LongJumpPlatformCreator.swift in Sources */,
 				AEF052A91DBB5E6F000F8F0B /* Bonus.swift in Sources */,
+				AEAABC8D1DFC39F7001A63E3 /* StandingEnemy.swift in Sources */,
 				AE92EEAF1DE065840002AE3F /* EnergyPU.swift in Sources */,
 				AECFADE91D967D36007ADC7B /* GameViewController.swift in Sources */,
 				AEF052AD1DBB8C23000F8F0B /* EnemyJumping.swift in Sources */,

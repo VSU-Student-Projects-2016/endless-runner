@@ -15,7 +15,7 @@ public class Enemy: SKSpriteNode {
     
     private let enemyAnimatedAtlas = SKTextureAtlas(named: "Hero Images")
     var standingFrames = [SKTexture]()
-    private(set) public var isDead = false
+    var isDead = false
     let playerSensor = SKNode()
     var sensorPos = -300
     
@@ -27,10 +27,7 @@ public class Enemy: SKSpriteNode {
         
         let texture = SKTexture(imageNamed: image)
         super.init(texture: texture, color: .clear, size: texture.size())
-        
-//        standingFrames.append(SKTexture(imageNamed: "hero"))
-//        standingFrames.append(SKTexture(imageNamed: "hero_move1"))
-        
+
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         position = pos
         physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(self.size.width / 2))
