@@ -38,9 +38,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     //var lastUpdateTimeInterval: TimeInterval = 0
     var platformsPassed = 0
-    var platformPassToSpeedUp = 5
+    var platformPassToSpeedUp = 2
     
-    var speedUpMult = Float(1.1)
+    var countToChangeSpeed = 0
+    var maxCountToChangeSpeed = 5
+    
+    var speedUp = true
+    
+    var speedUpMult = Float(1.15)
     
     let cameraNode = SKCameraNode()
     
@@ -69,7 +74,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             defaults.set(score, forKey: "highScore")
         }
         
-        //view.showsPhysics = true
+        view.showsPhysics = true
         pauseButton = UIButton(frame: CGRect(x: self.frame.midX - 100, y: self.frame.minY, width: 200.0, height: 100.0))
         pauseButton.setTitle("Pause", for: .normal)
         pauseButton.setTitleColor(.red, for: .normal)
@@ -114,13 +119,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         addChild(fallDetector)
         
         self.scoreText.text = "0"
-        self.scoreText.fontSize = 32
+        self.scoreText.fontSize = 30
         self.scoreText.position = CGPoint(x: self.frame.maxX - 10, y: self.frame.maxY - 40)
         self.addChild(scoreText)
         
-        self.livesText.text = "3"
-        self.livesText.fontSize = 42
-        self.livesText.position = CGPoint(x: self.frame.midX - 10, y: self.frame.maxY - 40)
+        //self.livesText.text = "3"
+        //self.livesText.fontSize = 42
+        //self.livesText.position = CGPoint(x: self.frame.midX - 10, y: self.frame.maxY - 40)
         //self.addChild(livesText)
         
         // World initialization
@@ -153,7 +158,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         for i in 0..<hero.maxLives {
             lives.append(SKSpriteNode(texture: SKTexture(imageNamed: "heart")))
-            lives[i].position = CGPoint(x: CGFloat(i*30), y: self.frame.maxY - 30)
+            lives[i].position = CGPoint(x: CGFloat(i*30), y: self.frame.maxY - 25)
+            lives[i].zPosition = 90
             addChild(lives[i])
         }
     }
@@ -442,7 +448,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         highScore.text = "Your highscore: " + String(defaults.integer(forKey: "highScore")) + "\n\n"
             + "Your current score: " + String(score)
-        highScore.font = UIFont(name: "PressStart2P", size: 22)
+        highScore.font = UIFont(name: "PressStart2P", size: 20)
         highScore.numberOfLines = 3
         highScore.textColor = UIColor.black
         highScore.frame = CGRect(x: gameOverScreen!.frame.midX - 250, y: gameOverScreen!.frame.midY - 150, width: 500, height: 300)
@@ -513,16 +519,26 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             print(currPlatform.position.y) // log
             
             // Increase difficulty
-            if heroVelocity < maxVelocity {
+            //if heroVelocity < maxVelocity {
                 platformsPassed += 1
                 if platformsPassed == platformPassToSpeedUp {
-                    heroVelocity *= speedUpMult
-                    platformsPassed = 0
-                    if energyConsumption < maxEnergyConsumption {
-                        energyConsumption += energyConsumptionIncrease
+                    countToChangeSpeed += 1
+                    if speedUp {
+                        heroVelocity *= speedUpMult
+                    } else {
+                        heroVelocity /= speedUpMult
                     }
+                    platformsPassed = 0
+                    //if energyConsumption < maxEnergyConsumption {
+                        energyConsumption *= speedUpMult
+                    //}
                 }
-            }
+                
+                if countToChangeSpeed == maxCountToChangeSpeed {
+                    speedUp = !speedUp
+                    countToChangeSpeed = 0
+                }
+            //}
         }
         
         // Decrease hero speed after dash
@@ -546,7 +562,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     override func didSimulatePhysics() {
         super.didSimulatePhysics()
         cameraNode.position = CGPoint(x: hero.position.x + self.frame.width / 4, y: cameraNode.position.y)
-        self.scoreText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2.2,
+        self.scoreText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2.25,
                                           y: scene!.camera!.position.y + frame.size.height / 2.7)
         livesText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 3.2,
                                      y: livesText.position.y)

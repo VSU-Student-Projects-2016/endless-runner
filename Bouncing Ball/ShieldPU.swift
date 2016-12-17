@@ -10,8 +10,8 @@ import Foundation
 import SpriteKit
 
 public class ShieldPU: SKSpriteNode, PowerUp {
-    let maxTimeLimit = 300
-    var currentTime = 300
+    let maxTimeLimit = 500
+    var currentTime = 500
     var hero: Hero?
     var shieldTextureOnHero: SKSpriteNode?
     

@@ -35,13 +35,13 @@ class LeapingEnemy: Enemy{
         
         //self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         //position = pos
-        playerSensor.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10.0, height: 400.0))
+        playerSensor.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10.0, height: 1000.0))
         playerSensor.physicsBody!.affectedByGravity = false
         playerSensor.physicsBody!.categoryBitMask = ColliderType.EnemySensor
         playerSensor.physicsBody!.contactTestBitMask = ColliderType.Hero
         playerSensor.physicsBody!.isDynamic = false
         self.addChild(playerSensor)
-        playerSensor.position = CGPoint(x: sensorPos, y: -150)
+        playerSensor.position = CGPoint(x: sensorPos, y: 150)
         
         self.run(SKAction.repeatForever(SKAction.animate(with: standingFrames,
                                                          timePerFrame: 0.1,
