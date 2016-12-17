@@ -37,7 +37,9 @@ class DashingEnemy: Enemy {
     override func act() {
         //physicsBody!.applyImpulse(dashForce)
         physicsBody!.velocity = velocity
-        enemySound.run(SKAction.play())
+        if !defaults.bool(forKey: "muted") {
+            enemySound.run(SKAction.play())
+        }
     }
     
     

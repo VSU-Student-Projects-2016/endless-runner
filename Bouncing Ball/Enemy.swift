@@ -18,6 +18,7 @@ public class Enemy: SKSpriteNode {
     var isDead = false
     let playerSensor = SKNode()
     var sensorPos = -300
+    var defaults = UserDefaults.standard
     
     convenience init(image: String, pos: CGPoint) {
         self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground | ColliderType.PlatformSensor)

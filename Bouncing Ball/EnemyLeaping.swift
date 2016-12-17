@@ -57,7 +57,9 @@ class LeapingEnemy: Enemy{
         self.physicsBody!.applyImpulse(CGVector(dx: horizontalForce, dy: verticalForce))
         //self.run(SKAction.animate(with: actFrames, timePerFrame: 0.1, resize: false, restore: true))
         playerSensor.removeFromParent()
-        enemySound.run(SKAction.play())
+        if !defaults.bool(forKey: "muted") {
+            enemySound.run(SKAction.play())
+        }
         texture = SKTexture(imageNamed: "Freddy3")
     }
     

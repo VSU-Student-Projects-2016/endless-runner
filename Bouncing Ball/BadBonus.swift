@@ -17,6 +17,10 @@ class BadBonus: Bonus {
     
     override init(image: String, pos: CGPoint, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32, energyMod: Float, score: Int) {
         super.init(image: image, pos: pos, categoryBitMask: categoryBitMask, contactTestBitMask: contactTestBitMask, collisionBitMask: collisionBitMask, energyMod: energyMod, score: score)
+        
+        let particles = SKEmitterNode(fileNamed: "BadFishParticle")
+        addChild(particles!)
+        particles!.position = CGPoint(x: 0, y: self.size.height / 2)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -69,7 +69,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             defaults.set(score, forKey: "highScore")
         }
         
-        view.showsPhysics = true
+        //view.showsPhysics = true
         pauseButton = UIButton(frame: CGRect(x: self.frame.midX - 100, y: self.frame.minY, width: 200.0, height: 100.0))
         pauseButton.setTitle("Pause", for: .normal)
         pauseButton.setTitleColor(.red, for: .normal)
@@ -187,21 +187,24 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             } else {
                 bonus = contact.bodyB.node as! Bonus
             }
-            let bonusSound = SKAudioNode()
-            bonusSound.autoplayLooped = false
-            self.addChild(bonusSound)
+            if !defaults.bool(forKey: "muted") {
+                let bonusSound = SKAudioNode()
+                bonusSound.autoplayLooped = false
+                self.addChild(bonusSound)
             
-            let playSound: SKAction
-            if bonus is BadBonus {
-                playSound = SKAction.playSoundFileNamed(SOUND_EFFECT_BAD_BONUS, waitForCompletion: true)
-            } else
-                if bonus is GoldBonus {
+                let playSound: SKAction
+                if bonus is BadBonus {
                     playSound = SKAction.playSoundFileNamed(SOUND_EFFECT_BAD_BONUS, waitForCompletion: true)
-                } else {
-                    playSound = SKAction.playSoundFileNamed(SOUND_EFFECT_BONUS, waitForCompletion: true)
+                } else
+                    if bonus is GoldBonus {
+                        playSound = SKAction.playSoundFileNamed(SOUND_EFFECT_BAD_BONUS, waitForCompletion: true)
+                    } else {
+                        playSound = SKAction.playSoundFileNamed(SOUND_EFFECT_BONUS, waitForCompletion: true)
+                }
+                let remove = SKAction.removeFromParent()
+            
+                bonusSound.run(SKAction.sequence([playSound, remove]))
             }
-            let remove = SKAction.removeFromParent()
-            bonusSound.run(SKAction.sequence([playSound, remove]))
             
             if hero.energy < 1.0 {
                 hero.energy += bonus.energyMod!

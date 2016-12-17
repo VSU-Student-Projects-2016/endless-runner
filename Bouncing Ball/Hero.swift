@@ -29,6 +29,8 @@ public class Hero: SKSpriteNode {
     var powerUps = [PowerUpTypes: PowerUp]()
     
     let jumpPower = 80.0
+    var defaults = UserDefaults.standard
+    
     
     private let heroAnimatedAtlas = SKTextureAtlas(named: "Hero Images")
     var walkFrames = [SKTexture]()
@@ -77,7 +79,9 @@ public class Hero: SKSpriteNode {
     }
     
     public func hitByEnemy() {
-        enemyContactSound.run(SKAction.play())
+        if !defaults.bool(forKey: "muted") {
+            enemyContactSound.run(SKAction.play())
+        }
         lives -= 1
     }
     
@@ -89,7 +93,9 @@ public class Hero: SKSpriteNode {
     
     func jump() {
         if jumpsAllowed > 0 {
-             jumpSound.run(SKAction.play())
+            if !defaults.bool(forKey: "muted") {
+                jumpSound.run(SKAction.play())
+            }
             
             if jumpsAllowed == maxJumpsAllowed {
                 self.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: jumpPower))

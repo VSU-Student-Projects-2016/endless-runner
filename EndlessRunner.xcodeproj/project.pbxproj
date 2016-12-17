@@ -13,6 +13,10 @@
 		84B9D7881DD8D8C7008E8F4B /* PlatformBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */; };
 		84D215D71DE1A3B90070F691 /* EnemyLeaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D215D61DE1A3B90070F691 /* EnemyLeaping.swift */; };
 		AE111DBC1DFC244A0037B58A /* PressStart2P.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE111DBB1DFC23AE0037B58A /* PressStart2P.ttf */; };
+		AE1132141E0539B7005A2134 /* GoldFishParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = AE1132121E0539B7005A2134 /* GoldFishParticle.sks */; };
+		AE1132151E0539B7005A2134 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = AE1132131E0539B7005A2134 /* spark.png */; };
+		AE20A8C91E0542B3008E9CEF /* BadFishParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = AE20A8C71E0542B3008E9CEF /* BadFishParticle.sks */; };
+		AE20A8D61E0548A1008E9CEF /* BonusParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = AE20A8D51E0548A1008E9CEF /* BonusParticle.sks */; };
 		AE64566C1DE9898B00610C84 /* GoldBonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE64566B1DE9898B00610C84 /* GoldBonus.swift */; };
 		AE64566E1DE9934000610C84 /* BadBonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE64566D1DE9934000610C84 /* BadBonus.swift */; };
 		AE6456701DE9B4E600610C84 /* StartPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE64566F1DE9B4E600610C84 /* StartPlatform.swift */; };
@@ -60,6 +64,10 @@
 		84B9D7871DD8D8C7008E8F4B /* PlatformBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformBar.swift; sourceTree = "<group>"; };
 		84D215D61DE1A3B90070F691 /* EnemyLeaping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyLeaping.swift; sourceTree = "<group>"; };
 		AE111DBB1DFC23AE0037B58A /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
+		AE1132121E0539B7005A2134 /* GoldFishParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GoldFishParticle.sks; sourceTree = "<group>"; };
+		AE1132131E0539B7005A2134 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		AE20A8C71E0542B3008E9CEF /* BadFishParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BadFishParticle.sks; sourceTree = "<group>"; };
+		AE20A8D51E0548A1008E9CEF /* BonusParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BonusParticle.sks; sourceTree = "<group>"; };
 		AE64566B1DE9898B00610C84 /* GoldBonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoldBonus.swift; sourceTree = "<group>"; };
 		AE64566D1DE9934000610C84 /* BadBonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadBonus.swift; sourceTree = "<group>"; };
 		AE64566F1DE9B4E600610C84 /* StartPlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartPlatform.swift; sourceTree = "<group>"; };
@@ -174,6 +182,8 @@
 		AECFADD41D967D36007ADC7B = {
 			isa = PBXGroup;
 			children = (
+				AE20A8D51E0548A1008E9CEF /* BonusParticle.sks */,
+				AE20A8C71E0542B3008E9CEF /* BadFishParticle.sks */,
 				AECFADDF1D967D36007ADC7B /* EndlessRunner */,
 				AECFADDE1D967D36007ADC7B /* Products */,
 			);
@@ -217,6 +227,8 @@
 				AE9829E11DC49EA80065F3B0 /* PlatformGenerator.swift */,
 				AE9829E31DC4AD360065F3B0 /* PlatformTemplate.swift */,
 				AEE3CCEA1DF2C9B6004DDE3C /* Sounds.swift */,
+				AE1132121E0539B7005A2134 /* GoldFishParticle.sks */,
+				AE1132131E0539B7005A2134 /* spark.png */,
 			);
 			name = EndlessRunner;
 			path = "Bouncing Ball";
@@ -286,8 +298,12 @@
 				AEE3CCE91DF2C71A004DDE3C /* heroJump.wav in Resources */,
 				AEE3CCED1DF2D4CE004DDE3C /* collectBonus.wav in Resources */,
 				AECFADEC1D967D36007ADC7B /* Main.storyboard in Resources */,
+				AE1132151E0539B7005A2134 /* spark.png in Resources */,
 				AEE3CCEF1DF2E80C004DDE3C /* collectBadBonus.wav in Resources */,
+				AE20A8D61E0548A1008E9CEF /* BonusParticle.sks in Resources */,
+				AE20A8C91E0542B3008E9CEF /* BadFishParticle.sks in Resources */,
 				AECFADE31D967D36007ADC7B /* GameScene.sks in Resources */,
+				AE1132141E0539B7005A2134 /* GoldFishParticle.sks in Resources */,
 				AEE3CCF31DF2EDBD004DDE3C /* hitByEnemy.mp3 in Resources */,
 				AECFADEE1D967D36007ADC7B /* Assets.xcassets in Resources */,
 				AECFADF11D967D36007ADC7B /* LaunchScreen.storyboard in Resources */,

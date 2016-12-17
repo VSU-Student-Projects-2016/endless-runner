@@ -35,8 +35,10 @@ class JumpingEnemy: Enemy{
     func jump() {
         if self.physicsBody!.velocity.dy <= 10 && active {
             self.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: jumpForce))
-            //ChangeImage(image: "hero_jump")
-            enemySound.run(SKAction.play())
+            
+            if !defaults.bool(forKey: "muted") {
+                enemySound.run(SKAction.play())
+            }
         }
     }
     
