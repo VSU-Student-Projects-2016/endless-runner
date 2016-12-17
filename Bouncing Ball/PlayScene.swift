@@ -541,6 +541,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             //}
         }
         
+        if score % 100 == 0 {
+            if lives.count < hero.maxLives {
+                lives.append(SKSpriteNode(texture: SKTexture(imageNamed: "heart")))
+                lives[lives.count - 1].position = CGPoint(x: CGFloat(30), y: self.frame.maxY - 25)
+                addChild(lives[lives.count - 1])
+            }
+        }
+        
         // Decrease hero speed after dash
         if hero.speedMult > 1.0 {
             hero.speedMult -= 0.05
