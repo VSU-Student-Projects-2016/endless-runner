@@ -42,10 +42,10 @@ class LeapingEnemy: Enemy{
         self.addChild(playerSensor)
         playerSensor.position = CGPoint(x: sensorPos, y: 150)
         
-        self.run(SKAction.repeatForever(SKAction.animate(with: standingFrames,
-                                                         timePerFrame: 0.1,
-                                                         resize: false,
-                                                         restore: true)), withKey: "wait")
+//        self.run(SKAction.repeatForever(SKAction.animate(with: standingFrames,
+//                                                         timePerFrame: 0.1,
+//                                                         resize: false,
+//                                                         restore: true)), withKey: "wait")
         
         enemySound.autoplayLooped = false
         self.addChild(enemySound)
