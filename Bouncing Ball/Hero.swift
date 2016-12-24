@@ -83,6 +83,15 @@ public class Hero: SKSpriteNode {
             enemyContactSound.run(SKAction.play())
         }
         lives -= 1
+        let fadeOut = SKAction.fadeAlpha(to: 0, duration: 0.15)
+        let fadeIn = SKAction.fadeAlpha(to: 1, duration: 0.15)
+        var sequence = [SKAction]()
+        for _ in 0..<3 {
+            sequence.append(fadeOut)
+            sequence.append(fadeIn)
+        }
+        speedMult = 0
+        run(SKAction.sequence(sequence))
     }
     
     public func update() {
@@ -123,9 +132,14 @@ public class Hero: SKSpriteNode {
     }
     
     func dash() {
-        if (energy >= dashCost && speedMult == 1.0) {
+        if (speedMult < 1) {
             energy -= dashCost
-            speedMult *= 4
+            speedMult = 3
+        } else {
+            if (energy >= dashCost && speedMult < 1.1) {
+                energy -= dashCost
+                speedMult *= 4
+            }
         }
     }
     

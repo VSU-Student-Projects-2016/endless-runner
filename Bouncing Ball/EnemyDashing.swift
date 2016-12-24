@@ -16,13 +16,12 @@ class DashingEnemy: Enemy {
     var actFrames = [SKTexture]()
     
     convenience init(image: String, pos: CGPoint) {
-        self.init(image: "Driver1", pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
+        self.init(image: "Racer1", pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
     }
     
     override init(image: String, pos: CGPoint, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32){
         super.init(image: image, pos: pos, categoryBitMask: categoryBitMask, contactTestBitMask: contactTestBitMask, collisionBitMask: collisionBitMask)
         //physicsBody!.velocity = velocity
-        
         playerSensor.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10.0, height: 1000.0))
         playerSensor.physicsBody!.affectedByGravity = false
         playerSensor.physicsBody!.categoryBitMask = ColliderType.EnemySensor
@@ -32,12 +31,15 @@ class DashingEnemy: Enemy {
         playerSensor.position = CGPoint(x: sensorPos, y: 150)
         
         for i in 1..<5 {
-            actFrames.append(SKTexture(imageNamed: "Driver" + String(i)))
+            actFrames.append(SKTexture(imageNamed: "Racer" + String(i)))
+            
         }
         self.run(SKAction.repeatForever(SKAction.animate(with: actFrames,
                                                          timePerFrame: 0.1,
                                                          resize: false,
                                                          restore: true)))
+        
+        self.size = CGSize(width: self.size.width * 0.9, height: self.size.height * 0.9)
         
         enemySound.autoplayLooped = false
         self.addChild(enemySound)

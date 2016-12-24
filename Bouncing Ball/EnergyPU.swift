@@ -17,9 +17,9 @@ public class EnergyPU: SKSpriteNode, PowerUp {
     let energyIncrease = Float(0.001)
     
     public init(image: String) {
-        let texture = SKTexture(imageNamed: image)
+        let texture = SKTexture(imageNamed: "PowerUp")
         super.init(texture: texture, color: .clear, size: texture.size())
-        
+        self.size = CGSize(width: self.size.width * 0.7, height: self.size.height * 0.7)
         energyTextureOnHero = SKSpriteNode(texture: texture)
         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         physicsBody!.categoryBitMask = ColliderType.PowerUp

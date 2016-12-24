@@ -500,6 +500,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         hero.update()
         
+        
         // Temporary stop error handling
         if hero.position == lastHeroPosition && stopErrorText.position != cameraNode.position {
             //stopErrorText = SKLabelNode(fontNamed: "Chalkduster")
@@ -570,8 +571,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             hero.speedMult -= 0.05
         }
         if hero.speedMult < 1.0 {
-            hero.speedMult = 1.0
+            hero.speedMult += 0.01
         }
+        //if hero.speedMult < 1.0 {
+            //hero.speedMult = 1.0
+        //}
         
         // Make hero yet a little more tired
         hero.energy -= energyConsumption
