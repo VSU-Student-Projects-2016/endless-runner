@@ -50,6 +50,9 @@
 		AEE835051DCDDAE500F3B79A /* GapPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */; };
 		AEE835071DCDE5F700F3B79A /* TripleMiniPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE835061DCDE5F700F3B79A /* TripleMiniPlatformCreator.swift */; };
 		AEE835091DCDEC0F00F3B79A /* SingleMiniPlatformCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE835081DCDEC0F00F3B79A /* SingleMiniPlatformCreator.swift */; };
+		AEE99FFF1E0EACE70077CE3F /* EnergyPowerupParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = AEE99FFD1E0EACE70077CE3F /* EnergyPowerupParticle.sks */; };
+		AEE9A0051E0EB1B10077CE3F /* EnergyPlayerParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = AEE9A0031E0EB1B10077CE3F /* EnergyPlayerParticle.sks */; };
+		AEE9A0061E0EB1B10077CE3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEE9A0041E0EB1B10077CE3F /* Assets.xcassets */; };
 		AEF052A71DBB5BA7000F8F0B /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052A61DBB5BA7000F8F0B /* Enemy.swift */; };
 		AEF052A91DBB5E6F000F8F0B /* Bonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052A81DBB5E6F000F8F0B /* Bonus.swift */; };
 		AEF052AB1DBB78AE000F8F0B /* GarbageCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF052AA1DBB78AE000F8F0B /* GarbageCollector.swift */; };
@@ -103,6 +106,9 @@
 		AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GapPlatformCreator.swift; sourceTree = "<group>"; };
 		AEE835061DCDE5F700F3B79A /* TripleMiniPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripleMiniPlatformCreator.swift; sourceTree = "<group>"; };
 		AEE835081DCDEC0F00F3B79A /* SingleMiniPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleMiniPlatformCreator.swift; sourceTree = "<group>"; };
+		AEE99FFD1E0EACE70077CE3F /* EnergyPowerupParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnergyPowerupParticle.sks; sourceTree = "<group>"; };
+		AEE9A0031E0EB1B10077CE3F /* EnergyPlayerParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnergyPlayerParticle.sks; sourceTree = "<group>"; };
+		AEE9A0041E0EB1B10077CE3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AEF052A61DBB5BA7000F8F0B /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		AEF052A81DBB5E6F000F8F0B /* Bonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bonus.swift; sourceTree = "<group>"; };
 		AEF052AA1DBB78AE000F8F0B /* GarbageCollector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarbageCollector.swift; sourceTree = "<group>"; };
@@ -182,6 +188,9 @@
 		AECFADD41D967D36007ADC7B = {
 			isa = PBXGroup;
 			children = (
+				AEE9A0031E0EB1B10077CE3F /* EnergyPlayerParticle.sks */,
+				AEE9A0041E0EB1B10077CE3F /* Assets.xcassets */,
+				AEE99FFD1E0EACE70077CE3F /* EnergyPowerupParticle.sks */,
 				AE20A8D51E0548A1008E9CEF /* BonusParticle.sks */,
 				AE20A8C71E0542B3008E9CEF /* BadFishParticle.sks */,
 				AECFADDF1D967D36007ADC7B /* EndlessRunner */,
@@ -302,12 +311,15 @@
 				AE1132151E0539B7005A2134 /* spark.png in Resources */,
 				AEE3CCEF1DF2E80C004DDE3C /* collectBadBonus.wav in Resources */,
 				AE20A8D61E0548A1008E9CEF /* BonusParticle.sks in Resources */,
+				AEE99FFF1E0EACE70077CE3F /* EnergyPowerupParticle.sks in Resources */,
 				AE20A8C91E0542B3008E9CEF /* BadFishParticle.sks in Resources */,
 				AECFADE31D967D36007ADC7B /* GameScene.sks in Resources */,
 				AE1132141E0539B7005A2134 /* GoldFishParticle.sks in Resources */,
 				AEE3CCF31DF2EDBD004DDE3C /* hitByEnemy.mp3 in Resources */,
 				AECFADEE1D967D36007ADC7B /* Assets.xcassets in Resources */,
 				AECFADF11D967D36007ADC7B /* LaunchScreen.storyboard in Resources */,
+				AEE9A0051E0EB1B10077CE3F /* EnergyPlayerParticle.sks in Resources */,
+				AEE9A0061E0EB1B10077CE3F /* Assets.xcassets in Resources */,
 				AECFADE51D967D36007ADC7B /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,7 +429,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -461,7 +473,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

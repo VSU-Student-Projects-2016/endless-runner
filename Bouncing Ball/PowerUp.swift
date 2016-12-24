@@ -28,19 +28,3 @@ public extension PowerUp {
         return false
     }
 }
-
-
-//public class EndlessEnergyComponent: PowerUp {
-//    public func shouldAffectEnergy() -> Bool {
-//        return true
-//    }
-//}
-
-
-
-//public class FooComponent: PowerUp, Updatable {
-//    
-//}
-
-// if let ca = component as? Updatabe {
-//    updatables.append(ca)

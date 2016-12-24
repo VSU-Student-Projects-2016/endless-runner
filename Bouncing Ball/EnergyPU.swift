@@ -13,29 +13,32 @@ public class EnergyPU: SKSpriteNode, PowerUp {
     let maxTimeLimit = 300
     var currentTime = 300
     var hero: Hero?
-    var energyTextureOnHero: SKSpriteNode?
+    var energyParticlesOnHero: SKEmitterNode?
     let energyIncrease = Float(0.001)
     
     public init(image: String) {
         let texture = SKTexture(imageNamed: "PowerUp")
         super.init(texture: texture, color: .clear, size: texture.size())
-        self.size = CGSize(width: self.size.width * 0.7, height: self.size.height * 0.7)
-        energyTextureOnHero = SKSpriteNode(texture: texture)
+        self.size = CGSize(width: self.size.width * 0.5, height: self.size.height * 0.5)
         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         physicsBody!.categoryBitMask = ColliderType.PowerUp
         physicsBody!.contactTestBitMask = ColliderType.Hero
         physicsBody!.isDynamic = false
         physicsBody!.affectedByGravity = false
+        let particles = SKEmitterNode(fileNamed: "EnergyPowerupParticle")
+        addChild(particles!)
+        particles!.position = CGPoint(x: 0, y: 0)
     }
     
     public func onAdd(to hero: Hero) {
         self.hero = hero
-        energyTextureOnHero?.zPosition = 99
-        hero.addChild(energyTextureOnHero!)
         if hero.powerUps[PowerUpTypes.Energy] != nil {
             hero.powerUps[PowerUpTypes.Energy]!.removeFromHero()
         }
         hero.powerUps[PowerUpTypes.Energy] = self
+        energyParticlesOnHero = SKEmitterNode(fileNamed: "EnergyPlayerParticle")
+        hero.addChild(energyParticlesOnHero!)
+        energyParticlesOnHero!.position = CGPoint(x: 0, y: 0)
     }
     
     public func update() {
@@ -55,7 +58,7 @@ public class EnergyPU: SKSpriteNode, PowerUp {
     }
     
     public func removeFromHero() {
-        energyTextureOnHero!.removeFromParent()
+        energyParticlesOnHero!.removeFromParent()
         hero!.powerUps[PowerUpTypes.Energy] = nil
     }
     
