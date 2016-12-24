@@ -69,8 +69,8 @@
 		AE111DBB1DFC23AE0037B58A /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
 		AE1132121E0539B7005A2134 /* GoldFishParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GoldFishParticle.sks; sourceTree = "<group>"; };
 		AE1132131E0539B7005A2134 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		AE20A8C71E0542B3008E9CEF /* BadFishParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BadFishParticle.sks; sourceTree = "<group>"; };
-		AE20A8D51E0548A1008E9CEF /* BonusParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BonusParticle.sks; sourceTree = "<group>"; };
+		AE20A8C71E0542B3008E9CEF /* BadFishParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = BadFishParticle.sks; path = ../BadFishParticle.sks; sourceTree = "<group>"; };
+		AE20A8D51E0548A1008E9CEF /* BonusParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = BonusParticle.sks; path = ../BonusParticle.sks; sourceTree = "<group>"; };
 		AE64566B1DE9898B00610C84 /* GoldBonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoldBonus.swift; sourceTree = "<group>"; };
 		AE64566D1DE9934000610C84 /* BadBonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadBonus.swift; sourceTree = "<group>"; };
 		AE64566F1DE9B4E600610C84 /* StartPlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartPlatform.swift; sourceTree = "<group>"; };
@@ -106,9 +106,9 @@
 		AEE835041DCDDAE500F3B79A /* GapPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GapPlatformCreator.swift; sourceTree = "<group>"; };
 		AEE835061DCDE5F700F3B79A /* TripleMiniPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripleMiniPlatformCreator.swift; sourceTree = "<group>"; };
 		AEE835081DCDEC0F00F3B79A /* SingleMiniPlatformCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleMiniPlatformCreator.swift; sourceTree = "<group>"; };
-		AEE99FFD1E0EACE70077CE3F /* EnergyPowerupParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnergyPowerupParticle.sks; sourceTree = "<group>"; };
-		AEE9A0031E0EB1B10077CE3F /* EnergyPlayerParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnergyPlayerParticle.sks; sourceTree = "<group>"; };
-		AEE9A0041E0EB1B10077CE3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AEE99FFD1E0EACE70077CE3F /* EnergyPowerupParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = EnergyPowerupParticle.sks; path = ../EnergyPowerupParticle.sks; sourceTree = "<group>"; };
+		AEE9A0031E0EB1B10077CE3F /* EnergyPlayerParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = EnergyPlayerParticle.sks; path = ../EnergyPlayerParticle.sks; sourceTree = "<group>"; };
+		AEE9A0041E0EB1B10077CE3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		AEF052A61DBB5BA7000F8F0B /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		AEF052A81DBB5E6F000F8F0B /* Bonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bonus.swift; sourceTree = "<group>"; };
 		AEF052AA1DBB78AE000F8F0B /* GarbageCollector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarbageCollector.swift; sourceTree = "<group>"; };
@@ -169,7 +169,6 @@
 		84D215DB1DE1A5210070F691 /* Bonuses */ = {
 			isa = PBXGroup;
 			children = (
-				AEF052A81DBB5E6F000F8F0B /* Bonus.swift */,
 				AE64566B1DE9898B00610C84 /* GoldBonus.swift */,
 				AE64566D1DE9934000610C84 /* BadBonus.swift */,
 			);
@@ -188,11 +187,6 @@
 		AECFADD41D967D36007ADC7B = {
 			isa = PBXGroup;
 			children = (
-				AEE9A0031E0EB1B10077CE3F /* EnergyPlayerParticle.sks */,
-				AEE9A0041E0EB1B10077CE3F /* Assets.xcassets */,
-				AEE99FFD1E0EACE70077CE3F /* EnergyPowerupParticle.sks */,
-				AE20A8D51E0548A1008E9CEF /* BonusParticle.sks */,
-				AE20A8C71E0542B3008E9CEF /* BadFishParticle.sks */,
 				AECFADDF1D967D36007ADC7B /* EndlessRunner */,
 				AECFADDE1D967D36007ADC7B /* Products */,
 			);
@@ -209,6 +203,12 @@
 		AECFADDF1D967D36007ADC7B /* EndlessRunner */ = {
 			isa = PBXGroup;
 			children = (
+				AEE9A0031E0EB1B10077CE3F /* EnergyPlayerParticle.sks */,
+				AEE9A0041E0EB1B10077CE3F /* Assets.xcassets */,
+				AEE99FFD1E0EACE70077CE3F /* EnergyPowerupParticle.sks */,
+				AE20A8D51E0548A1008E9CEF /* BonusParticle.sks */,
+				AE20A8C71E0542B3008E9CEF /* BadFishParticle.sks */,
+				AEF052A81DBB5E6F000F8F0B /* Bonus.swift */,
 				84D215DB1DE1A5210070F691 /* Bonuses */,
 				84D215D81DE1A3CC0070F691 /* Enemies */,
 				84D215DC1DE1A5320070F691 /* Platforms */,
