@@ -10,8 +10,8 @@ import Foundation
 import SpriteKit
 
 class LeapingEnemy: Enemy{
-    let horizontalForce = -75.0
-    let verticalForce = 65.0
+    let horizontalForce = -70.0
+    let verticalForce = 100.0
     
     let enemySound = SKAudioNode(fileNamed: SOUND_EFFECT_LEAPING_ENEMY)
     
@@ -33,8 +33,7 @@ class LeapingEnemy: Enemy{
         standingFrames.append(SKTexture(imageNamed: "Freddy1"))
         standingFrames.append(SKTexture(imageNamed: "Freddy4"))
         
-        //self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        //position = pos
+        self.physicsBody!.mass *= 2
         playerSensor.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10.0, height: 1000.0))
         playerSensor.physicsBody!.affectedByGravity = false
         playerSensor.physicsBody!.categoryBitMask = ColliderType.EnemySensor

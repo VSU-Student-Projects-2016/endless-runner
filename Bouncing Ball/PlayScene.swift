@@ -45,7 +45,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var speedUp = true
     
-    var speedUpMult = Float(1.15)
+    var speedUpMult = Float(1.05)
     
     let cameraNode = SKCameraNode()
     
@@ -64,6 +64,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var defaults = UserDefaults.standard
     
     var lives = [SKSpriteNode]()
+    
+    var cameraPositionY : CGFloat!
+    
+    
     
     override func didMove(to view: SKView) {
         
@@ -137,6 +141,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         cameraNode.position = CGPoint(x: self.frame.midX - 50, y: self.frame.midY)
         self.addChild(cameraNode)
         self.camera = cameraNode
+        cameraPositionY = cameraNode.position.y
         
         // Temporary error notice
         stopErrorText.text = "Hero doesn't move"
@@ -164,11 +169,17 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func didEnd(_ contact: SKPhysicsContact) {
+        if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Ground){
+            hero.jumpsAllowed -= 1
+        }
+    }
     
     func didBegin(_ contact: SKPhysicsContact) {
         
         // Hero touches the ground
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Ground){
+            hero.jumpsAllowed = hero.maxJumpsAllowed
             let heroTmp: SKNode
             let groundTmp: SKNode
             if contact.bodyA.categoryBitMask == ColliderType.Hero {
@@ -570,13 +581,17 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     override func didSimulatePhysics() {
         super.didSimulatePhysics()
         cameraNode.position = CGPoint(x: hero.position.x + self.frame.width / 4, y: cameraNode.position.y)
+        if hero.position.y > self.frame.size.height * 0.6 {
+            cameraNode.position = CGPoint(x: cameraNode.position.x, y: self.hero.position.y)
+        } else {
+            cameraNode.position.y = cameraPositionY
+        }
         self.scoreText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2.25,
-                                          y: scene!.camera!.position.y + frame.size.height / 2.7)
-        livesText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 3.2,
-                                     y: livesText.position.y)
+                                          y: scene!.camera!.position.y + frame.size.height / 2 * 0.8)
+        
         for i in 0..<lives.count {
             lives[i].position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 3.2 + CGFloat(i*40),
-                                        y: lives[i].position.y)
+                                        y: cameraNode.position.y + frame.size.height / 2 * 0.9)
         }
         garbageCollector.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2 - garbageCollector.size.width, y: garbageCollector.position.y)
         

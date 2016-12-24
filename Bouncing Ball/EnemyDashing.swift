@@ -13,9 +13,10 @@ class DashingEnemy: Enemy {
     let velocity = CGVector(dx: -250, dy: 0)
     
     let enemySound = SKAudioNode(fileNamed: SOUND_EFFECT_DASHING_ENEMY)
+    var actFrames = [SKTexture]()
     
     convenience init(image: String, pos: CGPoint) {
-        self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
+        self.init(image: "Driver1", pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
     }
     
     override init(image: String, pos: CGPoint, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32){
@@ -29,6 +30,14 @@ class DashingEnemy: Enemy {
         playerSensor.physicsBody!.isDynamic = false
         self.addChild(playerSensor)
         playerSensor.position = CGPoint(x: sensorPos, y: 150)
+        
+        for i in 1..<5 {
+            actFrames.append(SKTexture(imageNamed: "Driver" + String(i)))
+        }
+        self.run(SKAction.repeatForever(SKAction.animate(with: actFrames,
+                                                         timePerFrame: 0.1,
+                                                         resize: false,
+                                                         restore: true)))
         
         enemySound.autoplayLooped = false
         self.addChild(enemySound)

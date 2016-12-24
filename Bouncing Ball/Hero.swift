@@ -104,7 +104,7 @@ public class Hero: SKSpriteNode {
                 stopRunning()
                 changeImage(image: "3_Jump")
                 
-                jumpsAllowed -= 1
+                //jumpsAllowed -= 1
             }
             else {
                 if energy >= doubleJumpCost {

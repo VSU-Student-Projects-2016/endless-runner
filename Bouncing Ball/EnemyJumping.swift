@@ -15,12 +15,15 @@ class JumpingEnemy: Enemy{
     
     let enemySound = SKAudioNode(fileNamed: SOUND_EFFECT_JUMPING_ENEMY)
     
+    var actFrames = [SKTexture]()
+    
     convenience init(image: String, pos: CGPoint) {
-        self.init(image: image, pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
+        self.init(image: "Jumper1", pos: pos, categoryBitMask: ColliderType.Enemy, contactTestBitMask: ColliderType.Hero | ColliderType.Ground, collisionBitMask: ColliderType.Ground)
     }
     
     override init(image: String, pos: CGPoint, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32){
         super.init(image: image, pos: pos, categoryBitMask: categoryBitMask, contactTestBitMask: contactTestBitMask, collisionBitMask: collisionBitMask)
+        self.physicsBody!.mass *= 3
         playerSensor.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10.0, height: 1000.0))
         playerSensor.physicsBody!.affectedByGravity = false
         playerSensor.physicsBody!.categoryBitMask = ColliderType.EnemySensor
@@ -30,6 +33,11 @@ class JumpingEnemy: Enemy{
         playerSensor.position = CGPoint(x: sensorPos, y: 150)
         enemySound.autoplayLooped = false
         self.addChild(enemySound)
+        
+        for i in 2..<4 {
+            actFrames.append(SKTexture(imageNamed: "Jumper" + String(i)))
+        }
+        
     }
     
     func jump() {
@@ -43,6 +51,7 @@ class JumpingEnemy: Enemy{
     }
     
     override func act() {
+        self.run(SKAction.animate(with: actFrames, timePerFrame: 0.1, resize: false, restore: true))
         active = true
         jump()
     }
