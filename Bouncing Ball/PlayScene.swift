@@ -502,18 +502,18 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         
         // Temporary stop error handling
-        if hero.position == lastHeroPosition && stopErrorText.position != cameraNode.position {
-            //stopErrorText = SKLabelNode(fontNamed: "Chalkduster")
-            stopErrorText.text = "Hero doesn't move"
-            stopErrorText.fontSize = 42
-            stopErrorText.position = cameraNode.position
-            stopErrorText.position = cameraNode.position
-            self.addChild(stopErrorText)
-        }
-        if hero.position != lastHeroPosition {
-            stopErrorText.removeFromParent()
-        }
-        lastHeroPosition = hero.position
+//        if hero.position == lastHeroPosition && stopErrorText.position != cameraNode.position {
+//            //stopErrorText = SKLabelNode(fontNamed: "Chalkduster")
+//            stopErrorText.text = "Hero doesn't move"
+//            stopErrorText.fontSize = 42
+//            stopErrorText.position = cameraNode.position
+//            stopErrorText.position = cameraNode.position
+//            self.addChild(stopErrorText)
+//        }
+//        if hero.position != lastHeroPosition {
+//            stopErrorText.removeFromParent()
+//        }
+//        lastHeroPosition = hero.position
         
         // Update energy bar
         energyBar.progress = hero.energy
@@ -558,6 +558,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             //}
         }
         
+        // Add extra life for a 100 scores
         if score % 100 == 0 {
             if lives.count < hero.maxLives {
                 lives.append(SKSpriteNode(texture: SKTexture(imageNamed: "heart")))
@@ -592,8 +593,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         // Handle camera position
         cameraNode.position = CGPoint(x: hero.position.x + self.frame.width / 4, y: cameraNode.position.y)
+        print(self.frame.size.height)
         if hero.position.y > self.frame.size.height * 0.6 {
-            if cameraNode.position.y < self.frame.size.height * 1.1 {
+            if hero.position.y < self.frame.size.height * 1.1 {
                 cameraNode.position = CGPoint(x: cameraNode.position.x, y: self.hero.position.y)
             }
         } else {
