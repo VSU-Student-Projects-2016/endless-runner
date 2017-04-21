@@ -589,21 +589,35 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     override func didSimulatePhysics() {
         super.didSimulatePhysics()
+        
+        // Handle camera position
         cameraNode.position = CGPoint(x: hero.position.x + self.frame.width / 4, y: cameraNode.position.y)
         if hero.position.y > self.frame.size.height * 0.6 {
-            cameraNode.position = CGPoint(x: cameraNode.position.x, y: self.hero.position.y)
+            if cameraNode.position.y < self.frame.size.height * 1.1 {
+                cameraNode.position = CGPoint(x: cameraNode.position.x, y: self.hero.position.y)
+            }
         } else {
-            cameraNode.position.y = cameraPositionY
+            if cameraNode.position.y > cameraPositionY {
+                cameraNode.position = CGPoint(x: cameraNode.position.x, y: self.hero.position.y)
+            } else {
+                cameraNode.position.y = cameraPositionY
+            }
         }
-        self.scoreText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2.25,
+        
+        // Draw score
+        self.scoreText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2.4,
                                           y: scene!.camera!.position.y + frame.size.height / 2 * 0.8)
         
+        // Draw lives
         for i in 0..<lives.count {
             lives[i].position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 3.2 + CGFloat(i*40),
                                         y: cameraNode.position.y + frame.size.height / 2 * 0.9)
         }
+        
+        // Move garbage collector
         garbageCollector.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2 - garbageCollector.size.width, y: garbageCollector.position.y)
         
+        // Move fall detector
         fallDetector.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2, y: fallDetector.position.y)
     }
 }
