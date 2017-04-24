@@ -18,7 +18,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var currPlatform: PlatformTemplate!
     var nextPlatform: PlatformTemplate!
     
-    var heroVelocity = Float(300)
+    var heroVelocity = Float(200)
     let maxVelocity = Float(600)
     
     var platformGenerator = PlatformGenerator()
@@ -583,7 +583,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         hero.energy -= energyConsumption
         
         // Keep hero's speed
-        hero.physicsBody!.velocity = CGVector(dx: CGFloat(heroVelocity * hero.speedMult), dy: hero.physicsBody!.velocity.dy)
+        hero.physicsBody!.velocity = CGVector(dx: CGFloat(heroVelocity * hero.speedMult + heroVelocity * hero.energy), dy: hero.physicsBody!.velocity.dy)
         
         // Handle hero's fall
         hero.fall()
