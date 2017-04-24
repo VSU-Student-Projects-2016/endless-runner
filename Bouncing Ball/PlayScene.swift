@@ -38,14 +38,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     //var lastUpdateTimeInterval: TimeInterval = 0
     var platformsPassed = 0
-    var platformPassToSpeedUp = 2
+    var platformPassedToIncreaseDifficulty = 10
     
-    var countToChangeSpeed = 0
-    var maxCountToChangeSpeed = 5
-    
-    var speedUp = true
-    
-    var speedUpMult = Float(1.05)
+    var difficultyMult = Float(1.1)
     
     let cameraNode = SKCameraNode()
     
@@ -534,29 +529,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             currPlatform = self.nextPlatform!
             nextPlatform = nil
             
-            print(currPlatform.position.y) // log
-            
             // Increase difficulty
-            //if heroVelocity < maxVelocity {
-                platformsPassed += 1
-                if platformsPassed == platformPassToSpeedUp {
-                    countToChangeSpeed += 1
-                    if speedUp {
-                        heroVelocity *= speedUpMult
-                    } else {
-                        heroVelocity /= speedUpMult
-                    }
-                    platformsPassed = 0
-                    //if energyConsumption < maxEnergyConsumption {
-                        energyConsumption *= speedUpMult
-                    //}
-                }
+            platformsPassed += 1
+            if platformsPassed == platformPassedToIncreaseDifficulty {
+                platformsPassed = 0
+                energyConsumption *= difficultyMult
                 
-                if countToChangeSpeed == maxCountToChangeSpeed {
-                    speedUp = !speedUp
-                    countToChangeSpeed = 0
-                }
-            //}
+
+            }
         }
         
         // Add extra life for a 100 scores
