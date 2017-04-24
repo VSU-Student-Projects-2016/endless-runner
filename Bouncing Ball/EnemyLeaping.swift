@@ -33,7 +33,8 @@ class LeapingEnemy: Enemy{
         standingFrames.append(SKTexture(imageNamed: "Freddy1"))
         standingFrames.append(SKTexture(imageNamed: "Freddy4"))
         
-        self.physicsBody!.mass *= 2
+        //self.physicsBody!.mass *= 2
+        self.physicsBody!.mass *= 1.2
         playerSensor.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10.0, height: 1000.0))
         playerSensor.physicsBody!.affectedByGravity = false
         playerSensor.physicsBody!.categoryBitMask = ColliderType.EnemySensor

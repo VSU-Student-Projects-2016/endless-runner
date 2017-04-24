@@ -31,7 +31,8 @@ public class Enemy: SKSpriteNode {
 
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         position = pos
-        physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(self.size.width / 2))
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
+        //physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(self.size.width / 2))
         physicsBody!.categoryBitMask = categoryBitMask
         physicsBody!.contactTestBitMask = contactTestBitMask
         physicsBody!.collisionBitMask = collisionBitMask

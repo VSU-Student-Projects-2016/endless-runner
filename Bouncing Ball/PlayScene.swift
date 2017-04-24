@@ -325,18 +325,19 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         // Hero touches a platform sensor
         if (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == (ColliderType.Hero | ColliderType.PlatformSensor) {
-
-            let hero: Hero
-            let sensor: PlatformBar
-            if contact.bodyA.categoryBitMask == ColliderType.Hero {
-                hero = contact.bodyA.node! as! Hero
-                sensor = contact.bodyB.node! as! PlatformBar
-            } else {
-                hero = contact.bodyB.node! as! Hero
-                sensor = contact.bodyA.node! as! PlatformBar
-            }
-            if hero.position.y > sensor.position.y {
-                sensor.MakeSolid()
+            if hero.physicsBody!.velocity.dy < 0.01 {
+                let hero: Hero
+                let sensor: PlatformBar
+                if contact.bodyA.categoryBitMask == ColliderType.Hero {
+                    hero = contact.bodyA.node! as! Hero
+                    sensor = contact.bodyB.node! as! PlatformBar
+                } else {
+                    hero = contact.bodyB.node! as! Hero
+                    sensor = contact.bodyA.node! as! PlatformBar
+                }
+                if hero.position.y > sensor.position.y {
+                    sensor.MakeSolid()
+                }
             }
         }
         
@@ -574,9 +575,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         if hero.speedMult < 1.0 {
             hero.speedMult += 0.01
         }
-        //if hero.speedMult < 1.0 {
-            //hero.speedMult = 1.0
-        //}
+        if abs(hero.speedMult - 1.0) > 0.01 {
+            hero.isInvincible = false
+        }
         
         // Make hero yet a little more tired
         hero.energy -= energyConsumption

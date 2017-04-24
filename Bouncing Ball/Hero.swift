@@ -25,6 +25,7 @@ public class Hero: SKSpriteNode {
     
     let maxLives = 3
     var lives = 3
+    var isInvincible = false
     
     var powerUps = [PowerUpTypes: PowerUp]()
     
@@ -79,19 +80,22 @@ public class Hero: SKSpriteNode {
     }
     
     public func hitByEnemy() {
-        if !defaults.bool(forKey: "muted") {
-            enemyContactSound.run(SKAction.play())
+        if !isInvincible {
+            if !defaults.bool(forKey: "muted") {
+                enemyContactSound.run(SKAction.play())
+            }
+            lives -= 1
+            isInvincible = true
+            let fadeOut = SKAction.fadeAlpha(to: 0, duration: 0.15)
+            let fadeIn = SKAction.fadeAlpha(to: 1, duration: 0.15)
+            var sequence = [SKAction]()
+            for _ in 0..<3 {
+                sequence.append(fadeOut)
+                sequence.append(fadeIn)
+            }
+            speedMult = 0
+            run(SKAction.sequence(sequence))
         }
-        lives -= 1
-        let fadeOut = SKAction.fadeAlpha(to: 0, duration: 0.15)
-        let fadeIn = SKAction.fadeAlpha(to: 1, duration: 0.15)
-        var sequence = [SKAction]()
-        for _ in 0..<3 {
-            sequence.append(fadeOut)
-            sequence.append(fadeIn)
-        }
-        speedMult = 0
-        run(SKAction.sequence(sequence))
     }
     
     public func update() {
