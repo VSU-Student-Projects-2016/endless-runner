@@ -552,10 +552,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         if hero.speedMult > 1.0 {
             hero.speedMult -= 0.05
         }
+        
+        // Increase hero speed after being slowed down
         if hero.speedMult < 1.0 {
             hero.speedMult += 0.01
         }
-        if abs(hero.speedMult - 1.0) > 0.01 {
+        if abs(hero.speedMult - 1.0) < 0.001 {
             hero.isInvincible = false
         }
         

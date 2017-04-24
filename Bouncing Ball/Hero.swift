@@ -136,15 +136,15 @@ public class Hero: SKSpriteNode {
     }
     
     func dash() {
-        if (speedMult < 1) {
-            energy -= dashCost
-            speedMult = 3
-        } else {
+//        if (speedMult < 1) && (energy >= dashCost) {
+//            energy -= dashCost
+//            speedMult = 3
+//        } else {
             if (energy >= dashCost && speedMult < 1.1) {
                 energy -= dashCost
-                speedMult *= 4
+                speedMult = 4
             }
-        }
+//        }
     }
     
     func land() {
