@@ -22,7 +22,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let maxVelocity = Float(600)
     
     var platformGenerator = PlatformGenerator()
-    var score = 0;
+    var score = 100;
     let scoreText = SKLabelNode(fontNamed: "PressStart2P")
     let livesText = SKLabelNode(fontNamed: "PressStart2P")
     
@@ -73,8 +73,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             defaults.set(score, forKey: "highScore")
         }
         
-        view.showsPhysics = true
-        pauseButton = UIButton(frame: CGRect(x: self.frame.midX - 70, y: self.frame.minY, width: 60.0, height: 40.0))
+        //view.showsPhysics = true
+        pauseButton = UIButton(frame: CGRect(x: self.frame.midX - 20, y: self.frame.minY, width: 60.0, height: 40.0))
         pauseButton.setBackgroundImage(UIImage(named: "Button"), for: UIControlState.normal)
         pauseButton.setTitle("||", for: .normal)
         pauseButton.setTitleColor(.brown, for: .normal)
@@ -123,7 +123,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         addChild(fallDetector)
         
         self.scoreText.text = "0"
-        self.scoreText.fontSize = 30
+        self.scoreText.fontSize = 28
+        self.scoreText.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         self.scoreText.position = CGPoint(x: self.frame.maxX - 10, y: self.frame.maxY - 40)
         self.addChild(scoreText)
         
@@ -155,9 +156,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         print(currPlatform.position.y) // log
         
         energyBar = UIProgressView(progressViewStyle: UIProgressViewStyle.default)
-        energyBar.center = CGPoint(x: frame.maxX - 150, y: frame.minY + 20)
+        energyBar.center = CGPoint(x: frame.maxX - 120, y: frame.minY + 20)
         energyBar.progressTintColor = UIColor.init(red: 26/255, green: 148/255, blue: 49/255, alpha: 1.0)
-        energyBar.transform = energyBar.transform.scaledBy(x: 1.5, y: 10)
+        energyBar.transform = energyBar.transform.scaledBy(x: 1.4, y: 10)
         view.addSubview(energyBar)
         energyBar.progress = hero.energy
         
@@ -591,12 +592,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Draw score
-        self.scoreText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2.4,
-                                          y: scene!.camera!.position.y + frame.size.height / 2 * 0.8)
+        self.scoreText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2.1,
+                                          y: scene!.camera!.position.y + frame.size.height / 2 * 0.77)
         
         // Draw lives
         for i in 0..<lives.count {
-            lives[i].position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 3.2 + CGFloat(i*40),
+            lives[i].position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 4.5 + CGFloat(i*40),
                                         y: cameraNode.position.y + frame.size.height / 2 * 0.9)
         }
         

@@ -24,7 +24,8 @@ class JumpingEnemy: Enemy{
     override init(image: String, pos: CGPoint, categoryBitMask: UInt32, contactTestBitMask: UInt32, collisionBitMask: UInt32){
         super.init(image: image, pos: pos, categoryBitMask: categoryBitMask, contactTestBitMask: contactTestBitMask, collisionBitMask: collisionBitMask)
         //self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 16.0, height: 16.0))
-        self.physicsBody!.mass *= 2
+        //self.physicsBody!.mass *= 2
+        self.physicsBody!.mass *= 3
         playerSensor.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10.0, height: 1000.0))
         playerSensor.physicsBody!.affectedByGravity = false
         playerSensor.physicsBody!.categoryBitMask = ColliderType.EnemySensor
