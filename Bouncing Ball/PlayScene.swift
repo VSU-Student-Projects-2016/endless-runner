@@ -171,7 +171,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     func didEnd(_ contact: SKPhysicsContact) {
         if((contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask) == ColliderType.Hero | ColliderType.Ground){
-            hero.jumpsAllowed -= 1
+            //hero.jumpsAllowed -= 1
+            hero.jumpsAllowed = 1
         }
     }
     
@@ -579,11 +580,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         print(self.frame.size.height)
         if hero.position.y > self.frame.size.height * 0.6 {
             if hero.position.y < self.frame.size.height * 1.1 {
-                cameraNode.position = CGPoint(x: cameraNode.position.x, y: self.hero.position.y)
+                cameraNode.position = CGPoint(x: cameraNode.position.x, y:  cameraPositionY + (self.hero.position.y - self.frame.size.height * 0.6))
             }
         } else {
             if cameraNode.position.y > cameraPositionY {
-                cameraNode.position = CGPoint(x: cameraNode.position.x, y: self.hero.position.y)
+                cameraNode.position = CGPoint(x: cameraNode.position.x, y: cameraPositionY + (self.hero.position.y - self.frame.size.height * 0.6))
             } else {
                 cameraNode.position.y = cameraPositionY
             }

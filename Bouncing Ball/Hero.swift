@@ -120,7 +120,7 @@ public class Hero: SKSpriteNode {
                 //jumpsAllowed -= 1
             }
             else {
-                if energy >= doubleJumpCost {
+                if energy >= doubleJumpCost{
                     energy -= doubleJumpCost
                     self.physicsBody!.velocity = CGVector(dx: self.physicsBody!.velocity.dx, dy: 0)
                     self.physicsBody!.applyImpulse(CGVector(dx: 0.0, dy: jumpPower))
@@ -129,7 +129,8 @@ public class Hero: SKSpriteNode {
                     stopRunning()
                     changeImage(image: "3_Jump")
                     
-                    jumpsAllowed -= 1
+                    //jumpsAllowed -= 1
+                    jumpsAllowed = 0
                 }
             }
         }
