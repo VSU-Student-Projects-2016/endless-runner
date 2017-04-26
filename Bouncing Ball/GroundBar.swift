@@ -21,8 +21,8 @@ class GroundBar: SKSpriteNode {
         let texture = SKTexture(imageNamed: "desert_rnd")
         super.init(texture: texture, color: .clear, size: CGSize(width: round(texture.size().width), height: round(texture.size().height)))
         
-        print("Ground width: " + String(describing: texture.size().width))
-        print("Ground height: " + String(describing: texture.size().height))
+        //print("Ground width: " + String(describing: texture.size().width))
+        //print("Ground height: " + String(describing: texture.size().height))
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.position = pos

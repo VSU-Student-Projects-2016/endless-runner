@@ -22,9 +22,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let maxVelocity = Float(600)
     
     var platformGenerator = PlatformGenerator()
-    var score = 100;
+    var score = 0;
     let scoreText = SKLabelNode(fontNamed: "PressStart2P")
     let livesText = SKLabelNode(fontNamed: "PressStart2P")
+    
+    var numberAddedLives = 1
     
     var hero: Hero!
     var energyConsumption = Float(0.0001)
@@ -82,7 +84,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         pauseButton.addTarget(self, action: #selector(self.pauseButtonPressed(_:)), for: .touchUpInside)
         self.view?.addSubview(pauseButton)
         
-        dashButton = UIButton(frame: CGRect(x: self.frame.minX + 10, y: self.frame.maxY - 55, width: 100.0, height: 35.0))
+        dashButton = UIButton(frame: CGRect(x: self.frame.minX + 10, y: self.frame.maxY - 55, width: 100.0, height: 40.0))
         dashButton.setBackgroundImage(UIImage(named: "Button"), for: UIControlState.normal)
         dashButton.setTitle("Dash", for: .normal)
         dashButton.setTitleColor(.brown, for: .normal)
@@ -153,7 +155,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         currPlatform = platformGenerator.getStartPlatform(scene: self, pos: CGPoint(x: frame.minX, y: frame.minY + frame.midY * 0.3), difficulty: difficulty)
         self.addChild(currPlatform)
         self.addChild(self.hero)
-        print(currPlatform.position.y) // log
+        //print(currPlatform.position.y) // log
         
         energyBar = UIProgressView(progressViewStyle: UIProgressViewStyle.default)
         energyBar.center = CGPoint(x: frame.maxX - 120, y: frame.minY + 20)
@@ -542,11 +544,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Add extra life for a 100 scores
-        if score % 100 == 0 {
+        if numberAddedLives * 100 <= score {
             if lives.count < hero.maxLives {
                 lives.append(SKSpriteNode(texture: SKTexture(imageNamed: "heart")))
                 lives[lives.count - 1].position = CGPoint(x: CGFloat(30), y: self.frame.maxY - 25)
                 addChild(lives[lives.count - 1])
+                hero.lives += 1
+                numberAddedLives += 1
             }
         }
         
@@ -578,7 +582,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         // Handle camera position
         cameraNode.position = CGPoint(x: hero.position.x + self.frame.width / 4, y: cameraNode.position.y)
-        print(self.frame.size.height)
+        //print(self.frame.size.height)
         if hero.position.y > self.frame.size.height * 0.6 {
             if hero.position.y < self.frame.size.height * 1.1 {
                 cameraNode.position = CGPoint(x: cameraNode.position.x, y:  cameraPositionY + (self.hero.position.y - self.frame.size.height * 0.6))
