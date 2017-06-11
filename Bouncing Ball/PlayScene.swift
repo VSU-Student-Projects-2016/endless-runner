@@ -116,11 +116,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         continueButton.titleLabel!.font = UIFont(name: "PressStart2P", size: 14)
         continueButton.addTarget(self, action: #selector(self.continueButtonPressed(_:)), for: .touchUpInside)
         
-        muteButton = UIButton(frame: CGRect(x:  self.frame.maxX - #imageLiteral(resourceName: "hero_jump").size.width * 1.1, y: self.frame.maxY  - #imageLiteral(resourceName: "hero_jump").size.height, width: #imageLiteral(resourceName: "hero_jump").size.width, height: #imageLiteral(resourceName: "hero_jump").size.height))
+        muteButton = UIButton(frame: CGRect(x:  self.frame.maxX - #imageLiteral(resourceName: "snd_active").size.width * 1.1, y: self.frame.maxY  - #imageLiteral(resourceName: "snd_active").size.height * 1.1, width: #imageLiteral(resourceName: "snd_active").size.width, height: #imageLiteral(resourceName: "snd_active").size.height))
         if defaults.bool(forKey: "muted") {
-            muteButton.setImage(#imageLiteral(resourceName: "hero_fall"), for: .normal)
+            muteButton.setImage(#imageLiteral(resourceName: "snd_muted"), for: .normal)
         } else {
-            muteButton.setImage(#imageLiteral(resourceName: "hero_jump"), for: .normal)
+            muteButton.setImage(#imageLiteral(resourceName: "snd_active"), for: .normal)
         }
         muteButton.addTarget(self, action: #selector(self.muteButtonPressed(_:)), for: .touchUpInside)
         
@@ -266,14 +266,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             hero.powerUps[PowerUpTypes.Shield]?.onContact(with: enemy)
             
             if !enemy.isDead {
-                hero.hitByEnemy()
-                
                 if !hero.isInvincible {
                     lives[lives.count - 1].removeFromParent()
                     lives.remove(at: lives.count - 1)
-                    if hero.lives == 0 {
-                        died()
-                    }
+                }
+                hero.hitByEnemy()
+                if hero.lives == 0 {
+                    died()
                 }
             }
         }
@@ -387,9 +386,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         muted = !muted
         defaults.set(muted, forKey: "muted")
         if muted {
-            muteButton.setImage(#imageLiteral(resourceName: "hero_fall"), for: .normal)
+            muteButton.setImage(#imageLiteral(resourceName: "snd_muted"), for: .normal)
         } else {
-            muteButton.setImage(#imageLiteral(resourceName: "hero_jump"), for: .normal)
+            muteButton.setImage(#imageLiteral(resourceName: "snd_active"), for: .normal)
         }
     }
     

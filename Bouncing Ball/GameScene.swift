@@ -14,8 +14,8 @@ class GameScene: SKScene {
     
     
     var playButton : UIButton!
-    let muteButton = SKSpriteNode(imageNamed: "hero_jump")
-    var muted = true
+    let muteButton = SKSpriteNode(imageNamed: "snd_active")
+    var muted = false
     var defaults = UserDefaults.standard
     
     override func didMove(to view: SKView) {
@@ -26,9 +26,9 @@ class GameScene: SKScene {
         }
         
         if muted {
-            muteButton.texture = SKTexture(imageNamed: "hero_fall")
+            muteButton.texture = SKTexture(imageNamed: "snd_muted")
         } else {
-            muteButton.texture = SKTexture(imageNamed: "hero_jump")
+            muteButton.texture = SKTexture(imageNamed: "snd_active")
         }
         
         playButton = UIButton(frame: CGRect(x: self.frame.midX + frame.size.width / 3, y: self.frame.midY + frame.size.height / 3, width: 200.0, height: 100.0))
@@ -40,7 +40,7 @@ class GameScene: SKScene {
         self.view?.addSubview(playButton)
         self.backgroundColor = UIColor.gray
         
-        self.muteButton.position = CGPoint(x: self.frame.maxX - muteButton.size.width * 1.1, y: self.frame.minY  + muteButton.size.height)
+        self.muteButton.position = CGPoint(x: self.frame.maxX - muteButton.size.width * 1.1, y: self.frame.minY  + muteButton.size.height * 1.1)
         self.addChild(self.muteButton)
     }
   
@@ -61,9 +61,9 @@ class GameScene: SKScene {
                 muted = !muted
                 defaults.set(muted, forKey: "muted")
                 if muted {
-                    muteButton.texture = SKTexture(imageNamed: "hero_fall")
+                    muteButton.texture = SKTexture(imageNamed: "snd_muted")
                 } else {
-                    muteButton.texture = SKTexture(imageNamed: "hero_jump")
+                    muteButton.texture = SKTexture(imageNamed: "snd_active")
                 }
             }
         }

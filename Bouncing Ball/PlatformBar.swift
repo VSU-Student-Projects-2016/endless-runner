@@ -46,6 +46,20 @@ class PlatformBar: SKSpriteNode {
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.position = pos
+        
+        var textures = [SKSpriteNode]()
+        let texturesCount = 5
+        let texturesPerPlatform = 4
+        let textureWidth = CGFloat(71)
+        for i in 0..<texturesPerPlatform {
+            let texture = SKTexture(imageNamed: "grass_" + String(random(left: 1, right: texturesCount)))
+            let platform = SKSpriteNode(texture: texture)
+            platform.zPosition = 100
+            platform.anchorPoint = CGPoint(x: 0.0, y: 0.5)
+            textures.append(platform)
+            self.addChild(textures[i])
+            textures[i].position.x = CGFloat(i) * textureWidth - self.size.width / 2
+        }
     }
     
     public func MakeSolid() {
@@ -56,6 +70,10 @@ class PlatformBar: SKSpriteNode {
         self.physicsBody!.collisionBitMask = ColliderType.Hero
         self.physicsBody!.restitution = 0.0
         self.physicsBody!.friction = 0
+    }
+    
+    func random(left: Int, right: Int) -> Int {
+        return Int(arc4random_uniform(UInt32(right))) + left
     }
     
     required init?(coder aDecoder: NSCoder) {
