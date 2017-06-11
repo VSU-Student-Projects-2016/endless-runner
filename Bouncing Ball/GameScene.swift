@@ -40,7 +40,7 @@ class GameScene: SKScene {
         self.view?.addSubview(playButton)
         self.backgroundColor = UIColor.gray
         
-        self.muteButton.position = CGPoint(x: self.frame.maxX - muteButton.size.width * 1.1, y: self.frame.maxY  - muteButton.size.height)
+        self.muteButton.position = CGPoint(x: self.frame.maxX - muteButton.size.width * 1.1, y: self.frame.minY  + muteButton.size.height)
         self.addChild(self.muteButton)
     }
   

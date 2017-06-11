@@ -12,6 +12,8 @@ import UIKit
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
+    var gamePaused = false
+    
     var gameOverScreen : UIView?
     var pauseScreen : UIView?
     
@@ -53,6 +55,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var exitButton : UIButton!
     var replayButton : UIButton!
     var continueButton : UIButton!
+    var muteButton : UIButton!
     
     var dashButton : UIButton!
     
@@ -112,6 +115,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         continueButton.setTitleColor(.brown, for: .normal)
         continueButton.titleLabel!.font = UIFont(name: "PressStart2P", size: 14)
         continueButton.addTarget(self, action: #selector(self.continueButtonPressed(_:)), for: .touchUpInside)
+        
+        muteButton = UIButton(frame: CGRect(x:  self.frame.maxX - #imageLiteral(resourceName: "hero_jump").size.width * 1.1, y: self.frame.maxY  - #imageLiteral(resourceName: "hero_jump").size.height, width: #imageLiteral(resourceName: "hero_jump").size.width, height: #imageLiteral(resourceName: "hero_jump").size.height))
+        if defaults.bool(forKey: "muted") {
+            muteButton.setImage(#imageLiteral(resourceName: "hero_fall"), for: .normal)
+        } else {
+            muteButton.setImage(#imageLiteral(resourceName: "hero_jump"), for: .normal)
+        }
+        muteButton.addTarget(self, action: #selector(self.muteButtonPressed(_:)), for: .touchUpInside)
         
         // don't hardcode "200" below
         hero = Hero(image: "1Cat", pos: CGPoint(x: self.frame.minX + 200, y: self.frame.midY), categoryBitMask: ColliderType.Hero, contactTestBitMask: ColliderType.Ground | ColliderType.PlatformSensor, collisionBitMask: ColliderType.Ground)
@@ -256,11 +267,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             
             if !enemy.isDead {
                 hero.hitByEnemy()
-                if hero.lives == 0 {
-                    died()
+                
+                if !hero.isInvincible {
+                    lives[lives.count - 1].removeFromParent()
+                    lives.remove(at: lives.count - 1)
+                    if hero.lives == 0 {
+                        died()
+                    }
                 }
-                lives[lives.count - 1].removeFromParent()
-                lives.remove(at: lives.count - 1)
             }
         }
         
@@ -368,6 +382,17 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         skView?.presentScene(scene)
     }
     
+    func muteButtonPressed(_ sender: UIButton!){
+        var muted = defaults.bool(forKey: "muted")
+        muted = !muted
+        defaults.set(muted, forKey: "muted")
+        if muted {
+            muteButton.setImage(#imageLiteral(resourceName: "hero_fall"), for: .normal)
+        } else {
+            muteButton.setImage(#imageLiteral(resourceName: "hero_jump"), for: .normal)
+        }
+    }
+    
     func continueButtonPressed(_ sender: UIButton!){
         pause()
     }
@@ -401,7 +426,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     func pause()
     {
-        self.isPaused = !self.isPaused
+        gamePaused = !gamePaused
+        self.isPaused = gamePaused
+        //self.isPaused = !self.isPaused
         
         if isPaused {
             //dashButton.removeFromSuperview()
@@ -414,6 +441,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             pauseScreen!.addSubview(exitButton)
             pauseScreen!.addSubview(continueButton)
             pauseScreen!.addSubview(replayButton)
+            pauseScreen!.addSubview(muteButton)
             self.view?.addSubview(pauseScreen!)
 //            exitButton.frame.origin = CGPoint(x: self.frame.midX + 100, y: self.frame.midY)
 //            replayButton.frame.origin = CGPoint(x: self.frame.midX, y: self.frame.midY)
@@ -423,6 +451,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             exitButton.removeFromSuperview()
             replayButton.removeFromSuperview()
             continueButton.removeFromSuperview()
+            muteButton.removeFromSuperview()
             self.view?.addSubview(pauseButton)
         }
     }
@@ -494,12 +523,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        hero.jump()
+        if !gamePaused {
+            hero.jump()
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {
         hero.update()
         
+        self.isPaused = gamePaused
         
         // Temporary stop error handling
 //        if hero.position == lastHeroPosition && stopErrorText.position != cameraNode.position {
