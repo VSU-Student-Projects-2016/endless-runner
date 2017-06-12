@@ -116,7 +116,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         continueButton.titleLabel!.font = UIFont(name: "PressStart2P", size: 14)
         continueButton.addTarget(self, action: #selector(self.continueButtonPressed(_:)), for: .touchUpInside)
         
-        muteButton = UIButton(frame: CGRect(x:  self.frame.maxX - #imageLiteral(resourceName: "snd_active").size.width * 1.1, y: self.frame.maxY  - #imageLiteral(resourceName: "snd_active").size.height * 1.1, width: #imageLiteral(resourceName: "snd_active").size.width, height: #imageLiteral(resourceName: "snd_active").size.height))
+        muteButton = UIButton(frame: CGRect(x:  self.frame.maxX - #imageLiteral(resourceName: "snd_active").size.width * 1.5, y: self.frame.maxY  - #imageLiteral(resourceName: "snd_active").size.height * 1.5, width: #imageLiteral(resourceName: "snd_active").size.width, height: #imageLiteral(resourceName: "snd_active").size.height))
         if defaults.bool(forKey: "muted") {
             muteButton.setImage(#imageLiteral(resourceName: "snd_muted"), for: .normal)
         } else {
