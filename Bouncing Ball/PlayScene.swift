@@ -67,9 +67,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var cameraPositionY : CGFloat!
     
-    
+    var backgroundSky : SKSpriteNode!
     
     override func didMove(to view: SKView) {
+        
+        let texture = SKTexture(image: #imageLiteral(resourceName: "background"))
+        backgroundSky = SKSpriteNode(texture: texture)
+        backgroundSky.zPosition = -150
+        backgroundSky.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.addChild(backgroundSky)
         
         pauseScreen = UIView()
         gameOverScreen = UIView()
@@ -528,6 +534,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        
+        
         hero.update()
         
         self.isPaused = gamePaused
@@ -625,6 +633,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 cameraNode.position.y = cameraPositionY
             }
         }
+        
+        backgroundSky.position = cameraNode.position
         
         // Draw score
         self.scoreText.position = CGPoint(x: scene!.camera!.position.x - frame.size.width / 2.1,
