@@ -15,6 +15,7 @@ class GameScene: SKScene {
     
     var playButton : UIButton!
     let muteButton = SKSpriteNode(imageNamed: "snd_active")
+    var backgroundImage = SKSpriteNode(imageNamed: "MainMenuBackground")
     //var muteButton : UIButton!
     //var screen : UIView?
     
@@ -34,13 +35,16 @@ class GameScene: SKScene {
             muteButton.texture = SKTexture(imageNamed: "snd_active")
         }
         
+        backgroundImage.position = CGPoint(x: frame.midX, y: frame.midY)
+        backgroundImage.zPosition = -170
+        self.addChild(backgroundImage)
         /*screen = UIView()
         screen!.sizeThatFits(self.frame.size)
         screen!.frame.origin = CGPoint(x: self.frame.minX, y: self.frame.minY)
         screen!.frame.size = self.frame.size
         self.view?.addSubview(screen!)*/
         
-        playButton = UIButton(frame: CGRect(x: self.frame.midX + frame.size.width / 3, y: self.frame.midY + frame.size.height / 3, width: 200.0, height: 100.0))
+        playButton = UIButton(frame: CGRect(x: self.frame.midX + frame.size.width / 2.7, y: self.frame.midY + frame.size.height / 2.6, width: 200.0, height: 100.0))
         playButton.setBackgroundImage(UIImage(named: "Button"), for: UIControlState.normal)
         playButton.setTitle("Play", for: .normal)
         playButton.setTitleColor(.brown, for: .normal)
