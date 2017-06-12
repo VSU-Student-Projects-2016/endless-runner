@@ -21,6 +21,7 @@ public class ShieldPU: SKSpriteNode, PowerUp {
         super.init(texture: texture, color: .clear, size: texture.size())
         
         shieldTextureOnHero = SKSpriteNode(texture: texture)
+        shieldTextureOnHero?.zPosition = 150
         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         physicsBody!.categoryBitMask = ColliderType.PowerUp
         physicsBody!.contactTestBitMask = ColliderType.Hero
@@ -30,7 +31,7 @@ public class ShieldPU: SKSpriteNode, PowerUp {
  
     public func onAdd(to hero: Hero) {
         self.hero = hero
-        shieldTextureOnHero?.zPosition = 99
+        //shieldTextureOnHero?.zPosition = 99
         hero.addChild(shieldTextureOnHero!)
         if hero.powerUps[PowerUpTypes.Shield] != nil {
             hero.powerUps[PowerUpTypes.Shield]!.removeFromHero()
