@@ -49,6 +49,20 @@ class GroundBar: SKSpriteNode {
             textures[i].position.x = CGFloat(i) * textureWidth - self.size.width / 2
         }
         
+        var backGrounds = [SKSpriteNode]()
+        let backGroundsCount = 5
+        let backGroundsPerPlatform = 16
+        let backGroundWidth = CGFloat(71)
+        for i in 0..<backGroundsPerPlatform {
+            let backGroundImg = SKTexture(imageNamed: "ground_" + String(random(left: 1, right: backGroundsCount)))
+            let backGround = SKSpriteNode(texture: backGroundImg)
+            backGround.zPosition = 80
+            backGround.anchorPoint = CGPoint(x: 0.0, y: 0.5)
+            backGrounds.append(backGround)
+            self.addChild(backGrounds[i])
+            backGrounds[i].position.x = CGFloat(i) * backGroundWidth - self.size.width / 2
+            backGrounds[i].position.y -= backGrounds[i].size.height / 2 - 8
+        }
     }
     
     func random(left: Int, right: Int) -> Int {
