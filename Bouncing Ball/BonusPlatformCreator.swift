@@ -38,7 +38,7 @@ class BonusPlatformCreator : AbstractPlatformCreator {
             // Add power-up
             randNum = random(left: 0, right: 10)
             if i == 0 && randNum < 3 {
-                let enegryBooster = EnergyPU(image: "hero");
+                let enegryBooster = EnergyPU(image: "PowerUp");
                 enegryBooster.position = CGPoint(x: ground.position.x + ground.size.width / 2, y: ground.position.y + smallPlatformHeight * 2.5)
                 scene.addChild(enegryBooster)
             }

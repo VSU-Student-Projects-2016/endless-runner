@@ -72,13 +72,13 @@ class LongJumpPlatformCreator : AbstractPlatformCreator {
         if randNum < 5 {
             addBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult, quantity: 9, halfArc: true)
         
-            let shield = ShieldPU(image: "hero_fall");
+            let shield = ShieldPU(image: "bubble");
             shield.position = CGPoint(x: smallPlatformBonus.position.x, y: smallPlatformBonus.position.y + bonusLowPosHeight)
             scene.addChild(shield)
         } else {
             addBonuses(scene: scene, pos: CGPoint(x: smallPlatform.position.x + smallPlatform.size.width / 2 + bonusPosMult, y: smallPlatform.position.y + bonusMidPosHeight), stepHorizontal: bonusPosMult * 2, quantity: 5, halfArc: true)
             
-            let energyBooster = EnergyPU(image: "hero");
+            let energyBooster = EnergyPU(image: "PowerUp");
             energyBooster.position = CGPoint(x: smallPlatformBonus.position.x, y: smallPlatformBonus.position.y + bonusLowPosHeight)
             scene.addChild(energyBooster)
         }

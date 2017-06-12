@@ -16,7 +16,8 @@ public class ShieldPU: SKSpriteNode, PowerUp {
     var shieldTextureOnHero: SKSpriteNode?
     
     public init(image: String) {
-        let texture = SKTexture(imageNamed: image)
+        //let texture = SKTexture(imageNamed: image)
+        let texture = SKTexture(imageNamed: "bubble")
         super.init(texture: texture, color: .clear, size: texture.size())
         
         shieldTextureOnHero = SKSpriteNode(texture: texture)
